@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
@@ -14,20 +15,83 @@ class Post extends Model
 
     public function savePost($request)
     {
-        $post = new self;
-        $post->judul = $request->judul;
-        $post->slug = $request->slug;
-        $post->content = $request->content;
+        // dd($request->file('picture'));
+        if (!$request->file('picture')) {
+            $post = new self;
+            $post->judul = $request->judul;
+            $post->slug = $request->slug;
+            $post->content = $request->content;
 
-        if ($post->save()) {
-            return true;
+            if ($post->save()) {
+                return true;
+            }
         } else {
-            return false;
+            $path = $request->file('picture')->store('post', 'public');
+            $urlToSave = asset(Storage::url($path));
+
+            $post = new self;
+            $post->judul = $request->judul;
+            $post->slug = $request->slug;
+            $post->content = $request->content;
+            $post->picture = $urlToSave;
+
+            if ($post->save()) {
+                return true;
+            }
         }
+
+        return false;
     }
 
-    public static function getAllPost()
+    public function updatePost($request, $id)
     {
-        return DataTables::of(self::all())->make(true);
+        // dd($request->file('picture'));
+        if (!$request->file('picture')) {
+            $post = self::find($id);
+            $post->judul = $request->judul;
+            $post->slug = $request->slug;
+            $post->content = $request->content;
+
+            if ($post->save()) {
+                return true;
+            }
+        } else {
+
+            //save picture
+            $path = $request->file('picture')->store('post', 'public');
+            $urlToSave = asset(Storage::url($path));
+
+            //save data
+            $post = self::find($id);
+            $post->judul = $request->judul;
+            $post->slug = $request->slug;
+            $post->content = $request->content;
+            $post->picture = $urlToSave;
+
+            if ($post->save()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    public function getAllPost()
+    {
+        return self::all();
+    }
+
+    public function getAllPostForDatatable()
+    {
+        $query = self::all();
+        return DataTables::of($query)->toJson();
+    }
+
+
+
+    public function getDetailPost($id)
+    {
+        $post = self::find($id);
     }
 }

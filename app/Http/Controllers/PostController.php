@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Exception;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
 
 class PostController extends Controller
 {
@@ -35,11 +39,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        try {
+            $validation = Validator::make($request->all(), PostRequest::addPost(), PostRequest::addPostMessages());
 
-        $savePost = Post::savePost($request);
 
-        if ($savePost) {
-            return redirect()->route('post.index')->withToastSuccess('Berhasil membuat post!');
+            if (!$validation->fails()) {
+                $savePost = Post::savePost($request);
+                if ($savePost) {
+                    return redirect()->route('post.index')->withToastSuccess('Berhasil membuat post!');
+                }
+            } else {
+                return redirect()->back()
+                    ->withErrors($validation)
+                    ->withInput()
+                    ->withToastError('Periksa kembali input!');
+            }
+        } catch (Exception $e) {
+            // return redirect()->back()->withToastError("Something Wrong!");
+            throw $e;
         }
     }
 
@@ -51,19 +69,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post =  Post::find($id);
+        return view('pages.post.DetailPost', compact('post'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -74,7 +83,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post  =  Post::updatePost($request, $id);
+
+        if ($post) {
+            return redirect()->route('post.index')->withToastSuccess("Berhasil mengupdate post!");
+        }
     }
 
     /**
@@ -99,9 +112,9 @@ class PostController extends Controller
     }
 
 
-    public function getAllPost()
+    public function getAllPostForDataTable()
     {
-        $post = Post::getAllPost();
+        $post = Post::getAllPostForDatatable();
 
         return $post;
     }

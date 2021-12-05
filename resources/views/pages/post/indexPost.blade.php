@@ -41,9 +41,7 @@
 
 
     <!-- confirm delete Modal-->
-    <form name="deletePostForm"
-        action="{{ route('post.destroy') }}
-                                                                                                                                                                                                                                                ">
+    <form name="deletePostForm" action="{{ route('post.destroy') }}" enctype="multipart/form-data">
         @csrf
         @method('delete')
         <input type="hidden" name="id">
@@ -108,7 +106,7 @@
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
-                pageLength: 10,
+                pageLength: 5,
                 ajax: {
                     type: "GET",
                     url: "{{ route('post.get.get-all-post') }}",
@@ -134,7 +132,8 @@
                         data: null,
                         render: function(data, type, row) {
                             return `
-                                    <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger"><i class="fas fa-trash"></i></button>
+                                    <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class="fas fa-trash"></i></button>
+                                    <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
                                 `
                         }
                     },
