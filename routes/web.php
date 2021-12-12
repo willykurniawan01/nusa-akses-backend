@@ -39,4 +39,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             Route::get('get-all-post', 'PostController@getAllPostForDatatable')->name('post.get.get-all-post');
         });
     });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('', 'SettingController@index')->name('settings.index');
+    });
 });

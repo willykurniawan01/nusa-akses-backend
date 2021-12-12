@@ -7,7 +7,7 @@
 
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ route('post.index') }}" class="btn btn-primary">
+                <a href="{{ URL::previous() }}" class="btn btn-primary">
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
