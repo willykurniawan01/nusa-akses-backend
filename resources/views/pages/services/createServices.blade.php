@@ -15,35 +15,26 @@
         </div>
 
         <!-- DataTales Example -->
-        <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('services.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Postingan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Services</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="judul">Judul :</label>
-                                <input name="judul" id="judul" type="text" value="{{ old('judul') }}"
-                                    class="form-control @error('judul') is-invalid @enderror">
+                                <label for="name">Name :</label>
+                                <input name="name" id="name" type="text" value="{{ old('name') }}"
+                                    class="form-control @error('name') is-invalid @enderror">
 
-                                @error('judul')
+                                @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div iv>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="slug">Slug :</label>
-                                <input name="slug" id="slug" type="text" value="{{ old('slug') }}"
-                                    class="  form-control @error('slug') is-invalid @enderror">
-                                @error('slug')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
+                 
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="picture">Picture :</label>
@@ -62,8 +53,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <textarea name="content" id="editor">{{ old('content') }}</textarea>
-                            @error('content')
+                            <textarea name="description" id="editor">{{ old('description') }}</textarea>
+                            @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

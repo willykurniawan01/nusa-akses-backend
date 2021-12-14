@@ -30,17 +30,35 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('', 'PostController@index')->name('post.index');
         Route::get('create', 'PostController@create')->name('post.create');
         Route::post('store', 'PostController@store')->name('post.store');
-        Route::get('/{id}', 'PostController@show')->name('post.show');
+        Route::get('show/{id}', 'PostController@show')->name('post.show');
         Route::put('update/{id}', 'PostController@update')->name('post.update');
         Route::delete('destroy', 'PostController@destroy')->name('post.destroy');
 
         //ajax get route
         Route::prefix('get')->group(function () {
             Route::get('get-all-post', 'PostController@getAllPostForDatatable')->name('post.get.get-all-post');
+            Route::get('get-post-category', 'PostCategoryController@getPostCategory')->name('post.get.get-post-category');
+        });
+    });
+
+
+    Route::prefix('services')->group(function () {
+        Route::get('', 'ServicesController@index')->name('services.index');
+        Route::get('/create', 'ServicesController@create')->name('services.create');
+        Route::post('/store', 'ServicesController@store')->name('services.store');
+        Route::get('show/{id}', 'ServicesController@show')->name('services.show');
+        Route::put('update/{id}', 'ServicesController@update')->name('services.update');
+        Route::delete('destroy', 'ServicesController@destroy')->name('services.destroy');
+
+        //ajax get route
+        Route::prefix('get')->group(function () {
+            Route::get('get-all-services', 'ServicesController@getAllservicesForDatatable')->name('services.get.get-all-services');
         });
     });
 
     Route::prefix('settings')->group(function () {
         Route::get('', 'SettingController@index')->name('settings.index');
+        Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');
+        Route::post('save-setting', 'SettingController@saveSetting')->name('settings.save-setting');
     });
 });

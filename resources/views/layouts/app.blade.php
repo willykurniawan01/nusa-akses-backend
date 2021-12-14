@@ -123,9 +123,16 @@
                         </div>
                     </div>
                 </li>
-
+                
+          
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('services.index') }}">
+                        <i class="fas fa-hands"></i>
+
+                        <span>Services</span></a
+                    >
+                </li>  <li class="nav-item">
                     <a class="nav-link" href="{{ route('settings.index') }}">
                         <i class="fas fa-cog"></i>
                         <span>Pengaturan</span></a
