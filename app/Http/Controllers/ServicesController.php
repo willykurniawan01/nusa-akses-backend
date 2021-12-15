@@ -38,17 +38,21 @@ class ServicesController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
         $messages = [
             'name.required' => 'nama services tidak boleh kosong!',
-            'description.required' => 'deskripsi services tidak boleh kosong!'
+            'description.required' => 'deskripsi services tidak boleh kosong!',
+            'picture.image' => 'file harus berupa gambar!',
+            'picture.mimes' => 'ekstensi file tidak di support!',
+            'picture.max' => 'ukuran gambar tidak boleh lebih dari 2mb!',
         ];
         $validation = Validator::make($request->all(), $rules, $messages);
 
         if (!$validation->fails()) {
-            $services = Services::saveServices($validation->validated());
+            $services = Services::saveService($request);
 
             if ($services) {
                 return redirect()
@@ -74,7 +78,9 @@ class ServicesController extends Controller
      */
     public function show($id)
     {
-        //
+        $services = Services::findOrFail($id);
+
+        return view('pages.services.detailServices', compact('services'));
     }
 
     /**
@@ -97,7 +103,38 @@ class ServicesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required',
+            'description' => 'required',
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+
+        $messages = [
+            'name.required' => 'nama services tidak boleh kosong!',
+            'description.required' => 'deskripsi services tidak boleh kosong!',
+            'picture.image' => 'file harus berupa gambar!',
+            'picture.mimes' => 'ekstensi file tidak di support!',
+            'picture.max' => 'ukuran gambar tidak boleh lebih dari 2mb!',
+        ];
+        $validation = Validator::make($request->all(), $rules, $messages);
+
+        if (!$validation->fails()) {
+            $services = Services::updateService($request, $id);
+
+            if ($services) {
+                return redirect()
+                    ->route('services.index')
+                    ->withToastSuccess("Berhasil mengupdate data!");
+            }
+
+            return redirect()->back()
+                ->withToasError("Gagal mengupdate data!");
+        } else {
+            return redirect()->back()
+                ->withErrors($validation)
+                ->withInput()
+                ->withToastError('Periksa kembali input!');
+        }
     }
 
     /**

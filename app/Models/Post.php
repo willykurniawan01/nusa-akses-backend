@@ -16,7 +16,7 @@ class Post extends Model
     public function savePost($request)
     {
         // dd($request->file('picture'));
-        if (!$request->file('picture')) {
+        if (!$request->hasFile('picture')) {
             $post = new self;
             $post->judul = $request->judul;
             $post->slug = $request->slug;

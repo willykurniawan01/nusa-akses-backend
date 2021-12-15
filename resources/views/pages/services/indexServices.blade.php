@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | Postingan')
+@section('title', 'Nusa Akses | servicesingan')
 
 @section('content')
     <div class="container-fluid">
@@ -90,7 +90,7 @@
             let deleteButton = $("button[name='deleteButton']");
             let deleteModal = $("div[name='deleteModal']");
             let deleteServicesForm = $("form[name='deleteServicesForm']");
-            let categoryInput = $("input[name='post_category']")
+            let categoryInput = $("input[name='services_category']")
 
 
         
@@ -109,7 +109,7 @@
             })
 
 
-            let postList = servicesTable.DataTable({
+            let servicesList = servicesTable.DataTable({
                 searching: true,
                 autoWidth: false,
                 processing: true,
@@ -126,16 +126,21 @@
                         defaultContent: '-'
                     },
                     {
-                        data: 'gambar',
-                        name: 'gambar',
-                        defaultContent: '-'
+                        data: 'picture',
+                        name: 'picture',
+                        defaultContent: '-',
+                        render:function(data,type,row){
+                            return `
+                                <img src="${data}" class="img-thumbnail" width="400" height="300" alt="...">
+                            `
+                        }
                     },
                     {
                         data: null,
                         render: function(data, type, row) {
                             return `
                                     <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class="fas fa-trash"></i></button>
-                                    <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('services.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
                                 `
                         }
                     },
@@ -167,7 +172,7 @@
                     data: form.serialize(),
                     success: function(res) {
                         deleteModal.modal('hide');
-                        postList.ajax.reload();
+                        servicesList.ajax.reload();
 
                         Toast.fire({
                             icon: 'success',
