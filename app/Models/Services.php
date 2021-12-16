@@ -19,6 +19,13 @@ class Services extends Model
         return DataTables::of($query)->toJson();
     }
 
+    public function getAllServices()
+    {
+        $query = self::all();
+        return $query;
+    }
+
+
     public function saveService($request)
     {
         if (!$request->hasFile('picture')) {

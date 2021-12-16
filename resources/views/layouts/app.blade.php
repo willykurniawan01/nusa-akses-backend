@@ -130,7 +130,7 @@
                     <a class="nav-link" href="{{ route('services.index') }}">
                         <i class="fas fa-hands"></i>
 
-                        <span>Services</span></a
+                        <span>Services{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
                     >
                 </li>  <li class="nav-item">
                     <a class="nav-link" href="{{ route('settings.index') }}">

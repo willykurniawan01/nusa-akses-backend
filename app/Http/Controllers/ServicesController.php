@@ -166,4 +166,11 @@ class ServicesController extends Controller
 
         return $services;
     }
+
+    public function getAllServices()
+    {
+        $services = Services::getAllServices();
+
+        return $services;
+    }
 }
