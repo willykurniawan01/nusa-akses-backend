@@ -56,6 +56,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         });
     });
 
+
+    Route::prefix('sliders')->group(function () {
+        Route::get('', 'SlidersController@index')->name('sliders.index');
+        Route::get('/create', 'SlidersController@create')->name('sliders.create');
+        Route::post('/store', 'SlidersController@store')->name('sliders.store');
+        Route::get('show/{id}', 'SlidersController@show')->name('sliders.show');
+        Route::put('update/{id}', 'SlidersController@update')->name('sliders.update');
+        Route::delete('destroy', 'SlidersController@destroy')->name('sliders.destroy');
+
+        //ajax get route
+        Route::prefix('get')->group(function () {
+            Route::get('get-all-sliders', 'SlidersController@getAllsliders')->name('sliders.get.get-all-sliders');
+        });
+    });
+
     Route::prefix('settings')->group(function () {
         Route::get('', 'SettingController@index')->name('settings.index');
         Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');

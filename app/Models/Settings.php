@@ -29,6 +29,7 @@ class Settings extends Model
             'title' => 'Misi Perusahaan',
             'is_textarea' => true
         ],
+
     ];
 
 

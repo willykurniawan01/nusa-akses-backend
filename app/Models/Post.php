@@ -27,13 +27,11 @@ class Post extends Model
             }
         } else {
             $path = $request->file('picture')->store('post', 'public');
-            $urlToSave = asset(Storage::url($path));
-
             $post = new self;
             $post->judul = $request->judul;
             $post->slug = $request->slug;
             $post->content = $request->content;
-            $post->picture = $urlToSave;
+            $post->picture = $path;
 
             if ($post->save()) {
                 return true;
@@ -59,14 +57,13 @@ class Post extends Model
 
             //save picture
             $path = $request->file('picture')->store('post', 'public');
-            $urlToSave = asset(Storage::url($path));
 
             //save data
             $post = self::find($id);
             $post->judul = $request->judul;
             $post->slug = $request->slug;
             $post->content = $request->content;
-            $post->picture = $urlToSave;
+            $post->picture = $path;
 
             if ($post->save()) {
                 return true;

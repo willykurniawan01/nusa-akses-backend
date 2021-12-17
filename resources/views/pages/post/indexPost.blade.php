@@ -32,6 +32,7 @@
                                 <th>Judul</th>
                                 <th>Tanggal</th>
                                 <th>Slug</th>
+                                <th>Picture</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -155,6 +156,16 @@
                         data: 'slug',
                         name: 'slug',
                         defaultContent: '-'
+                    },
+                    {
+                        data: 'picture',
+                        name: 'picture',
+                        defaultContent: '-',
+                        render:function(data,type,row){
+                            return `
+                                <img src="{{ Storage::url('') }}/${data}" class="img-thumbnail" width="400" height="300" alt="...">
+                            `
+                        }
                     },
                     {
                         data: null,

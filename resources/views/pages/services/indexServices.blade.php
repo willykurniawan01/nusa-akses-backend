@@ -131,7 +131,7 @@
                         defaultContent: '-',
                         render:function(data,type,row){
                             return `
-                                <img src="${data}" class="img-thumbnail" width="400" height="300" alt="...">
+                                <img src="{{ Storage::url('') }}/${data}" class="img-thumbnail" width="400" height="300" alt="...">
                             `
                         }
                     },

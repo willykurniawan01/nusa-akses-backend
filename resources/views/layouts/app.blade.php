@@ -91,6 +91,22 @@
                     >
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('services.index') }}">
+                        <i class="fas fa-hands"></i>
+
+                        <span>Services{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
+                    >
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('sliders.index') }}">
+                        <i class="far fa-images"></i>
+
+                        <span>Image Sliders{{ "(". \App\Models\ImageSlider::all()->count() . ")" }}</span></a
+                    >
+                </li>
+
                 <!-- Nav Item - Charts -->
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -126,13 +142,7 @@
                 
           
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('services.index') }}">
-                        <i class="fas fa-hands"></i>
-
-                        <span>Services{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
-                    >
-                </li>  <li class="nav-item">
+              <li class="nav-item">
                     <a class="nav-link" href="{{ route('settings.index') }}">
                         <i class="fas fa-cog"></i>
                         <span>Pengaturan</span></a

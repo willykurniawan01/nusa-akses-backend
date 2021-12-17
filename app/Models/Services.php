@@ -41,10 +41,9 @@ class Services extends Model
             $services->name = $request['name'];
             $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
-            $urlToSave = asset(Storage::url($path));
 
 
-            $services->picture = $urlToSave;
+            $services->picture = $path;
             if ($services->save()) {
                 return true;
             }
@@ -69,10 +68,8 @@ class Services extends Model
             $services->name = $request['name'];
             $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
-            $urlToSave = asset(Storage::url($path));
 
-
-            $services->picture = $urlToSave;
+            $services->picture = $path;
             if ($services->save()) {
                 return true;
             }
