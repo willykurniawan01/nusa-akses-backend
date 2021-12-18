@@ -18,7 +18,7 @@
                         </button>
                     </div>
                 </div>
-                <div name="row-content" class="row">
+                <div name="row-content" class="row px-3">
                    
                 </div>
             </div>
@@ -30,7 +30,7 @@
 
 
     <!-- confirm delete Modal-->
-    <form name="deleteSlidersForm" action="{{ route('post.destroy') }}" enctype="multipart/form-data">
+    <form name="deleteSlidersForm" action="{{ route('sliders.destroy') }}" enctype="multipart/form-data">
         @csrf
         @method('delete')
         <input type="hidden" name="id">
@@ -55,7 +55,7 @@
     </form>
 
 
-    <form name="addSlidersForm" action="{{ route('sliders.store') }}" method="POST" enctype="multipart/form-data">
+    <form name="saveSlidersForm" action="{{ route('sliders.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="id">
         <div class="modal fade" name="addModal" id="addModal" tabindex="-1" role="dialog"
@@ -73,7 +73,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-primary" name="saveButton" type="submit">Save</button>
                     </div>
                 </div>
             </div>
@@ -84,6 +84,7 @@
 
 @push('style')
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/venobox@2.0.4/dist/venobox.min.css">
 @endpush
 
 @push('script')
@@ -91,15 +92,26 @@
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/venobox@2.0.4/dist/venobox.min.js"></script>
 
     <script>
         $(function() {
             let deleteButton = $("button[name='deleteButton']");
+            let saveButton = $("button[name='saveButton']");
             let deleteModal = $("div[name='deleteModal']");
+            let addModal = $("div[name='addModal']");
             let deleteSlidersForm = $("form[name='deleteSlidersForm']");
+            let saveSlidersForm = $("form[name='saveSlidersForm']");
             let rowContent = $("div[name ='row-content']");
 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+
+       
 
             //load data
             fetchSlider();
@@ -118,6 +130,13 @@
                     success: function(res) {
                         let content=loadSlider(res);
                         rowContent.html(content)
+
+                        //init venobox
+                        new VenoBox({
+                        selctor: '.venobox',
+                        overlayClose:false
+                        });
+
                     }
                 })
 
@@ -128,16 +147,16 @@
 
             $.each(data,function(i,v){
                 content += `
-                <div class="col">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ Storage::url('') }}/${v.picture}" class="card-img-top" alt="...">
+                        <div class="card mr-5" style="width: 18rem;">
+                            <a class="venobox" href="{{ Storage::url('') }}${v.picture}">
+                                <img src="{{ Storage::url('') }}${v.picture}" class="card-img-top" alt="...">
+                            </a>
                             <div class="card-body d-flex justify-content-center">
-                                <button data-toggle="modal" data-target="#deleteModal" href="#" class="btn btn-danger">
+                                <button data-toggle="modal" data-id="${v.id}"  data-target="#deleteModal" href="#" class="btn btn-danger">
                                   <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </div>
-                    </div>
                 
                 `;
             })
@@ -188,19 +207,52 @@
                     data: form.serialize(),
                     success: function(res) {
                         deleteModal.modal('hide');
-                        postList.ajax.reload();
 
                         Toast.fire({
                             icon: 'success',
-                            title: 'Berhasil menghapus data!'
+                            title: res.message
                         })
 
+                        fetchSlider();
+
+                        
                     }
                 })
 
             })
 
 
+            saveSlidersForm.on("submit",function(event){
+                event.preventDefault();
+
+                let form = $(this);
+                let url = form.attr('action');
+
+                var file_data = $("input[name='picture']").prop('files')[0];   
+                var form_data = new FormData();                  
+                form_data.append('picture', file_data);
+
+                $.ajax({
+                    type:"POST",
+                    url:url,
+                    data:form_data,
+                    processData: false,
+                    contentType: false,
+                    success:function(res){
+                        console.log(res)
+                        Toast.fire({
+                            icon: 'success',
+                            title: res.message
+                        })
+                        
+                        addModal.modal('hide');
+                        fetchSlider();
+                        saveSlidersForm[0].reset()
+                    }
+                })
+            })
+
+           
         })
     </script>
 @endpush

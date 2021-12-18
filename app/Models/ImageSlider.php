@@ -35,5 +35,11 @@ class ImageSlider extends Model
     public function deleteImage($id)
     {
         $sliders = self::findOrFail($id);
+
+        if ($sliders->delete()) {
+            return true;
+        }
+
+        return false;
     }
 }
