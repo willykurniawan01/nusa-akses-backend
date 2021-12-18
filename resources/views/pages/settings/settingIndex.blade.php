@@ -16,7 +16,7 @@
                                     Pengaturan Akun
                                 </div>
                                 <div class=" mb-0 text-sm text-gray-600 mb-3">Pengaturan akun user </div>
-                                <a class="btn btn-sm btn-primary">
+                                <a href="{{ route("settings.") }}" class="btn btn-sm btn-primary">
                                     Atur
                                 </a>
                             </div>

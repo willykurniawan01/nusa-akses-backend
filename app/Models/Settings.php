@@ -19,6 +19,12 @@ class Settings extends Model
         ],
         [
             'type' => 'perusahaan',
+            'name' => 'sejarah_perusahaan',
+            'title' => 'Sejarah Perusahaan',
+            'is_textarea' => true
+        ],
+        [
+            'type' => 'perusahaan',
             'name' => 'visi_perusahaan',
             'title' => 'Visi Perusahaan',
             'is_textarea' => true

@@ -75,5 +75,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('', 'SettingController@index')->name('settings.index');
         Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');
         Route::post('save-setting', 'SettingController@saveSetting')->name('settings.save-setting');
+
+
+        Route::prefix('account')->group(function () {
+            Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
+        });
     });
 });
