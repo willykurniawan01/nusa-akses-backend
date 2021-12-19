@@ -7,7 +7,7 @@
 
         <div class="row mb-3">
             <div class="col">
-                <a href="{{ URL::previous() }}" class="btn btn-primary">
+                <a href="{{ route('services.index') }}" class="btn btn-primary">
                     <i class="fas fa-arrow-left"></i>
                 </a>
             </div>
@@ -15,31 +15,23 @@
         </div>
 
         <!-- DataTales Example -->
-        <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
+        <form method="POST" name="formUpdate" action="{{ route('services.update', $services->id) }}"
+            enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Postingan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">servicesingan</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="judul">Judul :</label>
-                                <input name="judul" id="judul" type="text" value="{{ old('judul') }}"
-                                    class="form-control @error('judul') is-invalid @enderror">
+                                <label for="name">Name :</label>
+                                <input disabled name="name" id="name" type="text" value="{{ $services->name }}"
+                                    class="form-control @error('name') is-invalid @enderror">
 
-                                @error('judul')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div iv>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="slug">Slug :</label>
-                                <input name="slug" id="slug" type="text" value="{{ old('slug') }}"
-                                    class="  form-control @error('slug') is-invalid @enderror">
-                                @error('slug')
+                                @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -49,7 +41,7 @@
                                 <label for="picture">Picture :</label>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
-                                        <input type="file" name="picture"
+                                        <input disabled type="file" name="picture"
                                             class="custom-file-input  @error('picture') is-invalid @enderror" id="picture">
                                         <label class="custom-file-label" for="picture">Choose file</label>
                                     </div>
@@ -62,8 +54,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <textarea name="content" id="editor">{{ old('content') }}</textarea>
-                            @error('content')
+                            <textarea readonly name="description" id="editor">{{ $services->description }}</textarea>
+                            @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -71,8 +63,11 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-end mt-3">
+                            <button name="editButton" class="btn btn-success mr-2">
+                                Edit
+                            </button>
                             <button type="submit" class="btn btn-primary">
-                                Submit
+                                Save
                             </button>
                         </div>
                     </div>
@@ -85,24 +80,52 @@
 
 @endsection
 
-@push('style')
-@endpush
-
 @push('script')
     <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>
 
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .then(editor => {
-                console.log(editor);
-            })
-            .catch(error => {
-                console.error(error);
-            });
 
+
+
+    <script>
         $(function() {
 
+            //variabel selector
+            let editButton = $("button[name='editButton']")
+            let formUpdate = $("form[name='formUpdate']")
+            let ckEditor = '';
+            let inputIsDisabled = true;
+
+
+            //inisialisasi ckeditor
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    editor.isReadOnly = inputIsDisabled;
+                    ckEditor = editor
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+
+            //event tombol edit di tekan
+            editButton.on("click", function(event) {
+                // set event ke default aga tidak refresh halaman
+                event.preventDefault();
+
+                if (!inputIsDisabled) {
+                    let allInputInForm = formUpdate.find('input');
+                    allInputInForm.prop('disabled', true);
+                    ckEditor.isReadOnly = true;
+                    inputIsDisabled = true;
+                } else {
+                    let allInputInForm = formUpdate.find('input');
+                    allInputInForm.removeAttr('disabled');
+                    ckEditor.isReadOnly = false;
+                    inputIsDisabled = false;
+                }
+
+            });
         });
     </script>
 @endpush

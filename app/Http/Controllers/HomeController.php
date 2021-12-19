@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\Services;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $post = Post::getAllPost()->count();
+        $services = Services::getAllServices()->count();
+        return view('pages.home', compact('post', 'services'));
     }
 }

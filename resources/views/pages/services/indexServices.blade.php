@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | Postingan')
+@section('title', 'Nusa Akses | servicesingan')
 
 @section('content')
     <div class="container-fluid">
 
         <div class="row mb-4">
             <div class="col-8">
-                <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-pen-nib"></i> Buat
-                    Postingan</a>
+                <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-pen-nib"></i> Create
+                    Services</a>
             </div>
         </div>
         <div class="row">
@@ -22,17 +22,15 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Postingan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Services</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table name="postTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table name="servicesTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Slug</th>
-                                <th>Picture</th>
+                                <th>Nama</th>
+                                <th>Gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,7 +48,7 @@
 
 
     <!-- confirm delete Modal-->
-    <form name="deletePostForm" action="{{ route('post.destroy') }}" enctype="multipart/form-data">
+    <form name="deleteServicesForm" action="{{ route('services.destroy') }}" enctype="multipart/form-data">
         @csrf
         @method('delete')
         <input type="hidden" name="id">
@@ -64,7 +62,7 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Klik tombol ok akan menghapus postingan</div>
+                    <div class="modal-body">Klik tombol ok akan menghapus services</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">OK</button>
@@ -88,33 +86,14 @@
 
     <script>
         $(function() {
-            let postTable = $("table[name='postTable']");
+            let servicesTable = $("table[name='servicesTable']");
             let deleteButton = $("button[name='deleteButton']");
             let deleteModal = $("div[name='deleteModal']");
-            let deletePostForm = $("form[name='deletePostForm']");
-            let categoryInput = $("input[name='post_category']")
+            let deleteServicesForm = $("form[name='deleteServicesForm']");
+            let categoryInput = $("input[name='services_category']")
 
 
-            //call function load
-            loadPostCategory();
-
-
-            function loadPostCategory(){
-                $.ajax({
-                    type : 'GET',
-                    url: "{{ route('post.get.get-post-category') }}",
-                    success:function(res){
-                        res.forEach(data => {
-                            categoryInput.tagsinput('add', { "value": 1 , "text": "jQuery"});
-                        });
-                    },
-                    error:function(res){
-                        console.log(res)
-                    }
-                })
-            }
-
-
+        
 
 
             const Toast = Swal.mixin({
@@ -130,7 +109,7 @@
             })
 
 
-            let postList = postTable.DataTable({
+            let servicesList = servicesTable.DataTable({
                 searching: true,
                 autoWidth: false,
                 processing: true,
@@ -138,23 +117,12 @@
                 pageLength: 10,
                 ajax: {
                     type: "GET",
-                    url: "{{ route('post.get.get-all-post') }}",
+                    url: "{{ route('services.get.get-all-services') }}",
                     // dataSrc: ''
                 },
                 columns: [{
-                        data: 'judul',
-                        name: 'judul',
-                        defaultContent: '-'
-                    },
-                    {
-                        data: 'created_at',
-                        name: 'created_at',
-                        defaultContent: '-'
-
-                    },
-                    {
-                        data: 'slug',
-                        name: 'slug',
+                        data: 'name',
+                        name: 'name',
                         defaultContent: '-'
                     },
                     {
@@ -172,7 +140,7 @@
                         render: function(data, type, row) {
                             return `
                                     <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class="fas fa-trash"></i></button>
-                                    <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('services.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
                                 `
                         }
                     },
@@ -186,13 +154,13 @@
 
                 //ambil atribut id
                 let id = button.data('id');
-                deletePostForm.find("input[name='id']").val(id);
+                deleteServicesForm.find("input[name='id']").val(id);
             })
 
 
 
             //event submit form delete
-            deletePostForm.on("submit", function(event) {
+            deleteServicesForm.on("submit", function(event) {
                 event.preventDefault();
 
                 let form = $(this);
@@ -204,7 +172,7 @@
                     data: form.serialize(),
                     success: function(res) {
                         deleteModal.modal('hide');
-                        postList.ajax.reload();
+                        servicesList.ajax.reload();
 
                         Toast.fire({
                             icon: 'success',
