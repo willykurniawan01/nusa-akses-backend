@@ -90,5 +90,7 @@ class Post extends Model
     public function getDetailPost($id)
     {
         $post = self::find($id);
+
+        return $post;
     }
 }
