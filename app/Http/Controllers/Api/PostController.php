@@ -29,8 +29,23 @@ class PostController extends Controller
         return response()->json($result, 200);
     }
 
-    public function search(Request $request)
+    public function search($keyword = '')
     {
+        $result = [];
+
+        $post =  Post::getAllPost();
+
+
+        if ($keyword != '') {
+            $post = Post::where('judul', 'like', '%' . $keyword . '%')->get();
+        }
+
+        foreach ($post as  $eachPost) {
+            $eachPost->picture = url(Storage::url($eachPost->picture));
+            array_push($result, $eachPost);
+        }
+
+        return response()->json($post, 200);
     }
 
 
@@ -40,10 +55,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::getDetailPost($id);
-        $post->picture = url(Storage::url($post->picture));
+        $post = Post::where('slug', '=', $slug)->first();
+        if ($post)
+            $post->picture = url(Storage::url($post->picture));
         return response()->json($post, 200);
     }
 }
