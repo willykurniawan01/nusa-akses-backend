@@ -24,4 +24,5 @@ Route::namespace('Api')->group(function () {
     Route::get('post-search/{keyword?}', 'PostController@search');
     Route::resource('sliders', 'ImageSliderController');
     Route::resource('services', 'ServicesController');
+    Route::get('setting/perusahaan', 'SettingController@perusahaan');
 });
