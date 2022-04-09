@@ -25,7 +25,7 @@
         />
 
         <!-- Custom styles for this template-->
-        <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet" />
 
         @stack('style')
     </head>
@@ -37,7 +37,7 @@
             <ul
                 class="
                     navbar-nav
-                    bg-gradient-primary
+                    bg-primary
                     sidebar sidebar-dark
                     accordion
                 "
@@ -50,60 +50,60 @@
                         d-flex
                         align-items-center
                         justify-content-center
+                        flex-column
+                        mt-4
                     "
                     href="{{ route('home') }}"
                 >
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i class="fas fa-laugh-wink"></i>
+                    <div class="sidebar-brand-icon ">
+                        <img src="{{ asset("images/logo/logo.svg") }}"  alt="">
                     </div>
-                    <div class="sidebar-brand-text mx-3">
-                        SB Admin <sup>2</sup>
+                    <div class="sidebar-brand-text mx-3 my-2">
+                       Nusa Akses 
                     </div>
                 </a>
 
                 <!-- Divider -->
-                <hr class="sidebar-divider my-0" />
+                {{-- <hr class="sidebar-divider my-0" /> --}}
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <i class="bi bi-house mr-3"></i>
                         <span>Dashboard</span></a
                     >
                 </li>
 
                 <!-- Divider -->
-                <hr class="sidebar-divider" />
+                {{-- <hr class="sidebar-divider" /> --}}
 
                 <!-- Heading -->
                 <div class="sidebar-heading">Interface</div>
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('post.create') }}">
-                        <i class="far fa-edit"></i>
+                        <i class="bi bi-pencil-square mr-3"></i>
                         <span>Create New Post</span></a
                     >
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('post.index') }}">
-                        <i class="fas fa-newspaper"></i>
+                        <i class="bi bi-newspaper mr-3"></i>
                         <span>All Post {{ "(". \App\Models\Post::all()->count() . ")" }}</span></a
                     >
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('services.index') }}">
-                        <i class="fas fa-hands"></i>
-
+                        <i class="bi bi-wrench mr-3"></i>
                         <span>Services{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
                     >
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('sliders.index') }}">
-                        <i class="far fa-images"></i>
-
+                        <i class="bi bi-image-alt mr-3"></i>
                         <span>Image Sliders{{ "(". \App\Models\ImageSlider::all()->count() . ")" }}</span></a
                     >
                 </li>
@@ -111,17 +111,17 @@
                 <!-- Nav Item - Charts -->
 
    
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('settings.index') }}">
                         <i class="fas fa-cog"></i>
                         <span>Halaman</span></a
                     >
-                </li>
+                </li> --}}
 
 
               <li class="nav-item">
                     <a class="nav-link" href="{{ route('settings.index') }}">
-                        <i class="fas fa-cog"></i>
+                        <i class="fas fa-cog mr-lg-3"></i>
                         <span>Pengaturan</span></a
                     >
                 </li>
