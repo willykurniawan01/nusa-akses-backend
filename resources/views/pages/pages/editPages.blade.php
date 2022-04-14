@@ -19,17 +19,29 @@
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Halaman</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="name">Nama Halaman :</label>
-                                <input name="name" id="name" type="text" value="{{ old('name') }}"
+                                <label for="name">Name :</label>
+                                <input value="{{ $page->nama }}" name="name" id="name" type="text" value="{{ old('name') }}"
                                     class="form-control @error('name') is-invalid @enderror">
 
                                 @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="name">Route :</label>
+                                <input value="{{ $page->route }}" name="route" id="route" type="text" value="{{ old('route') }}"
+                                    class="form-control @error('route') is-invalid @enderror">
+
+                                @error('route')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -38,7 +50,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label for="name">Isi Halaman :</label>
+                                <label for="name">Content :</label>
                                 <textarea name="content" id="editor">{{ old('content') }}</textarea>
                                 @error('content')
                                     <div class="invalid-feedback">{{ $message }}</div>

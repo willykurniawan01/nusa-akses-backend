@@ -36,6 +36,19 @@ class Settings extends Model
             'is_textarea' => true
         ],
 
+        [
+            'type' => 'perusahaan',
+            'name' => 'tentang_perusahaan',
+            'title' => 'Tentang Perusahaan',
+            'is_textarea' => true
+        ],
+        [
+            'type' => 'perusahaan',
+            'name' => 'pimpinan_perusahaan',
+            'title' => 'Pimpinan Perusahaan',
+            'is_textarea' => true
+        ],
+
     ];
 
 
@@ -56,12 +69,12 @@ class Settings extends Model
     {
         switch ($type) {
             case 'perusahaan':
-                $setting = self::where('type', "=", $type)->get();
-                if ($setting->count() != 0) {
-                    return $setting;
-                } else {
-                    $allSetting = [];
-                    foreach (self::$setting_perusahaan as $eachSetting) {
+                $allSetting = [];
+                foreach (self::$setting_perusahaan as $eachSetting) {
+                    if (self::where('name', "=", $eachSetting['name'])->count() != 0) {
+                        $setting = self::where('name', "=", $eachSetting['name'])->first();
+                        array_push($allSetting, $setting);
+                    } else {
                         $setting = new self;
                         $setting->type = $eachSetting['type'];
                         $setting->name = $eachSetting['name'];
@@ -72,8 +85,8 @@ class Settings extends Model
                             array_push($allSetting, $setting);
                         }
                     }
-                    return $allSetting;
                 }
+                return $allSetting;
                 break;
         }
     }
