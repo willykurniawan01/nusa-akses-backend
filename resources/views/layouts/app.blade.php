@@ -43,7 +43,7 @@
                 "
                 id="accordionSidebar"
             >
-                <!-- Sidebar - Brand -->
+            <!-- Sidebar - Brand -->
                 <a
                     class="
                         sidebar-brand
@@ -56,10 +56,7 @@
                     href="{{ route('home') }}"
                 >
                     <div class="sidebar-brand-icon ">
-                        <img src="{{ asset("images/logo/logo.svg") }}"  alt="">
-                    </div>
-                    <div class="sidebar-brand-text mx-3 my-2">
-                       Nusa Akses 
+                        <img width="80" height="80" src="{{ asset("images/logo/logo2.svg") }}"  alt="">
                     </div>
                 </a>
 
@@ -83,21 +80,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('post.create') }}">
                         <i class="bi bi-pencil-square mr-3"></i>
-                        <span>Create New Post</span></a
+                        <span>Tambah Berita</span></a
                     >
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('post.index') }}">
                         <i class="bi bi-newspaper mr-3"></i>
-                        <span>All Post {{ "(". \App\Models\Post::all()->count() . ")" }}</span></a
+                        <span>Berita {{ "(". \App\Models\Post::all()->count() . ")" }}</span></a
                     >
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('services.index') }}">
                         <i class="bi bi-wrench mr-3"></i>
-                        <span>Services{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
+                        <span>Layanan{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
                     >
                 </li>
 
@@ -111,12 +108,12 @@
                 <!-- Nav Item - Charts -->
 
    
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('settings.index') }}">
-                        <i class="fas fa-cog"></i>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('pages.index') }}">
+                        <i class="bi bi-globe mr-lg-3"></i>
                         <span>Halaman</span></a
                     >
-                </li> --}}
+                </li>
 
 
               <li class="nav-item">

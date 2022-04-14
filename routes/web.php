@@ -81,4 +81,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
             Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
         });
     });
+
+    Route::prefix('pages')->group(function () {
+        Route::get('', 'PagesController@index')->name('pages.index');
+        Route::get('create', 'PagesController@create')->name('pages.create');
+        Route::post('store', 'PagesController@store')->name('pages.store');
+        Route::get('edit/{page}', 'PagesController@edit')->name('pages.edit');
+        Route::delete('destroy/{page}', 'PagesController@destroy')->name('pages.destroy');
+    });
 });

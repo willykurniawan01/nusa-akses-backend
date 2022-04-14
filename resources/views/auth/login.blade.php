@@ -15,8 +15,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    <div class="text-center mb-3">
+                                        <img width="140" height="120" src="{{ asset("images/logo/logo.svg") }}">
                                     </div>
                                     <form action="{{ route('login') }}" method="POST" class="user">
                                         @csrf

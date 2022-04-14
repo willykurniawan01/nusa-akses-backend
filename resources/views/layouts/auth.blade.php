@@ -24,10 +24,10 @@
         />
 
         <!-- Custom styles for this template-->
-        <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet" />
     </head>
 
-    <body class="bg-gradient-primary">
+    <body class="bg-primary d-flex align-items-center">
         @yield('content')
 
         <!-- Bootstrap core JavaScript-->
