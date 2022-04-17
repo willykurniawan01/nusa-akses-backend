@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | servicesingan')
+@section('title', 'Nusa Akses | Layanan')
 
 @section('content')
     <div class="container-fluid">
@@ -8,7 +8,7 @@
         <div class="row mb-4">
             <div class="col-8">
                 <a href="{{ route('services.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-pen-nib"></i> Create
-                    Services</a>
+                    Layanan</a>
             </div>
         </div>
         <div class="row">
@@ -22,7 +22,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Services</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Layanan</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -91,10 +91,6 @@
             let deleteModal = $("div[name='deleteModal']");
             let deleteServicesForm = $("form[name='deleteServicesForm']");
             let categoryInput = $("input[name='services_category']")
-
-
-        
-
 
             const Toast = Swal.mixin({
                 toast: true,

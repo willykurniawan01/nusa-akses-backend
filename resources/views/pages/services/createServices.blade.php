@@ -19,13 +19,13 @@
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Services</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Layanan</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name">Name :</label>
+                                <label for="name">Nama :</label>
                                 <input name="name" id="name" type="text" value="{{ old('name') }}"
                                     class="form-control @error('name') is-invalid @enderror">
 
@@ -37,7 +37,7 @@
                  
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="picture">Picture :</label>
+                                <label for="picture">Gambar :</label>
                                 <div class="input-group mb-3">
                                     <div class="custom-file">
                                         <input type="file" name="picture"
