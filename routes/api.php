@@ -25,4 +25,5 @@ Route::namespace('Api')->group(function () {
     Route::resource('sliders', 'ImageSliderController');
     Route::resource('services', 'ServicesController');
     Route::get('setting/perusahaan', 'SettingController@perusahaan');
+    Route::get("pages/", "PagesController@index");
 });
