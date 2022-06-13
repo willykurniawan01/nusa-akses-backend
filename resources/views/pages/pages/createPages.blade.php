@@ -23,13 +23,28 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="name">Nama Halaman :</label>
                                 <input name="name" id="name" type="text" value="{{ old('name') }}"
                                     class="form-control @error('name') is-invalid @enderror">
 
                                 @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="picture">Picture :</label>
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" name="picture"
+                                            class="custom-file-input  @error('picture') is-invalid @enderror" id="picture">
+                                        <label class="custom-file-label" for="picture">Choose file</label>
+                                    </div>
+                                </div>
+                                @error('picture')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

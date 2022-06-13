@@ -37,12 +37,15 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = Validator::make($request->all(), Page::$rules, Page::$messages);
+        $validation = Validator::make($request->all(), Page::$rules, Pagae::$messages);
 
         if (!$validation->fails()) {
+            $path = $request->file("picture")->store("pages", "public");
+
             $page = new Page;
             $page->name = $request->name;
             $page->content = $request->content;
+            $page->picture = $path;
 
             if ($page->save()) {
                 return redirect()->route("pages.index")->withToastSuccess("Berhasil menambahkan halaman!");
