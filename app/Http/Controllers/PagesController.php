@@ -37,7 +37,7 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
-        $validation = Validator::make($request->all(), Page::$rules, Pagae::$messages);
+        $validation = Validator::make($request->all(), Page::$rules, Page::$messages);
 
         if (!$validation->fails()) {
             $path = $request->file("picture")->store("pages", "public");
@@ -77,7 +77,7 @@ class PagesController extends Controller
      */
     public function edit(Page $page)
     {
-        return view("pages.pages.editPages", compact("pages"));
+        return view("pages.pages.editPages", compact("page"));
     }
 
     /**
@@ -87,9 +87,20 @@ class PagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Page $page)
     {
-        //
+
+        $page->name = $request->name;
+        $page->content = $request->content;
+
+        if ($request->hasFile("picture")) {
+            $path = $request->file("picture")->store("pages", "public");
+            $page->picture = $path;
+        }
+
+        if ($page->save()) {
+            return redirect()->route("pages.index")->withToastSuccess("Berhasil mengupdate halaman!");
+        }
     }
 
     /**

@@ -32,6 +32,7 @@ class Services extends Model
             $services = new self;
             $services->name = $request['name'];
             $services->description = $request['description'];
+            $services->page_id = $request['page_id'];
 
             if ($services->save()) {
                 return true;
@@ -41,6 +42,7 @@ class Services extends Model
             $services->name = $request['name'];
             $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
+            $services->page_id = $request['page_id'];
 
 
             $services->picture = $path;
@@ -59,6 +61,7 @@ class Services extends Model
             $services = self::findOrFail($id);
             $services->name = $request['name'];
             $services->description = $request['description'];
+            $services->page_id = $request['page_id'];
 
             if ($services->save()) {
                 return true;
@@ -68,6 +71,8 @@ class Services extends Model
             $services->name = $request['name'];
             $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
+            $services->page_id = $request['page_id'];
+
 
             $services->picture = $path;
             if ($services->save()) {

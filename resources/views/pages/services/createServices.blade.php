@@ -50,6 +50,22 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="picture">Halaman :</label>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" name="page_id" id="inputGroupSelect01">
+                                      <option selected>Choose...</option>
+                                      @foreach ($page as $eachPage)
+                                        <option value="{{ $eachPage->id }}">{{ $eachPage->name }}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
+                                @error('picture')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +26,8 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        return view('pages.services.createServices');
+        $page = Page::all();
+        return view('pages.services.createServices', compact("page"));
     }
 
     /**
@@ -79,8 +81,9 @@ class ServicesController extends Controller
     public function show($id)
     {
         $services = Services::findOrFail($id);
+        $page = Page::all();
 
-        return view('pages.services.detailServices', compact('services'));
+        return view('pages.services.detailServices', compact('services', 'page'));
     }
 
     /**

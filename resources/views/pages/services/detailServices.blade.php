@@ -21,7 +21,7 @@
             @method('PUT')
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">servicesingan</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Layanan</h6>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -46,6 +46,23 @@
                                         <label class="custom-file-label" for="picture">Choose file</label>
                                     </div>
                                 </div>
+                                @error('picture')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="picture">Halaman :</label>
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" disabled name="page_id" id="inputGroupSelect01">
+                                      <option selected>Choose...</option>
+                                      @foreach ($page as $eachPage)
+                                        <option {{  $eachPage->id ==  $services->page_id ? 'selected' : '' }} value="{{ $eachPage->id }}">{{ $eachPage->name }}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
                                 @error('picture')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -115,12 +132,16 @@
 
                 if (!inputIsDisabled) {
                     let allInputInForm = formUpdate.find('input');
+                    let allSelectInForm = formUpdate.find('select');
                     allInputInForm.prop('disabled', true);
+                    allSelectInForm.prop('disabled', true);
                     ckEditor.isReadOnly = true;
                     inputIsDisabled = true;
                 } else {
                     let allInputInForm = formUpdate.find('input');
+                    let allSelectInForm = formUpdate.find('select');
                     allInputInForm.removeAttr('disabled');
+                    allSelectInForm.removeAttr('disabled');
                     ckEditor.isReadOnly = false;
                     inputIsDisabled = false;
                 }

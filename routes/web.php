@@ -87,6 +87,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('create', 'PagesController@create')->name('pages.create');
         Route::post('store', 'PagesController@store')->name('pages.store');
         Route::get('edit/{page}', 'PagesController@edit')->name('pages.edit');
+        Route::post('update/{page}', 'PagesController@update')->name('pages.update');
         Route::delete('destroy/{page}', 'PagesController@destroy')->name('pages.destroy');
     });
 });
