@@ -9,7 +9,7 @@
         <div class="row mb-3">
             <div class="col">
                 <a href="{{ route('settings.index') }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="uil-arrow-left"></i>
                 </a>
             </div>
 

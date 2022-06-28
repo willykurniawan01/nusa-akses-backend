@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title',"Berita")
 
 @section('content')
     <div class="container-fluid">
 
-        <div class="row mb-3">
+        <div class="row mb-2 mt-2">
             <div class="col">
                 <a href="{{ URL::previous() }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="uil-arrow-left"></i>
                 </a>
             </div>
 
@@ -19,7 +19,7 @@
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Postingan</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Postingan</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

@@ -1,14 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | Postingan')
+@section('title', 'Berita')
 
 @section('content')
     <div class="container-fluid">
-
-        <div class="row mb-4">
+        
+        <!-- end page title -->
+        <div class="row mb-2 mt-2">
             <div class="col-8">
-                <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-pen-nib"></i> Buat
-                    Postingan</a>
+                <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary">  <i class="uil-plus-circle
+                    "></i>
+                    Berita</a>
             </div>
         </div>
         <div class="row">
@@ -22,7 +24,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Postingan</h6>
+                <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -44,13 +46,13 @@
             </div>
         </div>
 
+       
     </div>
     <!-- /.container-fluid -->
 
 
-
-    <!-- confirm delete Modal-->
-    <form name="deletePostForm" action="{{ route('post.destroy') }}" enctype="multipart/form-data">
+     <!-- confirm delete Modal-->
+     <form name="deletePostForm" action="{{ route('post.destroy') }}" enctype="multipart/form-data">
         @csrf
         @method('delete')
         <input type="hidden" name="id">
@@ -73,6 +75,8 @@
             </div>
         </div>
     </form>
+
+  
 @endsection
 
 
@@ -163,7 +167,7 @@
                         defaultContent: '-',
                         render:function(data,type,row){
                             return `
-                                <img src="{{ Storage::url('') }}/${data}" class="img-thumbnail" width="400" height="300" alt="...">
+                                <img src="{{ Storage::url('') }}/${data}" class="img-thumbnail" width="100" height="100" alt="...">
                             `
                         }
                     },
@@ -171,8 +175,10 @@
                         data: null,
                         render: function(data, type, row) {
                             return `
-                                    <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class="fas fa-trash"></i></button>
-                                    <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="fas fa-eye"></i></a>
+                                    <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class=" uil-trash-alt
+"></i></button>
+                                    <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="uil-eye
+"></i></a>
                                 `
                         }
                     },

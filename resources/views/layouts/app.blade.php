@@ -1,739 +1,681 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
+
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>Nusa Akses | @yield('title')</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{ asset("images/logo/logo3.png") }}">
 
-        <title>SB Admin 2 - Dashboard</title>
+        <!-- third party css -->
+        <link href="{{ asset("assets/css/vendor/jquery-jvectormap-1.2.2.css") }}" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
 
-        <!-- Custom fonts for this template-->
-        <link
-            href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}"
-            rel="stylesheet"
-            type="text/css"
-        />
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet"
-        />
-
-        <!-- Custom styles for this template-->
-        <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet" />
+        <!-- App css -->
+        <link href="{{ asset("assets/css/icons.min.css") }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet" type="text/css" id="app-style"/>
 
         @stack('style')
+
     </head>
 
-    <body id="page-top">
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <ul
-                class="
-                    navbar-nav
-                    bg-primary
-                    sidebar sidebar-dark
-                    accordion
-                "
-                id="accordionSidebar"
-            >
-            <!-- Sidebar - Brand -->
-                <a
-                    class="
-                        sidebar-brand
-                        d-flex
-                        align-items-center
-                        justify-content-center
-                        flex-column
-                        mt-4
-                    "
-                    href="{{ route('home') }}"
-                >
-                    <div class="sidebar-brand-icon ">
-                        <img width="80" height="80" src="{{ asset("images/logo/logo2.svg") }}"  alt="">
-                    </div>
+    <body class="loading" data-layout-color="light" data-leftbar-theme="light" data-layout-mode="fluid" data-rightbar-onstart="true">
+        <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="leftside-menu">
+    
+                <!-- LOGO -->
+                <a href="index.html" class="logo text-center logo-light">
+                    <span class="logo-lg">
+                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                    </span>
+                    <span class="logo-sm">
+                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                    </span>
                 </a>
 
-                <!-- Divider -->
-                {{-- <hr class="sidebar-divider my-0" /> --}}
+                <!-- LOGO -->
+                <a href="{{ route("home") }}" class="logo text-center logo-dark">
+                    <span class="logo-lg">
+                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="50">
+                    </span>
+                    <span class="logo-sm">
+                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                    </span>
+                </a>
+    
+                <div class="h-100" id="leftside-menu-container" data-simplebar>
 
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('home') }}">
-                        <i class="bi bi-house mr-3"></i>
-                        <span>Dashboard</span></a
-                    >
-                </li>
+                    <!--- Sidemenu -->
+                    <ul class="side-nav">
 
-                <!-- Divider -->
-                {{-- <hr class="sidebar-divider" /> --}}
+                        {{-- <li class="side-nav-title side-nav-item">Navigation</li>
 
-                <!-- Heading -->
-                <div class="sidebar-heading">Interface</div>
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('post.create') }}">
-                        <i class="bi bi-pencil-square mr-3"></i>
-                        <span>Tambah Berita</span></a
-                    >
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('post.index') }}">
-                        <i class="bi bi-newspaper mr-3"></i>
-                        <span>Berita {{ "(". \App\Models\Post::all()->count() . ")" }}</span></a
-                    >
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('services.index') }}">
-                        <i class="bi bi-wrench mr-3"></i>
-                        <span>Layanan{{ "(". \App\Models\Services::all()->count() . ")" }}</span></a
-                    >
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('sliders.index') }}">
-                        <i class="bi bi-image-alt mr-3"></i>
-                        <span>Image Sliders{{ "(". \App\Models\ImageSlider::all()->count() . ")" }}</span></a
-                    >
-                </li>
-
-                <!-- Nav Item - Charts -->
-
-   
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pages.index') }}">
-                        <i class="bi bi-globe mr-lg-3"></i>
-                        <span>Halaman</span></a
-                    >
-                </li>
-
-
-              <li class="nav-item">
-                    <a class="nav-link" href="{{ route('settings.index') }}">
-                        <i class="fas fa-cog mr-lg-3"></i>
-                        <span>Pengaturan</span></a
-                    >
-                </li>
-
-
-                   
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block" />
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button
-                        class="rounded-circle border-0"
-                        id="sidebarToggle"
-                    ></button>
-                </div>
-            </ul>
-            <!-- End of Sidebar -->
-
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
-                <!-- Main Content -->
-                <div id="content">
-                    <!-- Topbar -->
-                    <nav
-                        class="
-                            navbar navbar-expand navbar-light
-                            bg-white
-                            topbar
-                            mb-4
-                            static-top
-                            shadow
-                        "
-                    >
-                        <!-- Sidebar Toggle (Topbar) -->
-                        <button
-                            id="sidebarToggleTop"
-                            class="btn btn-link d-md-none rounded-circle mr-3"
-                        >
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Topbar Search -->
-                        <form
-                            class="
-                                d-none d-sm-inline-block
-                                form-inline
-                                mr-auto
-                                ml-md-3
-                                my-2 my-md-0
-                                mw-100
-                                navbar-search
-                            "
-                        >
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control bg-light border-0 small"
-                                    placeholder="Search for..."
-                                    aria-label="Search"
-                                    aria-describedby="basic-addon2"
-                                />
-                                <div class="input-group-append">
-                                    <button
-                                        class="btn btn-primary"
-                                        type="button"
-                                    >
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end">4</span>
+                                <span> Dashboards </span>
+                            </a>
+                            <div class="collapse" id="sidebarDashboards">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="dashboard-analytics.html">Analytics</a>
+                                    </li>
+                                    <li>
+                                        <a href="index.html">Ecommerce</a>
+                                    </li>
+                                    <li>
+                                        <a href="dashboard-projects.html">Projects</a>
+                                    </li>
+                                    <li>
+                                        <a href="dashboard-wallet.html">E-Wallet <span class="badge rounded bg-danger font-10 float-end">New</span></a>
+                                    </li>
+                                </ul>
                             </div>
-                        </form>
+                        </li> --}}
 
-                        <!-- Topbar Navbar -->
-                        <ul class="navbar-nav ml-auto">
-                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                            <li class="nav-item dropdown no-arrow d-sm-none">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="searchDropdown"
-                                    role="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i class="fas fa-search fa-fw"></i>
+                        <li class="side-nav-title side-nav-item">Navigation</li>
+
+                        <li class="side-nav-item">
+                            <a href="{{ route("home") }}" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span> Dashboard </span>
+                            </a>
+                        </li>
+
+                    
+                        {{-- <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-store"></i>
+                                <span> Ecommerce </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarEcommerce">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="apps-ecommerce-products.html">Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-products-details.html">Products Details</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-orders.html">Orders</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-orders-details.html">Order Details</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-customers.html">Customers</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-shopping-cart.html">Shopping Cart</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-checkout.html">Checkout</a>
+                                    </li>
+                                    <li>
+                                        <a href="apps-ecommerce-sellers.html">Sellers</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li> --}}
+
+
+                        <li class="side-nav-item">
+                            <a href="{{ route("post.index") }}" class="side-nav-link">
+                                <i class=" uil-newspaper
+                                "></i>
+                                <span>Berita</span>
+                                <span class="badge bg-success float-end">4</span>
+                            </a>
+                        </li>
+                       <li class="side-nav-item">
+                            <a href="apps-file-manager.html" class="side-nav-link">
+                                <i class="uil-window"></i>
+                                <span>Halaman</span>
+                            </a>
+                        </li>   
+                        {{-- <li class="side-nav-item">
+                            <a href="apps-file-manager.html" class="side-nav-link">
+                                <i class="uil-layer-group"></i>
+                                <span>Component</span>
+                            </a>
+                        </li>   --}}
+                        <li class="side-nav-item">
+                            <a href="apps-file-manager.html" class="side-nav-link">
+                                <i class="uil-comments-alt"></i>
+                                <span>Chat</span>
+                            </a>
+                        </li>   
+                        <li class="side-nav-item">
+                            <a href="apps-file-manager.html" class="side-nav-link">
+                                <i class="uil-user-circle"></i>
+                                <span>Pengguna</span>
+                            </a>
+                        </li> 
+                        <li class="side-nav-item">
+                            <a href="apps-file-manager.html" class="side-nav-link">
+                                <i class=" uil-bright
+                                "></i>
+                                <span>Pengaturan</span>
+                            </a>
+                        </li>
+                    
+                    </ul>
+
+                    <!-- End Sidebar -->
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    <!-- Topbar Start -->
+                    <div class="navbar-custom">
+                        <ul class="list-unstyled topbar-menu float-end mb-0">
+                            <li class="dropdown notification-list d-lg-none">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="dripicons-search noti-icon"></i>
                                 </a>
-                                <!-- Dropdown - Messages -->
-                                <div
-                                    class="
-                                        dropdown-menu dropdown-menu-right
-                                        p-3
-                                        shadow
-                                        animated--grow-in
-                                    "
-                                    aria-labelledby="searchDropdown"
-                                >
-                                    <form
-                                        class="
-                                            form-inline
-                                            mr-auto
-                                            w-100
-                                            navbar-search
-                                        "
-                                    >
-                                        <div class="input-group">
-                                            <input
-                                                type="text"
-                                                class="
-                                                    form-control
-                                                    bg-light
-                                                    border-0
-                                                    small
-                                                "
-                                                placeholder="Search for..."
-                                                aria-label="Search"
-                                                aria-describedby="basic-addon2"
-                                            />
-                                            <div class="input-group-append">
-                                                <button
-                                                    class="btn btn-primary"
-                                                    type="button"
-                                                >
-                                                    <i
-                                                        class="
-                                                            fas
-                                                            fa-search fa-sm
-                                                        "
-                                                    ></i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                                    <form class="p-3">
+                                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                                     </form>
                                 </div>
                             </li>
+                            <li class="dropdown notification-list topbar-dropdown">
+                                {{-- <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="12"> 
+                                    <span class="align-middle d-none d-sm-inline-block">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
+                                </a> --}}
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
 
-                            <!-- Nav Item - Alerts -->
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="alertsDropdown"
-                                    role="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i class="fas fa-bell fa-fw"></i>
-                                    <!-- Counter - Alerts -->
-                                    <span
-                                        class="badge badge-danger badge-counter"
-                                        >3+</span
-                                    >
-                                </a>
-                                <!-- Dropdown - Alerts -->
-                                <div
-                                    class="
-                                        dropdown-list
-                                        dropdown-menu
-                                        dropdown-menu-right
-                                        shadow
-                                        animated--grow-in
-                                    "
-                                    aria-labelledby="alertsDropdown"
-                                >
-                                    <h6 class="dropdown-header">
-                                        Alerts Center
-                                    </h6>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-primary">
-                                                <i
-                                                    class="
-                                                        fas
-                                                        fa-file-alt
-                                                        text-white
-                                                    "
-                                                ></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">
-                                                December 12, 2019
-                                            </div>
-                                            <span class="font-weight-bold"
-                                                >A new monthly report is ready
-                                                to download!</span
-                                            >
-                                        </div>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
                                     </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-success">
-                                                <i
-                                                    class="
-                                                        fas
-                                                        fa-donate
-                                                        text-white
-                                                    "
-                                                ></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">
-                                                December 7, 2019
-                                            </div>
-                                            $290.29 has been deposited into your
-                                            account!
-                                        </div>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
                                     </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="mr-3">
-                                            <div class="icon-circle bg-warning">
-                                                <i
-                                                    class="
-                                                        fas
-                                                        fa-exclamation-triangle
-                                                        text-white
-                                                    "
-                                                ></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="small text-gray-500">
-                                                December 2, 2019
-                                            </div>
-                                            Spending Alert: We've noticed
-                                            unusually high spending for your
-                                            account.
-                                        </div>
+                
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                                     </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            text-center
-                                            small
-                                            text-gray-500
-                                        "
-                                        href="#"
-                                        >Show All Alerts</a
-                                    >
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                                    </a>
+
                                 </div>
                             </li>
 
-                            <!-- Nav Item - Messages -->
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="messagesDropdown"
-                                    role="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i class="fas fa-envelope fa-fw"></i>
-                                    <!-- Counter - Messages -->
-                                    <span
-                                        class="badge badge-danger badge-counter"
-                                        >7</span
-                                    >
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="dripicons-bell noti-icon"></i>
+                                    <span class="noti-icon-badge"></span>
                                 </a>
-                                <!-- Dropdown - Messages -->
-                                <div
-                                    class="
-                                        dropdown-list
-                                        dropdown-menu
-                                        dropdown-menu-right
-                                        shadow
-                                        animated--grow-in
-                                    "
-                                    aria-labelledby="messagesDropdown"
-                                >
-                                    <h6 class="dropdown-header">
-                                        Message Center
-                                    </h6>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="dropdown-list-image mr-3">
-                                            <img
-                                                class="rounded-circle"
-                                                src="img/undraw_profile_1.svg"
-                                                alt="..."
-                                            />
-                                            <div
-                                                class="
-                                                    status-indicator
-                                                    bg-success
-                                                "
-                                            ></div>
-                                        </div>
-                                        <div class="font-weight-bold">
-                                            <div class="text-truncate">
-                                                Hi there! I am wondering if you
-                                                can help me with a problem I've
-                                                been having.
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
+
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title px-3">
+                                        <h5 class="m-0">
+                                            <span class="float-end">
+                                                <a href="javascript: void(0);" class="text-dark">
+                                                    <small>Clear All</small>
+                                                </a>
+                                            </span>Notification
+                                        </h5>
+                                    </div>
+
+                                    <div class="px-3" style="max-height: 300px;" data-simplebar>
+
+                                        <h5 class="text-muted font-13 fw-normal mt-0">Today</h5>
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-2">
+                                            <div class="card-body">
+                                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <div class="notify-icon bg-primary">
+                                                            <i class="mdi mdi-comment-account-outline"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 text-truncate ms-2">
+                                                        <h5 class="noti-item-title fw-semibold font-14">Datacorp <small class="fw-normal text-muted ms-1">1 min ago</small></h5>
+                                                        <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                    </div>
+                                                  </div>
                                             </div>
-                                            <div class="small text-gray-500">
-                                                Emily Fowler · 58m
+                                        </a>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                            <div class="card-body">
+                                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <div class="notify-icon bg-info">
+                                                            <i class="mdi mdi-account-plus"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 text-truncate ms-2">
+                                                        <h5 class="noti-item-title fw-semibold font-14">Admin <small class="fw-normal text-muted ms-1">1 hours ago</small></h5>
+                                                        <small class="noti-item-subtitle text-muted">New user registered</small>
+                                                    </div>
+                                                  </div>
                                             </div>
+                                        </a>
+
+                                        <h5 class="text-muted font-13 fw-normal mt-0">Yesterday</h5>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                            <div class="card-body">
+                                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <div class="notify-icon">
+                                                            <img src="assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 text-truncate ms-2">
+                                                        <h5 class="noti-item-title fw-semibold font-14">Cristina Pride <small class="fw-normal text-muted ms-1">1 day ago</small></h5>
+                                                        <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                        </a>
+
+                                        <h5 class="text-muted font-13 fw-normal mt-0">30 Dec 2021</h5>
+
+                                        <!-- item-->
+                                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                            <div class="card-body">
+                                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <div class="notify-icon bg-primary">
+                                                            <i class="mdi mdi-comment-account-outline"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 text-truncate ms-2">
+                                                        <h5 class="noti-item-title fw-semibold font-14">Datacorp</h5>
+                                                        <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                        </a>
+
+                                         <!-- item-->
+                                         <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-2">
+                                            <div class="card-body">
+                                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>   
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <div class="notify-icon">
+                                                            <img src="assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1 text-truncate ms-2">
+                                                        <h5 class="noti-item-title fw-semibold font-14">Karen Robinson</h5>
+                                                        <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome design</small>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                        </a>
+
+                                        <div class="text-center">
+                                            <i class="mdi mdi-dots-circle mdi-spin text-muted h3 mt-0"></i>
                                         </div>
+                                    </div>
+
+                                    <!-- All-->
+                                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+                                        View All
                                     </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="dropdown-list-image mr-3">
-                                            <img
-                                                class="rounded-circle"
-                                                src="img/undraw_profile_2.svg"
-                                                alt="..."
-                                            />
-                                            <div class="status-indicator"></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">
-                                                I have the photos that you
-                                                ordered last month, how would
-                                                you like them sent to you?
-                                            </div>
-                                            <div class="small text-gray-500">
-                                                Jae Chun · 1d
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="dropdown-list-image mr-3">
-                                            <img
-                                                class="rounded-circle"
-                                                src="img/undraw_profile_3.svg"
-                                                alt="..."
-                                            />
-                                            <div
-                                                class="
-                                                    status-indicator
-                                                    bg-warning
-                                                "
-                                            ></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">
-                                                Last month's report looks great,
-                                                I am very happy with the
-                                                progress so far, keep up the
-                                                good work!
-                                            </div>
-                                            <div class="small text-gray-500">
-                                                Morgan Alvarez · 2d
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            d-flex
-                                            align-items-center
-                                        "
-                                        href="#"
-                                    >
-                                        <div class="dropdown-list-image mr-3">
-                                            <img
-                                                class="rounded-circle"
-                                                src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                                alt="..."
-                                            />
-                                            <div
-                                                class="
-                                                    status-indicator
-                                                    bg-success
-                                                "
-                                            ></div>
-                                        </div>
-                                        <div>
-                                            <div class="text-truncate">
-                                                Am I a good boy? The reason I
-                                                ask is because someone told me
-                                                that people say this to all
-                                                dogs, even if they aren't
-                                                good...
-                                            </div>
-                                            <div class="small text-gray-500">
-                                                Chicken the Dog · 2w
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a
-                                        class="
-                                            dropdown-item
-                                            text-center
-                                            small
-                                            text-gray-500
-                                        "
-                                        href="#"
-                                        >Read More Messages</a
-                                    >
+
                                 </div>
                             </li>
 
-                            <div class="topbar-divider d-none d-sm-block"></div>
-
-                            <!-- Nav Item - User Information -->
-                            <li class="nav-item dropdown no-arrow">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="userDropdown"
-                                    role="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <span
-                                        class="
-                                            mr-2
-                                            d-none d-lg-inline
-                                            text-gray-600
-                                            small
-                                        "
-                                        >{{ Auth::user()->name }}</span
-                                    >
-                                    <img
-                                        class="img-profile rounded-circle"
-                                        src="img/undraw_profile.svg"
-                                    />
+                            {{-- <li class="dropdown notification-list d-none d-sm-inline-block">
+                                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                    <i class="dripicons-view-apps noti-icon"></i>
                                 </a>
-                                <!-- Dropdown - User Information -->
-                                <div
-                                    class="
-                                        dropdown-menu dropdown-menu-right
-                                        shadow
-                                        animated--grow-in
-                                    "
-                                    aria-labelledby="userDropdown"
-                                >
-                                    <a class="dropdown-item" href="#">
-                                        <i
-                                            class="
-                                                fas
-                                                fa-user fa-sm fa-fw
-                                                mr-2
-                                                text-gray-400
-                                            "
-                                        ></i>
-                                        Profile
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i
-                                            class="
-                                                fas
-                                                fa-cogs fa-sm fa-fw
-                                                mr-2
-                                                text-gray-400
-                                            "
-                                        ></i>
-                                        Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#">
-                                        <i
-                                            class="
-                                                fas
-                                                fa-list fa-sm fa-fw
-                                                mr-2
-                                                text-gray-400
-                                            "
-                                        ></i>
-                                        Activity Log
-                                    </a>
-                                    <div class="dropdown-divider"></div>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
 
-                                    <a
-                                        class="dropdown-item"
-                                        href="#"
-                                        data-toggle="modal"
-                                        data-target="#logoutModal"
-                                    >
-                                        <i
-                                            class="
-                                                fas
-                                                fa-sign-out-alt fa-sm fa-fw
-                                                mr-2
-                                                text-gray-400
-                                            "
-                                        ></i>
-                                        Logout
+                                    <div class="p-2">
+                                        <div class="row g-0">
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/slack.png" alt="slack">
+                                                    <span>Slack</span>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/github.png" alt="Github">
+                                                    <span>GitHub</span>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                                                    <span>Dribbble</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-0">
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                                                    <span>Bitbucket</span>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                                                    <span>Dropbox</span>
+                                                </a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="dropdown-icon-item" href="#">
+                                                    <img src="assets/images/brands/g-suite.png" alt="G Suite">
+                                                    <span>G Suite</span>
+                                                </a>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div>
+
+                                </div>
+                            </li> --}}
+
+                            <li class="notification-list">
+                                <a class="nav-link end-bar-toggle" href="javascript: void(0);">
+                                    <i class="dripicons-gear noti-icon"></i>
+                                </a>
+                            </li>
+
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                                    aria-expanded="false">
+                                    <span class="account-user-avatar"> 
+                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                    </span>
+                                    <span>
+                                        <span class="account-user-name">Dominic Keller</span>
+                                        <span class="account-position">Founder</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                    <!-- item-->
+                                    <div class=" dropdown-header noti-title">
+                                        <h6 class="text-overflow m-0">Welcome !</h6>
+                                    </div>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-circle me-1"></i>
+                                        <span>My Account</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-edit me-1"></i>
+                                        <span>Settings</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-lifebuoy me-1"></i>
+                                        <span>Support</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-lock-outline me-1"></i>
+                                        <span>Lock Screen</span>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-logout me-1"></i>
+                                        <span>Logout</span>
                                     </a>
                                 </div>
                             </li>
+
                         </ul>
-                    </nav>
-                    <!-- End of Topbar -->
+                        <button class="button-menu-mobile open-left">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+                        <div class="app-search dropdown d-none d-lg-block">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control dropdown-toggle"  placeholder="Search..." id="top-search">
+                                    <span class="mdi mdi-magnify search-icon"></span>
+                                    <button class="input-group-text btn-primary" type="submit">Search</button>
+                                </div>
+                            </form>
 
-                    @yield('content')
-                </div>
-                <!-- End of Main Content -->
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
+                                <!-- item-->
+                                <div class="dropdown-header noti-title">
+                                    <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
+                                </div>
 
-                <!-- Footer -->
-                {{-- <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="uil-notes font-16 me-1"></i>
+                                    <span>Analytics Report</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="uil-life-ring font-16 me-1"></i>
+                                    <span>How can I help you?</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="uil-cog font-16 me-1"></i>
+                                    <span>User profile settings</span>
+                                </a>
+
+                                <!-- item-->
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                                </div>
+
+                                <div class="notification-list">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="d-flex">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/avatar-2.jpg" alt="Generic placeholder image" height="32">
+                                            <div class="w-100">
+                                                <h5 class="m-0 font-14">Erwin Brown</h5>
+                                                <span class="font-12 mb-0">UI Designer</span>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                        <div class="d-flex">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/avatar-5.jpg" alt="Generic placeholder image" height="32">
+                                            <div class="w-100">
+                                                <h5 class="m-0 font-14">Jacob Deo</h5>
+                                                <span class="font-12 mb-0">Developer</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </footer> --}}
-                <!-- End of Footer -->
-            </div>
-            <!-- End of Content Wrapper -->
-        </div>
-        <!-- End of Page Wrapper -->
+                    <!-- end Topbar -->
+                    
+                    <!-- Start Content-->
+                    @yield('content')
+                    <!-- container -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div
-            class="modal fade"
-            id="logoutModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Ready to Leave?
-                        </h5>
-                        <button
-                            class="close"
-                            type="button"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Select "Logout" below if you are ready to end your
-                        current session.
-                    </div>
-                    <div class="modal-footer">
-                        <button
-                            class="btn btn-secondary"
-                            type="button"
-                            data-dismiss="modal"
-                        >
-                            Cancel
-                        </button>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="btn btn-primary" type="submit">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
                 </div>
+                <!-- content -->
+
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <script>document.write(new Date().getFullYear())</script> © Willy kurniawan
+                            </div>
+                            {{-- <div class="col-md-6">
+                                <div class="text-md-end footer-links d-none d-md-block">
+                                    <a href="javascript: void(0);">About</a>
+                                    <a href="javascript: void(0);">Support</a>
+                                    <a href="javascript: void(0);">Contact Us</a>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Right Sidebar -->
+        <div class="end-bar">
+
+            <div class="rightbar-title">
+                <a href="javascript:void(0);" class="end-bar-toggle float-end">
+                    <i class="dripicons-cross noti-icon"></i>
+                </a>
+                <h5 class="m-0">Settings</h5>
+            </div>
+
+            <div class="rightbar-content h-100" data-simplebar>
+
+                <div class="p-3">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                    </div>
+
+                    <!-- Settings -->
+                    <h5 class="mt-3">Color Scheme</h5>
+                    <hr class="mt-1" />
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="light" id="light-mode-check" checked>
+                        <label class="form-check-label" for="light-mode-check">Light Mode</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="color-scheme-mode" value="dark" id="dark-mode-check">
+                        <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+                    </div>
+       
+
+                    <!-- Width -->
+                    <h5 class="mt-4">Width</h5>
+                    <hr class="mt-1" />
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="fluid" id="fluid-check" checked>
+                        <label class="form-check-label" for="fluid-check">Fluid</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="width" value="boxed" id="boxed-check">
+                        <label class="form-check-label" for="boxed-check">Boxed</label>
+                    </div>
+        
+
+                    <!-- Left Sidebar-->
+                    <h5 class="mt-4">Left Sidebar</h5>
+                    <hr class="mt-1" />
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="default" id="default-check">
+                        <label class="form-check-label" for="default-check">Default</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="theme" value="light" id="light-check" checked>
+                        <label class="form-check-label" for="light-check">Light</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" name="theme" value="dark" id="dark-check">
+                        <label class="form-check-label" for="dark-check">Dark</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="fixed" id="fixed-check" checked>
+                        <label class="form-check-label" for="fixed-check">Fixed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="condensed" id="condensed-check">
+                        <label class="form-check-label" for="condensed-check">Condensed</label>
+                    </div>
+
+                    <div class="form-check form-switch mb-1">
+                        <input class="form-check-input" type="checkbox" name="compact" value="scrollable" id="scrollable-check">
+                        <label class="form-check-label" for="scrollable-check">Scrollable</label>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
+            
+                        <a href="https://themes.getbootstrap.com/product/hyper-responsive-admin-dashboard-template/"
+                            class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                    </div>
+                </div> <!-- end padding-->
+
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-        <script src="{{
-                asset('vendor/bootstrap/js/bootstrap.bundle.min.js')
-            }}"></script>
+        <div class="rightbar-overlay"></div>
+        <!-- /End-bar -->
 
-        <!-- Core plugin JavaScript-->
-        <script src="{{
-                asset('vendor/jquery-easing/jquery.easing.min.js')
-            }}"></script>
+        <!-- bundle -->
+        <script src="{{ asset("assets/js/vendor.min.js") }}"></script>
+        <script src="{{ asset("assets/js/app.js") }}"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+        <!-- third party js -->
+        {{-- <script src="{{ asset("assets/js/vendor/apexcharts.min.js") }}"></script> --}}
+        {{-- <script src="{{ asset("assets/js/vendor/jquery-jvectormap-1.2.2.min.js") }}"></script> --}}
+        {{-- <script src="{{ asset("assets/js/vendor/jquery-jvectormap-world-mill-en.js") }}"></script> --}}
+        <!-- third party js ends -->
 
-        @stack('script') @include('sweetalert::alert')
+        <!-- demo app -->
+        {{-- <script src="{{ asset("assets/js/pages/demo.dashboard.js") }}"></script> --}}
+        <!-- end demo js-->
+
+        @stack('script')
     </body>
 </html>

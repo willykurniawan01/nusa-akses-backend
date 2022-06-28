@@ -25,6 +25,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth')->group(function () {
 
 
+    //route menu
+    Route::prefix('menu')->group(function () {
+        Route::get('', 'MenuController@index')->name('menu.index');
+    });
+
     //route post
     Route::prefix('post')->group(function () {
         Route::get('', 'PostController@index')->name('post.index');

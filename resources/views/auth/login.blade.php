@@ -2,61 +2,59 @@
 
 @section('content')
 
-    <div class="container">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-xxl-4 col-lg-4">
+            <div class="card">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-6 col-lg-6 col-md-6">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center mb-3">
-                                        <img width="140" height="120" src="{{ asset("images/logo/logo.svg") }}">
-                                    </div>
-                                    <form action="{{ route('login') }}" method="POST" class="user">
-                                        @csrf
-                                        <div class="form-group">
-                                            <input type="username" name="username" class="form-control form-control-user"
-                                                placeholder="Enter username ...">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Logo -->
+                <div class="card-header pt-3 pb-3 text-center">
+                    <a href="index.html">
+                        <span><img src="{{ asset("images/logo/logo3.png") }}" alt="" height="65"></span>
+                    </a>
                 </div>
 
+                <div class="card-body p-4">
+                    
+                    <div class="text-center w-75 m-auto">
+                        <p class="text-muted mb-4">Please enter your username and password.</p>
+                    </div>
+
+                    <form action="{{ route("login") }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input class="form-control" type="text" id="username" placeholder="Enter your username" name="username">
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group input-group-merge">
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password" name="password">
+                            </div>
+                        </div>
+
+                        <div class="mb-3 mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                <label class="form-check-label" for="checkbox-signin">Remember me</label>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 mb-0 text-center d-flex justify-content-start">
+                            <button class="btn btn-primary btn-custom" type="submit"> Log In </button>
+                        </div>
+
+                    </form>
+                </div> <!-- end card-body -->
             </div>
+            <!-- end card -->
 
-        </div>
+            <!-- end row -->
 
+        </div> <!-- end col -->
     </div>
+    <!-- end row -->
+</div>
 
 @endsection
