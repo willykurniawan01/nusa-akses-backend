@@ -21,7 +21,8 @@ class Page extends Model
         'content.required' => 'content hakaman tidak boleh kosong !',
     ];
 
-    public function services(){
-        return $this->hasMany(Page::class);
+    public function services()
+    {
+        return $this->hasMany(Services::class);
     }
 }

@@ -20,13 +20,13 @@ class PagesController extends Controller
         $result = [];
         $result['data'] = [];
 
-        $pages = Page::whereHas('services', '=', 0)->get();
-        if ($pages->count() > 1) {
-            foreach ($pages as $eachPage) {
-                $eachPage->picture = url(Storage::url($eachPage->picture));
-                array_push($result["data"], $eachPage);
-            }
+        $pages = Page::whereDoesntHave("services")->get();
+
+        foreach ($pages as $eachPage) {
+            $eachPage->picture = url(Storage::url($eachPage->picture));
+            array_push($result["data"], $eachPage);
         }
+
 
         return response()->json($result);
     }
