@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,15 +20,13 @@ class PagesController extends Controller
         $result = [];
         $result['data'] = [];
 
-
-        if ($pages = Page::all()) {
+        $pages = Page::whereHas('services', '=', 0)->get();
+        if ($pages->count() > 1) {
             foreach ($pages as $eachPage) {
                 $eachPage->picture = url(Storage::url($eachPage->picture));
                 array_push($result["data"], $eachPage);
             }
         }
-
-        // dd($pages);
 
         return response()->json($result);
     }

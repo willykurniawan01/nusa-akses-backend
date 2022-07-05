@@ -20,4 +20,8 @@ class Page extends Model
         'name.required' => 'nama hakaman tidak boleh kosong !',
         'content.required' => 'content hakaman tidak boleh kosong !',
     ];
+
+    public function services(){
+        return $this->hasMany(Page::class);
+    }
 }
