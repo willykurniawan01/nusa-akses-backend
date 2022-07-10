@@ -78,7 +78,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
         Route::prefix('account')->group(function () {
-            Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
+            Route::get('', 'SettingController@indexAccount')->name('settings.account-setting.index');
+            Route::post('{user}/update', 'SettingController@updateAccount')->name('settings.account-setting.update');
         });
     });
 
