@@ -74,7 +74,7 @@ class Post extends Model
 
 
 
-    public function getAllPost()
+    public static function getAllPost()
     {
         return self::all();
     }
