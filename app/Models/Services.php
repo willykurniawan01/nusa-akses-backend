@@ -19,7 +19,7 @@ class Services extends Model
         return DataTables::of($query)->toJson();
     }
 
-    public function getAllServices()
+    public static function getAllServices()
     {
         $query = self::all();
         return $query;
