@@ -19,7 +19,7 @@
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary">Postingan</h4>
+                    <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

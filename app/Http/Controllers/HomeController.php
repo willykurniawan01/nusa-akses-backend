@@ -26,7 +26,6 @@ class HomeController extends Controller
     public function index()
     {
         $post = Post::getAllPost()->count();
-        $services = Services::getAllServices()->count();
-        return view('pages.home', compact('post', 'services'));
+        return view('pages.home', compact('post'));
     }
 }

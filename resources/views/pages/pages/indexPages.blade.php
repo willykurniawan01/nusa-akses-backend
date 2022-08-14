@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | servicesingan')
+@section('title', 'Halaman')
 
 @section('content')
     <div class="container-fluid">
 
-        <div class="row m3-4">
+        <div class="row mt-3 mb-3">
             <div class="col-8">
-                <a href="{{ route('pages.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-pen-nib"></i> Buat
+                <a href="{{ route('pages.create') }}" class="btn btn-sm btn-primary"><i class="mdi mdi-plus-circle"></i> Buat
                     Halaman</a>
             </div>
         </div>
@@ -22,7 +22,7 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Halaman</h6>
+                <h4 class="m-0 font-weight-bold text-primary">Halaman</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -34,23 +34,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pages as $eachPage)
-                                <tr>
-                                    <td>{{ $eachPage->name }}</td>
-                                    <td>
-                                        <form method="POST" action="{{ route("pages.destroy",$eachPage->id) }}">
-                                            @csrf
-                                            @method("delete")
-                                            <a href="{{ route("pages.edit",$eachPage->id) }}" class="btn btn-success">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                            @forelse ($pages as $eachPage)
+                            <tr>
+                                <td>{{ $eachPage->name }}</td>
+                                <td>
+                                    <form method="POST" action="{{ route("pages.destroy",$eachPage->id) }}">
+                                        @csrf
+                                        @method("delete")
+                                        <a href="{{ route("pages.edit",$eachPage->id) }}" class="btn btn-success">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @empty
+                                <tr class="text-center">
+                                    <td colspan="2">Data kosong.</td>
                                 </tr>
-                            @endforeach
+                            @endforelse 
+                               
                         </tbody>
                     </table>
                 </div>

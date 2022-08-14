@@ -14,21 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('admin')->middleware('auth')->group(function () {
 
-
-    //route menu
-    Route::prefix('menu')->group(function () {
-        Route::get('', 'MenuController@index')->name('menu.index');
-    });
+    Route::get("/dashboard", "DashboardController@index")->name("dashboard.index");
 
     //route post
     Route::prefix('post')->group(function () {
@@ -77,14 +68,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     });
 
     Route::prefix('settings')->group(function () {
-        Route::get('', 'SettingController@index')->name('settings.index');
-        Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');
-        Route::post('save-setting', 'SettingController@saveSetting')->name('settings.save-setting');
-
-
-        Route::prefix('account')->group(function () {
-            Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
+        Route::prefix('theme')->group(function () {
+            Route::get("", "ThemeSettingController@index")->name("setting.theme.index");
         });
+
+        // Route::get('', 'SettingController@index')->name('settings.index');
+        // Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');
+        // Route::post('save-setting', 'SettingController@saveSetting')->name('settings.save-setting');
+
+        // Route::prefix('account')->group(function () {
+        //     Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
+        // });
     });
 
     Route::prefix('pages')->group(function () {

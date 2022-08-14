@@ -5,24 +5,8 @@
 @section('content')
     <div class="container-fluid">
         
-        <!-- end page title -->
-        <div class="row mb-2 mt-2">
-            <div class="col-8">
-                <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary">  <i class="uil-plus-circle
-                    "></i>
-                    Berita</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <form action="">
-                    </form>
-                </div>
-            </div>
-        </div>
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
+        {{-- <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
             </div>
@@ -44,8 +28,44 @@
                     </table>
                 </div>
             </div>
+        </div> --}}
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-5">
+                                <a href="{{ route('post.create') }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Berita</a>
+                            </div>
+                            <div class="col-sm-7">
+                                {{-- <div class="text-sm-end">
+                                    <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
+                                    <button type="button" class="btn btn-light mb-2 me-1">Import</button>
+                                    <button type="button" class="btn btn-light mb-2">Export</button>
+                                </div> --}}
+                            </div><!-- end col-->
+                        </div>
+        
+                        <div class="table-responsive">
+                            <table name="postTable" class="table table-centered w-100 dt-responsive nowrap" id="dataTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="all">Berita</th>
+                                        <th>Tanggal</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+        
+            </div>
         </div>
-
        
     </div>
     <!-- /.container-fluid -->
@@ -81,7 +101,8 @@
 
 
 @push('style')
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset("assets/css/vendor/dataTables.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/vendor/responsive.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('script')
@@ -98,42 +119,6 @@
             let deletePostForm = $("form[name='deletePostForm']");
             let categoryInput = $("input[name='post_category']")
 
-
-            //call function load
-            loadPostCategory();
-
-
-            function loadPostCategory(){
-                $.ajax({
-                    type : 'GET',
-                    url: "{{ route('post.get.get-post-category') }}",
-                    success:function(res){
-                        res.forEach(data => {
-                            categoryInput.tagsinput('add', { "value": 1 , "text": "jQuery"});
-                        });
-                    },
-                    error:function(res){
-                        console.log(res)
-                    }
-                })
-            }
-
-
-
-
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
-
-
             let postList = postTable.DataTable({
                 searching: true,
                 autoWidth: false,
@@ -148,7 +133,16 @@
                 columns: [{
                         data: 'judul',
                         name: 'judul',
-                        defaultContent: '-'
+                        defaultContent: '-',
+                        render:function(data,type,row){
+                            return `
+                            <img src="{{ Storage::url('') }}/${row.picture}" alt="contact-img" title="contact-img" class="rounded me-3" height="48" />
+                            <p class="m-0 d-inline-block align-middle font-16">
+                                <a href="apps-ecommerce-products-details.html" class="text-body">${data}</a>
+                                <br/>
+                            </p>
+                            `
+                        }
                     },
                     {
                         data: 'created_at',
@@ -160,16 +154,6 @@
                         data: 'slug',
                         name: 'slug',
                         defaultContent: '-'
-                    },
-                    {
-                        data: 'picture',
-                        name: 'picture',
-                        defaultContent: '-',
-                        render:function(data,type,row){
-                            return `
-                                <img src="{{ Storage::url('') }}/${data}" class="img-thumbnail" width="100" height="100" alt="...">
-                            `
-                        }
                     },
                     {
                         data: null,

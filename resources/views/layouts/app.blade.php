@@ -39,7 +39,7 @@
                 </a>
 
                 <!-- LOGO -->
-                <a href="{{ route("home") }}" class="logo text-center logo-dark">
+                <a href="{{ route("dashboard.index") }}" class="logo text-center logo-dark">
                     <span class="logo-lg">
                         <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="50">
                     </span>
@@ -82,7 +82,7 @@
                         <li class="side-nav-title side-nav-item">Navigation</li>
 
                         <li class="side-nav-item">
-                            <a href="{{ route("home") }}" class="side-nav-link">
+                            <a href="{{ route("dashboard.index") }}" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
                                 <span> Dashboard </span>
                             </a>
@@ -131,11 +131,11 @@
                                 <i class=" uil-newspaper
                                 "></i>
                                 <span>Berita</span>
-                                <span class="badge bg-success float-end">4</span>
+                                <span class="badge bg-success float-end">{{ App\Models\Post::all()->count() }}</span>
                             </a>
                         </li>
                        <li class="side-nav-item">
-                            <a href="apps-file-manager.html" class="side-nav-link">
+                            <a href="{{ route("pages.index") }}" class="side-nav-link">
                                 <i class="uil-window"></i>
                                 <span>Halaman</span>
                             </a>
@@ -163,6 +163,14 @@
                                 <i class=" uil-bright
                                 "></i>
                                 <span>Pengaturan</span>
+                            </a>
+                        </li> 
+                        
+                        <li class="side-nav-item">
+                            <a href="{{ route("setting.theme.index") }}" class="side-nav-link">
+                                <i class=" uil-bright
+                                "></i>
+                                <span>Pengaturan Tema</span>
                             </a>
                         </li>
                     
@@ -227,7 +235,7 @@
                                 </div>
                             </li>
 
-                            <li class="dropdown notification-list">
+                            {{-- <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                     <i class="dripicons-bell noti-icon"></i>
                                     <span class="noti-icon-badge"></span>
@@ -353,7 +361,7 @@
                                     </a>
 
                                 </div>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="dropdown notification-list d-none d-sm-inline-block">
                                 <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -408,21 +416,21 @@
                                 </div>
                             </li> --}}
 
-                            <li class="notification-list">
+                            {{-- <li class="notification-list">
                                 <a class="nav-link end-bar-toggle" href="javascript: void(0);">
                                     <i class="dripicons-gear noti-icon"></i>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="dropdown notification-list">
                                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                     aria-expanded="false">
                                     <span class="account-user-avatar"> 
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                                        <img src="{{ asset("images/user.png") }}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        <span class="account-user-name">Dominic Keller</span>
-                                        <span class="account-position">Founder</span>
+                                        <span class="account-user-name">{{ auth()->user()->name }}</span>
+                                        <span class="account-position">{{ auth()->user()->roles->first()->name }}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -456,10 +464,13 @@
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="mdi mdi-logout me-1"></i>
-                                        <span>Logout</span>
-                                    </a>
+                                    <form action="{{ route("logout") }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item notify-item">
+                                            <i class="mdi mdi-logout me-1"></i>
+                                            <span>Logout</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </li>
 
