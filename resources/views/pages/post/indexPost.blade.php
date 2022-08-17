@@ -82,11 +82,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Apakah Kamu yakin?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">Klik tombol ok akan menghapus postingan</div>
+                    <div class="modal-body">Klik tombol ok akan menghapus Berita</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">OK</button>
@@ -117,7 +115,19 @@
             let deleteButton = $("button[name='deleteButton']");
             let deleteModal = $("div[name='deleteModal']");
             let deletePostForm = $("form[name='deletePostForm']");
-            let categoryInput = $("input[name='post_category']")
+            let categoryInput = $("input[name='post_category']");
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
 
             let postList = postTable.DataTable({
                 searching: true,
@@ -159,7 +169,7 @@
                         data: null,
                         render: function(data, type, row) {
                             return `
-                                    <button name="delete-button" data-target="#deleteModal" data-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class=" uil-trash-alt
+                                    <button name="delete-button" data-bs-target="#deleteModal" data-bs-toggle="modal" type="button" data-id="${row.id}" class="btn btn-circle btn-danger mr-2"><i class=" uil-trash-alt
 "></i></button>
                                     <a href="{{ route('post.show', ['']) }}/${row.id}" name="delete-button" type="button" data-id="${row.id}" class="btn btn-circle btn-info"><i class="uil-eye
 "></i></a>

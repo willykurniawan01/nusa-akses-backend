@@ -17,7 +17,6 @@
         <!-- App css -->
         <link href="{{ asset("assets/css/icons.min.css") }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet" type="text/css" id="app-style"/>
-
         @stack('style')
 
     </head>
@@ -159,18 +158,22 @@
                             </a>
                         </li> 
                         <li class="side-nav-item">
-                            <a href="apps-file-manager.html" class="side-nav-link">
-                                <i class=" uil-bright
-                                "></i>
-                                <span>Pengaturan</span>
+                            <a href="{{ route("setting.theme.index") }}" class="side-nav-link">
+                                <i class="  uil-palette
+
+
+"></i>
+                                <span>Pengaturan Tema</span>
                             </a>
-                        </li> 
+                        </li>
                         
                         <li class="side-nav-item">
                             <a href="{{ route("setting.theme.index") }}" class="side-nav-link">
-                                <i class=" uil-bright
-                                "></i>
-                                <span>Pengaturan Tema</span>
+                                <i class="  uil-file-alt
+
+
+"></i>
+                                <span>Laporan</span>
                             </a>
                         </li>
                     
@@ -686,6 +689,7 @@
         <!-- demo app -->
         {{-- <script src="{{ asset("assets/js/pages/demo.dashboard.js") }}"></script> --}}
         <!-- end demo js-->
+        @include('sweetalert::alert')
 
         @stack('script')
     </body>

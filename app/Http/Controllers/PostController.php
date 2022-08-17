@@ -47,7 +47,7 @@ class PostController extends Controller
             if (!$validation->fails()) {
                 $savePost = Post::savePost($request);
                 if ($savePost) {
-                    return redirect()->route('post.index')->withToastSuccess('Berhasil membuat post!');
+                    return redirect()->route('post.index')->withToastSuccess('Berhasil menambahkan berita!');
                 }
             } else {
                 return redirect()->back()
@@ -86,7 +86,7 @@ class PostController extends Controller
         $post  =  Post::updatePost($request, $id);
 
         if ($post) {
-            return redirect()->route('post.index')->withToastSuccess("Berhasil mengupdate post!");
+            return redirect()->route('post.index')->withToastSuccess("Berhasil mengupdate berita!");
         }
     }
 

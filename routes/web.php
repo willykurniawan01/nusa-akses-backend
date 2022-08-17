@@ -18,7 +18,6 @@ Auth::routes();
 
 
 Route::prefix('admin')->middleware('auth')->group(function () {
-
     Route::get("/dashboard", "DashboardController@index")->name("dashboard.index");
 
     //route post
@@ -37,48 +36,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         });
     });
 
-
-    Route::prefix('services')->group(function () {
-        Route::get('', 'ServicesController@index')->name('services.index');
-        Route::get('/create', 'ServicesController@create')->name('services.create');
-        Route::post('/store', 'ServicesController@store')->name('services.store');
-        Route::get('show/{id}', 'ServicesController@show')->name('services.show');
-        Route::put('update/{id}', 'ServicesController@update')->name('services.update');
-        Route::delete('destroy', 'ServicesController@destroy')->name('services.destroy');
-
-        //ajax get route
-        Route::prefix('get')->group(function () {
-            Route::get('get-all-services', 'ServicesController@getAllservicesForDatatable')->name('services.get.get-all-services');
-        });
-    });
-
-
-    Route::prefix('sliders')->group(function () {
-        Route::get('', 'SlidersController@index')->name('sliders.index');
-        Route::get('/create', 'SlidersController@create')->name('sliders.create');
-        Route::post('/store', 'SlidersController@store')->name('sliders.store');
-        Route::get('show/{id}', 'SlidersController@show')->name('sliders.show');
-        Route::put('update/{id}', 'SlidersController@update')->name('sliders.update');
-        Route::delete('destroy', 'SlidersController@destroy')->name('sliders.destroy');
-
-        //ajax get route
-        Route::prefix('get')->group(function () {
-            Route::get('get-all-sliders', 'SlidersController@getAllsliders')->name('sliders.get.get-all-sliders');
-        });
-    });
-
     Route::prefix('settings')->group(function () {
         Route::prefix('theme')->group(function () {
             Route::get("", "ThemeSettingController@index")->name("setting.theme.index");
         });
-
-        // Route::get('', 'SettingController@index')->name('settings.index');
-        // Route::get('pengaturan-perusahaan', 'SettingController@companySetting')->name('settings.company-setting');
-        // Route::post('save-setting', 'SettingController@saveSetting')->name('settings.save-setting');
-
-        // Route::prefix('account')->group(function () {
-        //     Route::get('change_password/', 'SettingController@changePassword')->name('settings.account_setting.change_password');
-        // });
     });
 
     Route::prefix('pages')->group(function () {

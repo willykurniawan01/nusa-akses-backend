@@ -13,11 +13,9 @@ class Page extends Model
 
     public static $rules = [
         'name' => 'required',
-        'content' => 'required'
     ];
 
     public static $messages = [
         'name.required' => 'nama hakaman tidak boleh kosong !',
-        'content.required' => 'content hakaman tidak boleh kosong !',
     ];
 }

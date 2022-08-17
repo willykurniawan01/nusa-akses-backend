@@ -42,10 +42,10 @@
                                         @csrf
                                         @method("delete")
                                         <a href="{{ route("pages.edit",$eachPage->id) }}" class="btn btn-success">
-                                            <i class="bi bi-pencil-square"></i>
+                                            <i class="uil-edit"></i>
                                         </a>
                                         <button type="submit" class="btn btn-danger">
-                                            <i class="bi bi-trash"></i>
+                                            <i class="uil-trash-alt"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -55,7 +55,6 @@
                                     <td colspan="2">Data kosong.</td>
                                 </tr>
                             @endforelse 
-                               
                         </tbody>
                     </table>
                 </div>
@@ -64,8 +63,6 @@
 
     </div>
     <!-- /.container-fluid -->
-
-
 
     <!-- confirm delete Modal-->
     {{-- <form name="deleteServicesForm" action="{{ route('services.destroy') }}" enctype="multipart/form-data">

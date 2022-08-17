@@ -55,7 +55,7 @@ class PostRequest extends FormRequest
             'picture.image' => 'file harus berupa gambar!',
             'picture.mimes' => 'ekstensi file tidak di support!',
             'picture.max' => 'ukuran gambar tidak boleh lebih dari 2mb!',
-            'content.required' => 'isi postingan tidak boleh kosong!'
+            'content.required' => 'isi berita tidak boleh kosong!'
         ];
     }
 }

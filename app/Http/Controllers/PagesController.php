@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Page;
+use App\Models\PageComponent;
 
 class PagesController extends Controller
 {
@@ -42,11 +43,27 @@ class PagesController extends Controller
         if (!$validation->fails()) {
             $page = new Page;
             $page->name = $request->name;
-            $page->content = $request->content;
 
-            if ($page->save()) {
-                return redirect()->route("pages.index")->withToastSuccess("Berhasil menambahkan halaman!");
+            foreach ($request->page_components as $eachComponent) {
+                $detail = [];
+                switch ($eachComponent["type"]) {
+                    case "navbar":
+                        $detail["type"] = $eachComponent["type"];
+                        break;
+
+                    case "imageSlider":
+                        break;
+                }
+
+                $pageComponent = new PageComponent;
+                $pageComponent->page_id = $page->id;
+                $pageComponent->detail = json_encode($detail);
+                $pageComponent->save();
             }
+
+            $page->save();
+
+            return redirect()->route("pages.index")->withToastSuccess("Berhasil menambahkan halaman!");
         } else {
             return redirect()->back()
                 ->withErrors($validation)

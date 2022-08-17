@@ -21,7 +21,7 @@
             @method('PUT')
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary">Postingan</h4>
+                    <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -73,7 +73,7 @@
 
                     <div class="row">
                         <div class="col d-flex justify-content-end mt-3">
-                            <button name="editButton" class="btn btn-success mr-2">
+                            <button name="editButton" class="btn btn-success me-2">
                                 Edit
                             </button>
                             <button type="submit" class="btn btn-primary">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Nusa Akses | Postingan')
+@section('title', 'Nusa Akses | Berita')
 
 @section('content')
     <div class="container-fluid">

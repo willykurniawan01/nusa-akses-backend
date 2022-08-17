@@ -38,7 +38,7 @@
 
                     <div class="row mt-3 mb-2">
                         <div class="col-3">
-                            <button class="btn btn-link">
+                            <button type="button" class="btn btn-link">
                                 <i class="mdi mdi-plus-circle me-2"></i> Tambah Komponen
                             </button>
                         </div>
@@ -52,9 +52,9 @@
                                             <label class="mb-1">
                                                 Type
                                             </label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select name="page_components[0][type]" class="form-select">
                                                 <option selected>Pilih Komponen</option>
-                                                <option value="1">Navbar</option>
+                                                <option value="navbar">Navbar</option>
                                               </select>
                                         </div>
                                     </div>
