@@ -692,5 +692,24 @@
         @include('sweetalert::alert')
 
         @stack('script')
+        <script>
+    
+            @foreach (getThemeSettings() as $eachSetting)
+                @if ($eachSetting->name == "color_scheme")
+                    @if ($eachSetting->value == "light")
+                        $.App.deactivateDarkMode();
+                    @else
+                        $.App.activateDarkMode();
+                    @endif
+                @else
+                    @if ($eachSetting->value == "light")
+                        $.App.activateLightSidebarTheme();
+                    @else
+                        $.App.activateDarkSidebarTheme();
+                    @endif
+                @endif
+            @endforeach
+            
+        </script>
     </body>
 </html>

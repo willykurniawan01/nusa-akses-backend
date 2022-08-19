@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
 
 use Illuminate\Http\Request;
 use App\Models\PostCategory;
+use App\Http\Controllers\Controller;
 
 class PostCategoryController extends Controller
 {

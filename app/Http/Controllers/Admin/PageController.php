@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Page;
+use Illuminate\Http\Request;
 use App\Models\PageComponent;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
-class PagesController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class PagesController extends Controller
     public function index()
     {
         $pages = Page::all();
-        return view("pages.pages.indexPages", compact("pages"));
+        return view("pages.admin.pages.indexPages", compact("pages"));
     }
 
     /**
@@ -27,7 +28,7 @@ class PagesController extends Controller
      */
     public function create()
     {
-        return view("pages.pages.createPages");
+        return view("pages.admin.pages.createPages");
     }
 
     /**
@@ -43,6 +44,7 @@ class PagesController extends Controller
         if (!$validation->fails()) {
             $page = new Page;
             $page->name = $request->name;
+            $page->save();
 
             foreach ($request->page_components as $eachComponent) {
                 $detail = [];
@@ -52,6 +54,8 @@ class PagesController extends Controller
                         break;
 
                     case "imageSlider":
+                        $detail["type"] = $eachComponent["type"];
+
                         break;
                 }
 
@@ -61,7 +65,6 @@ class PagesController extends Controller
                 $pageComponent->save();
             }
 
-            $page->save();
 
             return redirect()->route("pages.index")->withToastSuccess("Berhasil menambahkan halaman!");
         } else {
@@ -91,7 +94,7 @@ class PagesController extends Controller
      */
     public function edit(Page $page)
     {
-        return view("pages.pages.editPages", compact("pages"));
+        return view("pages.admin.pages.editPages", compact("pages"));
     }
 
     /**
@@ -114,6 +117,7 @@ class PagesController extends Controller
      */
     public function destroy(Page $page)
     {
+        PageComponent::where("page_id", $page->id)->delete();
         if ($page->delete()) {
             return redirect()->route("pages.index")->withToastSuccess("Berhasil menghapus halaman!");
         }

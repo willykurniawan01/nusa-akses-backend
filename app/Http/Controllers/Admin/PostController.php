@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('pages.post.indexPost');
+        return view('pages.admin.post.indexPost');
     }
 
     /**
@@ -28,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('pages.post.createPost');
+        return view('pages.admin.post.createPost');
     }
 
     /**
@@ -70,7 +71,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post =  Post::find($id);
-        return view('pages.post.DetailPost', compact('post'));
+        return view('pages.admin.post.DetailPost', compact('post'));
     }
 
 
@@ -83,7 +84,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post  =  Post::updatePost($request, $id);
+        $post  =  Post::updatePost($request, $id);  
 
         if ($post) {
             return redirect()->route('post.index')->withToastSuccess("Berhasil mengupdate berita!");

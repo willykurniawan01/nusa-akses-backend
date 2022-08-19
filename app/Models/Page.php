@@ -18,4 +18,10 @@ class Page extends Model
     public static $messages = [
         'name.required' => 'nama hakaman tidak boleh kosong !',
     ];
+
+
+    public function components()
+    {
+        return $this->hasMany(PageComponent::class, "page_id");
+    }
 }

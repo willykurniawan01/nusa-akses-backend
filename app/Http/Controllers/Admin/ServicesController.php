@@ -145,7 +145,6 @@ class ServicesController extends Controller
      */
     public function destroy(Request $request)
     {
-        // dd($request->all());
         $result = [];
         $services = Services::findOrFail($request->id);
 

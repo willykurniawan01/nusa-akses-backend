@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function () {
     Route::get("/dashboard", "DashboardController@index")->name("dashboard.index");
 
     //route post
@@ -39,14 +39,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::prefix('settings')->group(function () {
         Route::prefix('theme')->group(function () {
             Route::get("", "ThemeSettingController@index")->name("setting.theme.index");
+            Route::post("save", "ThemeSettingController@save")->name("setting.theme.save");
         });
     });
 
     Route::prefix('pages')->group(function () {
-        Route::get('', 'PagesController@index')->name('pages.index');
-        Route::get('create', 'PagesController@create')->name('pages.create');
-        Route::post('store', 'PagesController@store')->name('pages.store');
-        Route::get('edit/{page}', 'PagesController@edit')->name('pages.edit');
-        Route::delete('destroy/{page}', 'PagesController@destroy')->name('pages.destroy');
+        Route::get('', 'PageController@index')->name('pages.index');
+        Route::get('create', 'PageController@create')->name('pages.create');
+        Route::post('store', 'PageController@store')->name('pages.store');
+        Route::get('edit/{page}', 'PageController@edit')->name('pages.edit');
+        Route::delete('destroy/{page}', 'PageController@destroy')->name('pages.destroy');
     });
 });

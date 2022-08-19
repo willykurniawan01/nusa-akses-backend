@@ -3,28 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Settings;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
-class SettingController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function perusahaan()
+    public function index()
     {
-        $result = [];
+        $pages = Page::with("components")->get();
 
-        $visi = Settings::where('name', "=", "visi_perusahaan")->first();
-        $misi = Settings::where('name', "=", "misi_perusahaan")->first();
-        $sejarah = Settings::where('name', "=", "sejarah_perusahaan")->first();
-        $pimpinan = Settings::where('name', "=", "pimpinan_perusahaan")->first();
-        $tentang = Settings::where('name', "=", "tentang_perusahaan")->first();
-
-        $result['data'] = compact('visi', 'misi', 'sejarah', 'pimpinan', 'tentang');
-        return response()->json($result, 200);
+        return response()
+            ->json($pages);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ThemeSetting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -25,5 +26,19 @@ class UserSeeder extends Seeder
         ]);
 
         $user->assignRole($role);
+
+        $themeSettings = ThemeSetting::where("user_id", $user->id)->get();
+        if ($themeSettings->count() == 0) {
+            $themeSetting = new ThemeSetting;
+            $themeSetting->user_id = $user->id;
+            $themeSetting->value = "light";
+            $themeSetting->save();
+
+            $themeSetting = new ThemeSetting;
+            $themeSetting->user_id = $user->id;
+            $themeSetting->name = "sidebar";
+            $themeSetting->value = "light";
+            $themeSetting->save();
+        }
     }
 }
