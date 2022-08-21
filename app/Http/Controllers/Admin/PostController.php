@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.post.indexPost');
+        return view('pages.admin.post.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.post.createPost');
+        return view('pages.admin.post.create');
     }
 
     /**
@@ -40,10 +40,8 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         try {
             $validation = Validator::make($request->all(), PostRequest::addPost(), PostRequest::addPostMessages());
-
 
             if (!$validation->fails()) {
                 $savePost = Post::savePost($request);
@@ -57,7 +55,6 @@ class PostController extends Controller
                     ->withToastError('Periksa kembali input!');
             }
         } catch (Exception $e) {
-            // return redirect()->back()->withToastError("Something Wrong!");
             throw $e;
         }
     }
@@ -71,7 +68,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post =  Post::find($id);
-        return view('pages.admin.post.DetailPost', compact('post'));
+        return view('pages.admin.post.show', compact('post'));
     }
 
 
@@ -84,7 +81,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $post  =  Post::updatePost($request, $id);  
+        $post  =  Post::updatePost($request, $id);
 
         if ($post) {
             return redirect()->route('post.index')->withToastSuccess("Berhasil mengupdate berita!");

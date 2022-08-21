@@ -50,4 +50,9 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
         Route::get('edit/{page}', 'PageController@edit')->name('pages.edit');
         Route::delete('destroy/{page}', 'PageController@destroy')->name('pages.destroy');
     });
+
+
+    Route::prefix('report')->group(function () {
+        Route::get('', 'ReportController@index')->name('report.index');
+    });
 });

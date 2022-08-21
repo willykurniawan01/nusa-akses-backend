@@ -18,7 +18,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::all();
-        return view("pages.admin.pages.indexPages", compact("pages"));
+        return view("pages.admin.pages.index", compact("pages"));
     }
 
     /**
@@ -28,7 +28,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view("pages.admin.pages.createPages");
+        return view("pages.admin.pages.create");
     }
 
     /**
@@ -94,7 +94,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        return view("pages.admin.pages.editPages", compact("pages"));
+        return view("pages.admin.pages.edit", compact("pages"));
     }
 
     /**

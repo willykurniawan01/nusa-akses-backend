@@ -168,12 +168,9 @@
                         </li>
                         
                         <li class="side-nav-item">
-                            <a href="{{ route("setting.theme.index") }}" class="side-nav-link">
-                                <i class="  uil-file-alt
-
-
-"></i>
-                                <span>Laporan</span>
+                            <a href="{{ route("report.index") }}" class="side-nav-link">
+                                <i class="  uil-file-alt"></i>
+                                <span>Laporan Kendala</span>
                             </a>
                         </li>
                     
@@ -693,7 +690,6 @@
 
         @stack('script')
         <script>
-    
             @foreach (getThemeSettings() as $eachSetting)
                 @if ($eachSetting->name == "color_scheme")
                     @if ($eachSetting->value == "light")
