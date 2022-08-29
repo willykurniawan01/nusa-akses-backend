@@ -100,4 +100,5 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
 
 Route::namespace("Guest")->group(function () {
     Route::get("/", "HomeController@index")->name("guest.home");
+    Route::get("/berita", "HomeController@index")->name("guest.berita");
 });

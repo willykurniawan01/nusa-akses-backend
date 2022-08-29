@@ -8,6 +8,7 @@
     <!-- CSS only -->
     <link rel="icon" href="{{ asset("images/logo/logo-light.png") }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset("assets/guest/style.css") }}">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
@@ -79,18 +80,65 @@
       <div class="container">
         <div class="row mt-5">
           <div class="col d-flex justify-content-center">
-            <h2>Layanan yang tersedia.</h2>
+            <h2 class="header">Layanan yang tersedia.</h2>
           </div>
         </div>
-        <div class="row px-5">
-          {{-- @foreach ($collection as $item)
-              
-          @endforeach --}}
-          <div class="col-sm-3">
-            <a class="service d-flex flex-column align-items-center">
-              <img src="{{ asset("images/services/internet.svg") }}" alt="" class="service-image">
-              <span class="service-name">Internet</span>
-            </a>
+        <div class="row justify-content-center mt-5">
+          @foreach ($service as $eachService)
+            <div class="col-sm-3">
+              <a href="#" class="service d-flex flex-column align-items-center">
+                <img src="{{ Storage::url($eachService->picture) }}" class="service-image">
+                <span class="service-name">{{ $eachService->name }}</span>
+              </a>
+            </div>
+          @endforeach
+        </div>
+        <div class="row mt-5">
+          <div class="col-sm-4">
+            <img src="" alt="">
+          </div>
+          <div class="col-sm-8">
+            <h4 class="title">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, dolor.
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ratione itaque molestiae maiores obcaecati libero voluptas repellat aspernatur sequi dolores perferendis esse officia quidem at dolor, magnam maxime quae, quas blanditiis voluptates. Ratione vero quidem atque fuga dolores suscipit nulla minima modi ex reprehenderit rem, mollitia deleniti illo culpa voluptates.
+            </p>
+            <button class="btn-custom-primary">
+              Selengkapnya
+            </button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-sm-8">
+            <h4 class="title">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo, dolor.
+            </h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ratione itaque molestiae maiores obcaecati libero voluptas repellat aspernatur sequi dolores perferendis esse officia quidem at dolor, magnam maxime quae, quas blanditiis voluptates. Ratione vero quidem atque fuga dolores suscipit nulla minima modi ex reprehenderit rem, mollitia deleniti illo culpa voluptates.
+            </p>
+            <button class="btn-custom-primary">
+              Selengkapnya
+            </button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" alt="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+
+          </div>
+        </div>
+        <div class="row justify-content-center text-center mt-5">
+          <h3>
+            Bussiness Partner
+          </h3>
+          <img src="{{ asset("images/partner.png") }}" style="width: 450px;">
+        </div>
+        <div class="footer">
+          <div class="row">
+            <div class="col"></div>
           </div>
         </div>
       </div>

@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@200;300;400;500;700&display=swap");
+
+body {
+    font-family: "Poppins";
+}
+
+.navbar {
+    padding: 20px;
+}
+
+.header {
+    font-weight: 600;
+}
+
+.service {
+    text-decoration: none;
+}
+
+.service .service-name {
+    color: #061e38;
+    font-weight: 500;
+}
+
+.btn-custom-primary {
+    background-color: #553df7;
+    box-shadow: none;
+    border: none;
+    color: #fff;
+    padding: 10px 40px;
+    font-family: "Poppins";
+    border-radius: 50px;
+}
+
+.btn-custom-primary:hover {
+    color: #fff;
+    background-color: #6851fa;
+}
+
+.title {
+    font-weight: 600;
+    color: #061e38;
+}
