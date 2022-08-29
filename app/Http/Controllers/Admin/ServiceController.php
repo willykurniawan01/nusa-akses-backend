@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Services;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Page;
+use App\Models\Service;
+use App\Models\Services;
 use Illuminate\Support\Facades\Validator;
 
-class ServicesController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        return view('pages.services.indexServices');
+        return view('pages.service.index');
     }
 
     /**
@@ -25,7 +28,8 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        return view('pages.services.createServices');
+        $page = Page::all();
+        return view('pages.service.create', compact("page"));
     }
 
     /**
@@ -38,25 +42,24 @@ class ServicesController extends Controller
     {
         $rules = [
             'name' => 'required',
-            'description' => 'required',
-            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'description' => 'required',
+            'picture' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
 
         $messages = [
             'name.required' => 'nama services tidak boleh kosong!',
-            'description.required' => 'deskripsi services tidak boleh kosong!',
+            // 'description.required' => 'deskripsi services tidak boleh kosong!',
             'picture.image' => 'file harus berupa gambar!',
             'picture.mimes' => 'ekstensi file tidak di support!',
-            'picture.max' => 'ukuran gambar tidak boleh lebih dari 2mb!',
         ];
         $validation = Validator::make($request->all(), $rules, $messages);
 
         if (!$validation->fails()) {
-            $services = Services::saveService($request);
+            $services = Service::saveService($request);
 
             if ($services) {
                 return redirect()
-                    ->route('services.index')
+                    ->route('service.index')
                     ->withToastSuccess("Berhasil menambahkan services baru!");
             }
 
@@ -76,12 +79,6 @@ class ServicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $services = Services::findOrFail($id);
-
-        return view('pages.services.detailServices', compact('services'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,7 +88,10 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $services = Service::findOrFail($id);
+        $page = Page::all();
+
+        return view('pages.service.edit', compact('services', 'page'));
     }
 
     /**
@@ -119,11 +119,11 @@ class ServicesController extends Controller
         $validation = Validator::make($request->all(), $rules, $messages);
 
         if (!$validation->fails()) {
-            $services = Services::updateService($request, $id);
+            $services = Service::updateService($request, $id);
 
             if ($services) {
                 return redirect()
-                    ->route('services.index')
+                    ->route('service.index')
                     ->withToastSuccess("Berhasil mengupdate data!");
             }
 
@@ -146,7 +146,7 @@ class ServicesController extends Controller
     public function destroy(Request $request)
     {
         $result = [];
-        $services = Services::findOrFail($request->id);
+        $services = Service::findOrFail($request->id);
 
         if ($services->delete()) {
             $result["message"] = "Berhasil menghapus data!";
@@ -161,14 +161,14 @@ class ServicesController extends Controller
 
     public function getAllServicesForDataTable()
     {
-        $services = Services::getAllServicesForDatatable();
+        $services = Service::getAllServicesForDatatable();
 
         return $services;
     }
 
     public function getAllServices()
     {
-        $services = Services::getAllServices();
+        $services = Service::getAllServices();
 
         return $services;
     }

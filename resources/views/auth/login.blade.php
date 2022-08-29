@@ -10,7 +10,7 @@
                 <!-- Logo -->
                 <div class="card-header pt-3 pb-3 text-center">
                     <a href="index.html">
-                        <span><img src="{{ asset("images/logo/logo3.png") }}" alt="" height="65"></span>
+                        <span><img src="{{ asset("images/logo/logo-light.png") }}" alt="" height="65"></span>
                     </a>
                 </div>
 

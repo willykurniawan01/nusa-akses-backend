@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePageComponentsTable extends Migration
+class CreateImageSlidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePageComponentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('page_components', function (Blueprint $table) {
+        Schema::create('image_sliders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("page_id")->nullable();
-            $table->foreign("page_id")->references("id")->on("pages")->onDelete("set null")->onUpdate("cascade");
-            $table->json("detail");
+            $table->string('picture');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePageComponentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('page_components');
+        Schema::dropIfExists('image_sliders');
     }
 }

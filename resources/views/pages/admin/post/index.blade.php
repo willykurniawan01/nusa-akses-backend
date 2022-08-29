@@ -5,30 +5,7 @@
 @section('content')
     <div class="container-fluid">
         
-        <!-- DataTales Example -->
-        {{-- <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table name="postTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Slug</th>
-                                <th>Picture</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> --}}
+     
         <div class="row mt-3">
             <div class="col-12">
                 <div class="card">
@@ -37,13 +14,6 @@
                             <div class="col-sm-5">
                                 <a href="{{ route('post.create') }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Berita</a>
                             </div>
-                            <div class="col-sm-7">
-                                {{-- <div class="text-sm-end">
-                                    <button type="button" class="btn btn-success mb-2 me-1"><i class="mdi mdi-cog-outline"></i></button>
-                                    <button type="button" class="btn btn-light mb-2 me-1">Import</button>
-                                    <button type="button" class="btn btn-light mb-2">Export</button>
-                                </div> --}}
-                            </div><!-- end col-->
                         </div>
         
                         <div class="table-responsive">

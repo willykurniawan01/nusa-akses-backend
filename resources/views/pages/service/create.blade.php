@@ -1,58 +1,62 @@
 @extends('layouts.app')
 
-@section('title')
+@section('title','Layanan')
 
 @section('content')
     <div class="container-fluid">
 
-        <div class="row mb-3">
+        <div class="row mt-3 mb-3">
             <div class="col">
                 <a href="{{ URL::previous() }}" class="btn btn-primary">
                     <i class="uil-arrow-left"></i>
                 </a>
             </div>
-
         </div>
 
         <!-- DataTales Example -->
-        <form method="POST" action="{{ route('pages.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('service.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Pages</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Layanan</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name">Name :</label>
-                                <input value="{{ $page->nama }}" name="name" id="name" type="text" value="{{ old('name') }}"
+                                <label for="name">Nama :</label>
+                                <input name="name" id="name" type="text" value="{{ old('name') }}"
                                     class="form-control @error('name') is-invalid @enderror">
 
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                        
-                        <div class="col">
+                        </div iv>
+                 
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name">Route :</label>
-                                <input value="{{ $page->route }}" name="route" id="route" type="text" value="{{ old('route') }}"
-                                    class="form-control @error('route') is-invalid @enderror">
-
-                                @error('route')
+                                <label for="picture">Gambar :</label>
+                                <div class="mb-3">
+                                    <input class="form-control" name="picture" type="file">
+                                  </div>
+                                @error('picture')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name">Content :</label>
-                                <textarea name="content" id="editor">{{ old('content') }}</textarea>
-                                @error('content')
+                                <label for="page">Halaman :</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-select"  name="page_id" >
+                                      <option selected>Pilih halaman...</option>
+                                      @foreach ($page as $eachPage)
+                                        <option value="{{ $eachPage->id }}">{{ $eachPage->name }}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
+                                @error('page')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -90,9 +94,7 @@
             .catch(error => {
                 console.error(error);
             });
-
         $(function() {
-
         });
     </script>
 @endpush

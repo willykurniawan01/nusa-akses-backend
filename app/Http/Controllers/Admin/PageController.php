@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class PageController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +19,12 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::all();
-        return view("pages.admin.pages.index", compact("pages"));
+        return view("pages.admin.page.index", compact("pages"));
+    }
+
+    public function home()
+    {
+        return view("pages.admin.page.home");
     }
 
     /**
@@ -28,7 +34,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view("pages.admin.pages.create");
+        return view("pages.admin.page.create");
     }
 
     /**
@@ -42,31 +48,16 @@ class PageController extends Controller
         $validation = Validator::make($request->all(), Page::$rules, Page::$messages);
 
         if (!$validation->fails()) {
+            $path = $request->file("picture")->store("pages", "public");
+
             $page = new Page;
             $page->name = $request->name;
-            $page->save();
+            $page->content = $request->content;
+            $page->picture = $path;
 
-            foreach ($request->page_components as $eachComponent) {
-                $detail = [];
-                switch ($eachComponent["type"]) {
-                    case "navbar":
-                        $detail["type"] = $eachComponent["type"];
-                        break;
-
-                    case "imageSlider":
-                        $detail["type"] = $eachComponent["type"];
-
-                        break;
-                }
-
-                $pageComponent = new PageComponent;
-                $pageComponent->page_id = $page->id;
-                $pageComponent->detail = json_encode($detail);
-                $pageComponent->save();
+            if ($page->save()) {
+                return redirect()->route("page.index")->withToastSuccess("Berhasil menambahkan halaman!");
             }
-
-
-            return redirect()->route("pages.index")->withToastSuccess("Berhasil menambahkan halaman!");
         } else {
             return redirect()->back()
                 ->withErrors($validation)
@@ -94,7 +85,7 @@ class PageController extends Controller
      */
     public function edit(Page $page)
     {
-        return view("pages.admin.pages.edit", compact("pages"));
+        return view("pages.admin.page.edit", compact("page"));
     }
 
     /**
@@ -104,9 +95,20 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Page $page)
     {
-        //
+
+        $page->name = $request->name;
+        $page->content = $request->content;
+
+        if ($request->hasFile("picture")) {
+            $path = $request->file("picture")->store("pages", "public");
+            $page->picture = $path;
+        }
+
+        if ($page->save()) {
+            return redirect()->route("page.index")->withToastSuccess("Berhasil mengupdate halaman!");
+        }
     }
 
     /**
@@ -117,11 +119,10 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        PageComponent::where("page_id", $page->id)->delete();
         if ($page->delete()) {
-            return redirect()->route("pages.index")->withToastSuccess("Berhasil menghapus halaman!");
+            return redirect()->route("page.index")->withToastSuccess("Berhasil menghapus halaman!");
         }
 
-        return redirect()->route("pages.index")->withToastSuccess("Gagal menghapus halaman!");
+        return redirect()->route("page.index")->withToastSuccess("Gagal menghapus halaman!");
     }
 }

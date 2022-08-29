@@ -43,16 +43,61 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
         });
     });
 
-    Route::prefix('pages')->group(function () {
-        Route::get('', 'PageController@index')->name('pages.index');
-        Route::get('create', 'PageController@create')->name('pages.create');
-        Route::post('store', 'PageController@store')->name('pages.store');
-        Route::get('edit/{page}', 'PageController@edit')->name('pages.edit');
-        Route::delete('destroy/{page}', 'PageController@destroy')->name('pages.destroy');
+    Route::prefix('page')->group(function () {
+        Route::get('', 'PageController@index')->name('page.index');
+        Route::get('home', 'PageController@home')->name('page.home');
+        Route::get('create', 'PageController@create')->name('page.create');
+        Route::post('store', 'PageController@store')->name('page.store');
+        Route::get('edit/{page}', 'PageController@edit')->name('page.edit');
+        Route::delete('destroy/{page}', 'PageController@destroy')->name('page.destroy');
     });
 
+    Route::prefix('slider')->group(function () {
+        Route::get('', 'SliderController@index')->name('slider.index');
+        Route::get('/create', 'SliderController@create')->name('slider.create');
+        Route::post('/store', 'SliderController@store')->name('slider.store');
+        Route::get('show/{id}', 'SliderController@show')->name('slider.show');
+        Route::put('update/{id}', 'SliderController@update')->name('slider.update');
+        Route::delete('destroy', 'SliderController@destroy')->name('slider.destroy');
+
+        //ajax get route
+        Route::prefix('get')->group(function () {
+            Route::get('get-all-slider', 'SliderController@getAllslider')->name('slider.get.get-all-slider');
+        });
+    });
+
+    Route::prefix('service')->group(function () {
+        Route::get('', 'ServiceController@index')->name('service.index');
+        Route::get('/create', 'ServiceController@create')->name('service.create');
+        Route::post('/store', 'ServiceController@store')->name('service.store');
+        Route::get('edit/{id}', 'ServiceController@edit')->name('service.edit');
+        Route::put('update/{id}', 'ServiceController@update')->name('service.update');
+        Route::delete('destroy', 'ServiceController@destroy')->name('service.destroy');
+
+        //ajax get route
+        Route::prefix('get')->group(function () {
+            Route::get('get-all-services', 'ServiceController@getAllservicesForDatatable')->name('service.get.get-all-services');
+        });
+    });
+
+
+
+    Route::prefix('chat')->group(function () {
+        Route::get('', 'ChatController@index')->name('chat.index');
+    });
 
     Route::prefix('report')->group(function () {
         Route::get('', 'ReportController@index')->name('report.index');
     });
+
+    Route::prefix('setting')->group(function () {
+        Route::prefix('account')->group(function () {
+            Route::get('', 'SettingController@indexAccount')->name('setting.account-setting.index');
+            Route::post('{user}/update', 'SettingController@updateAccount')->name('setting.account-setting.update');
+        });
+    });
+});
+
+Route::namespace("Guest")->group(function () {
+    Route::get("/", "HomeController@index")->name("guest.home");
 });

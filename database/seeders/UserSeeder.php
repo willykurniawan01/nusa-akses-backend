@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
         if ($themeSettings->count() == 0) {
             $themeSetting = new ThemeSetting;
             $themeSetting->user_id = $user->id;
+            $themeSetting->name = "color_scheme";
             $themeSetting->value = "light";
             $themeSetting->save();
 

@@ -8,7 +8,7 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset("images/logo/logo3.png") }}">
+        <link rel="shortcut icon" href="{{ asset("images/logo/logo-light.png") }}">
 
         <!-- third party css -->
         <link href="{{ asset("assets/css/vendor/jquery-jvectormap-1.2.2.css") }}" rel="stylesheet" type="text/css" />
@@ -30,20 +30,20 @@
                 <!-- LOGO -->
                 <a href="index.html" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                        <img src="{{ asset("images/logo/logo-dark.png") }}" alt="" height="50">
                     </span>
                     <span class="logo-sm">
-                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                        <img src="{{ asset("images/logo/logo-dark.png") }}" alt="" height="16">
                     </span>
                 </a>
 
                 <!-- LOGO -->
                 <a href="{{ route("dashboard.index") }}" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="50">
+                        <img src="{{ asset("images/logo/logo-light.png") }}" alt="" height="50">
                     </span>
                     <span class="logo-sm">
-                        <img src="{{ asset("images/logo/logo3.png") }}" alt="" height="16">
+                        <img src="{{ asset("images/logo/logo-light.png") }}" alt="" height="16">
                     </span>
                 </a>
     
@@ -51,32 +51,6 @@
 
                     <!--- Sidemenu -->
                     <ul class="side-nav">
-
-                        {{-- <li class="side-nav-title side-nav-item">Navigation</li>
-
-                        <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
-                                <i class="uil-home-alt"></i>
-                                <span class="badge bg-success float-end">4</span>
-                                <span> Dashboards </span>
-                            </a>
-                            <div class="collapse" id="sidebarDashboards">
-                                <ul class="side-nav-second-level">
-                                    <li>
-                                        <a href="dashboard-analytics.html">Analytics</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.html">Ecommerce</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashboard-projects.html">Projects</a>
-                                    </li>
-                                    <li>
-                                        <a href="dashboard-wallet.html">E-Wallet <span class="badge rounded bg-danger font-10 float-end">New</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
 
                         <li class="side-nav-title side-nav-item">Navigation</li>
 
@@ -87,44 +61,6 @@
                             </a>
                         </li>
 
-                    
-                        {{-- <li class="side-nav-item">
-                            <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
-                                <i class="uil-store"></i>
-                                <span> Ecommerce </span>
-                                <span class="menu-arrow"></span>
-                            </a>
-                            <div class="collapse" id="sidebarEcommerce">
-                                <ul class="side-nav-second-level">
-                                    <li>
-                                        <a href="apps-ecommerce-products.html">Products</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-products-details.html">Products Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-orders.html">Orders</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-orders-details.html">Order Details</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-customers.html">Customers</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-shopping-cart.html">Shopping Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-checkout.html">Checkout</a>
-                                    </li>
-                                    <li>
-                                        <a href="apps-ecommerce-sellers.html">Sellers</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-
-
                         <li class="side-nav-item">
                             <a href="{{ route("post.index") }}" class="side-nav-link">
                                 <i class=" uil-newspaper
@@ -134,25 +70,19 @@
                             </a>
                         </li>
                        <li class="side-nav-item">
-                            <a href="{{ route("pages.index") }}" class="side-nav-link">
+                            <a href="{{ route("page.index") }}" class="side-nav-link">
                                 <i class="uil-window"></i>
                                 <span>Halaman</span>
                             </a>
                         </li>   
-                        {{-- <li class="side-nav-item">
-                            <a href="apps-file-manager.html" class="side-nav-link">
-                                <i class="uil-layer-group"></i>
-                                <span>Component</span>
-                            </a>
-                        </li>   --}}
                         <li class="side-nav-item">
-                            <a href="apps-file-manager.html" class="side-nav-link">
+                            <a href="{{ route("chat.index") }}" class="side-nav-link">
                                 <i class="uil-comments-alt"></i>
                                 <span>Chat</span>
                             </a>
                         </li>   
                         <li class="side-nav-item">
-                            <a href="apps-file-manager.html" class="side-nav-link">
+                            <a href="{{ route("setting.account-setting.index") }}" class="side-nav-link">
                                 <i class="uil-user-circle"></i>
                                 <span>Pengguna</span>
                             </a>
@@ -160,8 +90,6 @@
                         <li class="side-nav-item">
                             <a href="{{ route("setting.theme.index") }}" class="side-nav-link">
                                 <i class="  uil-palette
-
-
 "></i>
                                 <span>Pengaturan Tema</span>
                             </a>
