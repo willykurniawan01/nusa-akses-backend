@@ -3,11 +3,6 @@
 @section('title',"Perusahaan")
     
 @section('content')
-<nav class="navigation">
-  <div class="container">
-      <p>Home / Profile Perusahaan</p>
-  </div>
-</nav>
   <div class="profile">
     <div class="container">
       <div class="row">

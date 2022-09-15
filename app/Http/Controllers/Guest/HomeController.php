@@ -13,9 +13,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $imageSlider = ImageSlider::all();
-        $service = Service::with("page")->get();
-        return view("pages.guest.index", compact("imageSlider", "service"));
+        $imageSliders = ImageSlider::all();
+        $services = Service::with("page")->get();
+        return view("pages.guest.index", compact("imageSliders", "services"));
     }
 
     public function berita()

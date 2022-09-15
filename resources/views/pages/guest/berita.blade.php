@@ -3,18 +3,7 @@
 @section('title',"Home")
 
 @section('content')
-<nav class="navigation">
-    <div class="container">
-        <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a >Home</a>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">
-            Berita
-        </li>
-        </ol>
-    </div>
-</nav>
+
   <div class="articles mt-5">
     <div class="container">
       <div class="row">

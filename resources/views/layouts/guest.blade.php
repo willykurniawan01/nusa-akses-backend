@@ -28,7 +28,7 @@
         </li>
         <li class="nav-item me-4 dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Perusahaan
+            Perusahaan <i class="bi bi-chevron-down"></i>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{{ route("guest.perusahaan") }}">Profile</a></li>
@@ -36,7 +36,7 @@
         </li>  
         <li class="nav-item me-4 dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Layanan
+            Layanan <i class="bi bi-chevron-down"></i>
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             @foreach (App\Models\Service::with("page")->get() as $eachService)
