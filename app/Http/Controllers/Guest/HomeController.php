@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
 use App\Models\ImageSlider;
+use App\Models\Page;
+use App\Models\Post;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,25 @@ class HomeController extends Controller
     public function index()
     {
         $imageSlider = ImageSlider::all();
-        $service = Service::all();
+        $service = Service::with("page")->get();
         return view("pages.guest.index", compact("imageSlider", "service"));
+    }
+
+    public function berita()
+    {
+        $berita = Post::paginate(1);
+        return view("pages.guest.berita", compact("berita"));
+    }
+
+
+    public function page($id)
+    {
+        $page = Page::find($id);
+        return view("pages.guest.page", compact("page"));
+    }
+
+    public function perusahaan()
+    {
+        return view("pages.guest.profilePerusahaan");
     }
 }

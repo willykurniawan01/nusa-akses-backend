@@ -12,6 +12,12 @@ class Service extends Model
 
     protected $table = 'services';
 
+
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
+
     public static function getAllServicesForDatatable()
     {
         $query = self::all();

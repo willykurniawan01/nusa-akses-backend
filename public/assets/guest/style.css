@@ -1,26 +1,10 @@
+@import "~bootstrap/scss/bootstrap.scss";
 @import url("https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@200;300;400;500;700&display=swap");
 
 body {
-    font-family: "Poppins";
+    margin: 0px;
+    padding: 0px;
 }
-
-.navbar {
-    padding: 20px;
-}
-
-.header {
-    font-weight: 600;
-}
-
-.service {
-    text-decoration: none;
-}
-
-.service .service-name {
-    color: #061e38;
-    font-weight: 500;
-}
-
 .btn-custom-primary {
     background-color: #553df7;
     box-shadow: none;
@@ -30,13 +14,279 @@ body {
     font-family: "Poppins";
     border-radius: 50px;
 }
-
 .btn-custom-primary:hover {
     color: #fff;
     background-color: #6851fa;
 }
-
-.title {
+.btn-transparent {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 1.5rem;
+    color: #061e38;
+    font-weight: 400;
+    transition: 0.5s all;
+}
+.btn-transparent:hover {
+    transform: translateX(50px);
+    transition: 0.5s all;
+    color: #553df7;
+}
+.btn-primary {
+    background-color: #553df7 !important;
+}
+.card {
+    border-radius: 30px 30px 30px 0px;
+    overflow: hidden;
+}
+.card .card-title a {
+    font-size: 1.4rem;
+    color: #061e38;
+    text-decoration: none;
+}
+.card .card-title a:hover {
+    color: #553df7;
+    transition: 0.5s all;
+}
+.card .btn {
+    border-radius: 50%;
+}
+input.form-control {
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-family: "Poppins";
+}
+input.form-control::placeholder {
+    font-family: "Poppins";
+    letter-spacing: 1px;
+}
+.navbar {
+    padding: 15px 0px;
+}
+.navbar .banner {
+    width: 100%;
+    background-color: #553df7;
+    color: white;
+    padding: 5px;
+    font-weight: 600;
+}
+.navbar .navbar-nav .nav-link {
+    font-family: "Poppins";
+    font-weight: 400;
+    margin-right: 20px;
+}
+.navbar .navbar-nav .nav-link:hover {
+    color: #553df7;
+    transition: all 0.5s;
+}
+.navbar .navbar-nav .nav-link.active {
+    color: #553df7;
+}
+.navbar .navbar-nav .nav-item.dropdown a::after {
+    display: none;
+}
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu {
+    border: none;
+    padding: 0px;
+    overflow: hidden;
+}
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item {
+    width: 100%;
+    padding: 10px 30px;
+}
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item:hover {
+    transition: all 0.5s;
+    background-color: rgba(85, 61, 247, 0.15);
+}
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item:active {
+    background-color: rgba(85, 61, 247, 0.15);
+}
+.navbar .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item:focus {
+    background-color: rgba(85, 61, 247, 0.15);
+}
+.navbar .navbar-toggler {
+    border: none;
+}
+.navbar .navbar-toggler:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+.navbar .navbar-collapse .nav-link {
+    color: black;
+}
+.carousel {
+    margin-top: 100px;
+}
+.carousel .carousel-button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    color: #553df7;
+}
+.layanan .layanan-title {
+    color: #061e38;
+    font-family: "Ubuntu";
+    font-weight: 600;
+    font-size: 35px;
+    text-align: center;
+}
+.layanan .layanan-items {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.layanan .layanan-items .layanan-divider {
+    height: 80px;
+    width: 1px;
+    background-color: #bbb;
+    align-self: center;
+}
+.layanan .layanan-items .layanan-button {
+    display: flex;
+    color: #553df7;
+    font-size: 20px;
+    text-decoration: none;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    padding: 20px;
+}
+.layanan .layanan-items .layanan-button:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.layanan .layanan-items .layanan-button::after {
+    content: "";
+    width: 100%;
+    transform: scaleX(0);
+    height: 4px;
+    bottom: 0;
+    border-radius: 2px;
+    left: 0;
+    background-color: #553df7;
+    transform-origin: bottom right;
+    transition: transform 0.5s ease-out;
+}
+.layanan .layanan-items .layanan-button span {
+    font-family: "Poppins";
+    color: #061e38;
+    font-size: 16px;
+}
+.footer {
+    font-family: "Poppins";
+    background-color: #f9fafb;
+    padding: 50px 0px 0px 0px;
+}
+.footer .footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+.footer .footer-brand .footer-brand-logo {
+    align-self: flex-start;
+}
+.footer .footer-brand .footer-brand-desc {
+    color: #061e38;
+    margin-top: 15px;
+}
+.footer .footer-nav {
+    display: flex;
+    flex-direction: column;
+}
+.footer .footer-nav .footer-nav-header {
+    color: #061e38;
+    font-weight: 600;
+}
+.footer .footer-nav .footer-nav-link {
+    color: #061e38;
+    text-decoration: none;
+    margin-top: 15px;
+}
+.footer .footer-nav .footer-nav-link:hover {
+    color: #553df7;
+    transition: all 0.5s;
+}
+.footer .footer-socialmedia .footer-socialmedia-header {
     font-weight: 600;
     color: #061e38;
+}
+.footer
+    .footer-socialmedia
+    .footer-socialmedia-nav
+    .footer-socialmedia-nav-link {
+    color: #061e38;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.footer
+    .footer-socialmedia
+    .footer-socialmedia-nav
+    .footer-socialmedia-nav-link:hover {
+    color: #553df7;
+    transition: all 0.5s;
+}
+.footer .footer-copyright {
+    padding: 20px 0px;
+    margin-top: 20px;
+    background-color: #061e38;
+}
+.footer .footer-copyright .footer-copyright-text {
+    color: white;
+    margin-bottom: 0px;
+}
+@media screen and (min-width: 700px) {
+    .layanan .layanan-title {
+        color: #061e38;
+        font-family: "Ubuntu";
+        font-weight: 600;
+        font-size: 35px;
+        text-align: center;
+    }
+    .layanan .layanan-items {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+    .layanan .layanan-items .layanan-divider {
+        height: 80px;
+        width: 1px;
+        background-color: #bbb;
+        align-self: center;
+    }
+    .layanan .layanan-items .layanan-button {
+        display: flex;
+        color: #553df7;
+        font-size: 50px;
+        text-decoration: none;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        padding: 20px 80px;
+    }
+    .layanan .layanan-items .layanan-button:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+    .layanan .layanan-items .layanan-button::after {
+        content: "";
+        width: 100%;
+        transform: scaleX(0);
+        height: 4px;
+        bottom: 0;
+        border-radius: 2px;
+        left: 0;
+        background-color: #553df7;
+        transform-origin: bottom right;
+        transition: transform 0.5s ease-out;
+    }
+    .layanan .layanan-items .layanan-button span {
+        font-family: "Poppins";
+        color: #061e38;
+        font-size: 20px;
+    }
 }
