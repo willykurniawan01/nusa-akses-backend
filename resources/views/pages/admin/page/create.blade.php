@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="name">Nama Halaman :</label>
+                                <label for="name">Nama :</label>
                                 <input name="name" id="name" type="text" value="{{ old('name') }}"
                                     class="form-control @error('name') is-invalid @enderror">
 
@@ -34,26 +34,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="picture">Picture :</label>
-                                <div class="input-group mb-3">
-                                    <div class="custom-file">
-                                        <input type="file" name="picture"
-                                            class="custom-file-input  @error('picture') is-invalid @enderror" id="picture">
-                                        <label class="custom-file-label" for="picture">Choose file</label>
-                                    </div>
-                                </div>
-                                @error('picture')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col">
                             <div class="form-group">
-                                <label for="name">Isi Halaman :</label>
+                                <label for="name">Content :</label>
                                 <textarea name="content" id="editor">{{ old('content') }}</textarea>
                                 @error('content')
                                     <div class="invalid-feedback">{{ $message }}</div>

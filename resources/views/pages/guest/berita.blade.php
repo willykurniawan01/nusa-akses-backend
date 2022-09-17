@@ -3,7 +3,6 @@
 @section('title',"Home")
 
 @section('content')
-
   <div class="articles mt-5">
     <div class="container">
       <div class="row">
@@ -21,22 +20,23 @@
         </div>
       </div>
       <div class="row mt-5 mb-5">
-        <div class="col-12 col-sm-4">
+        @foreach ($berita as $eachBerita)
+          <div class="col-12 col-sm-4">
             <div class="card shadow-sm">
-            <div class="card-img" variant="top"/>
-            <div class="card-body">
-                <div class="card-title mt-3">
-                <a></a>
-                </div>
-                <a
-                class="btn btn-primary btn-lg mt-2 mb-3"
-
-                >
-                <i class="bi bi-arrow-right"></i>
-                </a>
+              <img src="{{ Storage::url($eachBerita->picture) }}" class="card-img"/>
+              <div class="card-body">
+                  <div class="card-title mt-3">
+                    <a>{{ $eachBerita->judul }}</a>
+                  </div>
+                  <a
+                  class="btn btn-primary btn-lg mt-2 mb-3"
+                  >
+                    <i class="bi bi-arrow-right"></i>
+                  </a>
+              </div>
             </div>
-            </div>
-        </div>
+          </div>
+        @endforeach
       </div>
     </div>
   </div>
@@ -44,6 +44,8 @@
 
 @push('style')
     <style>
-  
+        .articles{
+          margin-top: 100px !important;
+        }
     </style>
 @endpush

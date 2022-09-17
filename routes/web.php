@@ -49,6 +49,7 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
         Route::get('create', 'PageController@create')->name('page.create');
         Route::post('store', 'PageController@store')->name('page.store');
         Route::get('edit/{page}', 'PageController@edit')->name('page.edit');
+        Route::post('update/{page}', 'PageController@update')->name('page.update');
         Route::delete('destroy/{page}', 'PageController@destroy')->name('page.destroy');
     });
 
@@ -84,6 +85,8 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
 
     Route::prefix('chat')->group(function () {
         Route::get('', 'ChatController@index')->name('chat.index');
+        Route::get('/chat-room', 'ChatController@getChatRoom')->name('chat.get.chat-room');
+        Route::get('/messages', 'ChatController@getMessages')->name('chat.get.messages');
     });
 
     Route::prefix('report')->group(function () {

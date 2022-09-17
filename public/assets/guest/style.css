@@ -61,9 +61,54 @@ input.form-control::placeholder {
     font-family: "Poppins";
     letter-spacing: 1px;
 }
+
+.carousel {
+    margin-top: 30px;
+}
+
+.page-name {
+    background-color: #061e38;
+    color: #fff;
+    padding: 50px;
+    border-radius: 0px 0px 100px 0px;
+    font-family: "Poppins";
+}
+
+.float-button {
+    outline: none;
+    border: none;
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #553df7;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
+
+#chatModal .modal-body {
+    min-height: 400px;
+}
+
+.page-name h1 {
+    font-size: 3rem;
+}
+
 .navbar {
     padding: 15px 0px;
 }
+
+.self-message {
+    background-color: #061e38;
+    color: #fff;
+}
+
 .navbar .banner {
     width: 100%;
     background-color: #553df7;
@@ -213,6 +258,7 @@ input.form-control::placeholder {
     font-weight: 600;
     color: #061e38;
 }
+
 .footer
     .footer-socialmedia
     .footer-socialmedia-nav
@@ -221,6 +267,7 @@ input.form-control::placeholder {
     font-size: 24px;
     margin-right: 20px;
 }
+
 .footer
     .footer-socialmedia
     .footer-socialmedia-nav

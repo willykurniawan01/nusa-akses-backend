@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function berita()
     {
-        $berita = Post::paginate(1);
+        $berita = Post::paginate(6);
         return view("pages.guest.berita", compact("berita"));
     }
 

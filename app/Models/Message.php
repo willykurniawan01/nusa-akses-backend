@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ChatRoom extends Model
+class Message extends Model
 {
     use HasFactory;
 
@@ -17,10 +17,5 @@ class ChatRoom extends Model
     public function guest()
     {
         return $this->belongsTo(Guest::class);
-    }
-
-    public function messages()
-    {
-        return $this->hasMany(Message::class);
     }
 }

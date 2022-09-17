@@ -29,7 +29,7 @@
       <div class="col">
         <div class="layanan-items">
           @foreach ($services as $eachService)
-            <a href="#" class="layanan-button">
+            <a href="{{  !is_null($eachService->page) ? route("guest.page",$eachService->page->id) :'#' }} " class="layanan-button">
               <img
                 src="{{  Storage::url($eachService->picture) }}"
                 width="80"
@@ -44,25 +44,47 @@
 
     <div class="row mt-5">
       <div class="col-12 col-sm-5">
-        <img  class="img-fluid" alt="" />
+        <img src="{{ asset("images/office.png") }}"  class="img-fluid" alt="" />
       </div>
       <div class="col-12 col-sm-7">
         <div class="row">
-          <h4 class="subTitle"></h4>
-        </div>
-        <div class="row">
-          <h4 class="title"></h4>
+          <h4 class="title">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, pariatur.</h4>
         </div>
         <div class="row">
           <div
             class="content"
-          ></div>
+          >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem necessitatibus recusandae repellat, autem officiis voluptate in? Quae eligendi est sapiente eaque soluta consequatur beatae rem tenetur dolore consectetur praesentium facilis iure omnis laboriosam, deserunt atque laudantium mollitia qui? Nulla, odio enim eos quod saepe corporis animi eligendi maiores laboriosam rerum.
+        </div>
           <a
-            class="btn btn-custom-primary w-50"
+            class="btn btn-custom-primary w-50 mt-4"
           >
             Selengkapnya
           </a>
         </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12 col-sm-7">
+        <div class="row">
+          <h4 class="title">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, pariatur.</h4>
+        </div>
+        <div class="row">
+          <div
+            class="content"
+          >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem necessitatibus recusandae repellat, autem officiis voluptate in? Quae eligendi est sapiente eaque soluta consequatur beatae rem tenetur dolore consectetur praesentium facilis iure omnis laboriosam, deserunt atque laudantium mollitia qui? Nulla, odio enim eos quod saepe corporis animi eligendi maiores laboriosam rerum.
+        </div>
+          <a
+            class="btn btn-custom-primary w-50 mt-4"
+          >
+            Selengkapnya
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-sm-5">
+        <img src="{{ asset("images/office.png") }}"  class="img-fluid" alt="" />
       </div>
     </div>
 
@@ -71,7 +93,7 @@
         <h4 class="text-center title">
           Bussiness Partner
         </h4>
-        <img class="img-fluid mt-5" />
+        <img src="{{ asset("images/partner.png") }}" class="img-fluid mt-5" />
       </div>
     </div>
   </div>
