@@ -38,4 +38,23 @@ class ChatController extends Controller
             "data" => $messages
         ], 200);
     }
+
+    public function sendMessage(Request $request)
+    {
+        $chatRoom = ChatRoom::find($request->id);
+
+        if ($request->message != "") {
+            $messages = new Message();
+            $messages->chat_room_id =  $chatRoom->id;
+            $messages->user_id = auth()->user()->id;
+            $messages->guest_id = $chatRoom->guest_id;
+            $messages->message = $request->message;
+            $messages->type = "admin-guest";
+            $messages->save();
+        }
+
+        return response()->json([
+            "data" => $messages
+        ], 200);
+    }
 }

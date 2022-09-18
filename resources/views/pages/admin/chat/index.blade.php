@@ -33,28 +33,23 @@
 
         <!-- chat area -->
         <div class="col-xl-8">
-            <div class="card">
+            <div class="card messages">
                 <div class="card-body px-0 pb-0">
-                    <ul class="conversation-list px-3" data-simplebar style="max-height: 538px">
+                    <ul class="conversation-list px-3" data-simplebar>
                     
                     </ul>
 
                     <div class="row px-3 pb-3">
-                        <div class="col">
+                        <div class="col-12">
                             <div class="mt-2 bg-light p-3 rounded">
                                 <form class="needs-validation" novalidate="" name="chat-form"
                                     id="chat-form">
                                     <div class="row">
                                         <div class="col mb-2 mb-sm-0">
-                                            <input type="text" class="form-control border-0" placeholder="Enter your text" required="">
-                                            <div class="invalid-feedback">
-                                                Please enter your messsage
-                                            </div>
+                                            <input name="message" type="text" class="form-control border-0" placeholder="Enter your text">
                                         </div>
                                         <div class="col-sm-auto">
                                             <div class="btn-group">
-                                                {{-- <a href="#" class="btn btn-light"><i class="uil uil-paperclip"></i></a>
-                                                <a href="#" class="btn btn-light"> <i class='uil uil-smile'></i> </a> --}}
                                                 <div class="d-grid">
                                                     <button type="submit" class="btn btn-success chat-send"><i class='uil uil-message'></i></button>
                                                 </div>
@@ -78,7 +73,19 @@
 @endsection
 
 @push('style')
+<style>
+    .messages{
+        max-height: 500px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-width: 100%;
+    }
 
+    .conversation-text p{
+        inline-size: 150px;
+        overflow-wrap: break-word;
+    }
+</style>
 @endpush
 
 @push('script')
@@ -86,9 +93,25 @@
 <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
  <script>
     $(function(){
+        let activeChatRoomId;
+
+        //button
+        let buttonSendChat = $("button.chat-send");
+
+        //input
+        let inputMessage = $("input[name='message']");
+
+        //form
+        let chatForm = $("form[name='chat-form']");
+
+
+
         moment.locale("id");
         setInterval(async () => {
             let chats = await getChatRoom();
+            if(!activeChatRoomId){
+                activeChatRoomId = chats.data[0].id;
+            }
             displayChatRoom(chats.data);
         }, 3000);
 
@@ -99,7 +122,7 @@
             
             $.each(chats,function(i,v){
                 html += `
-                <a href="javascript:void(0);" class="text-body">
+                <a href="javascript:void(0);" class="text-body chat-room-button" data-id=${v.id}>
                     <div class="d-flex align-items-start mt-1 p-2">
                         <div class="w-100 overflow-hidden">
                             <h5 class="mt-0 mb-0 font-14">
@@ -116,14 +139,27 @@
                 
             });
 
-            let messages = await getMessages(chats[0].id);
-            // console.log(chats[0].id);
-            // console.log(messages);
+            let messages = await getMessages(activeChatRoomId);
             displayMessages(messages.data);
 
             chatRoom.html(html);
         }
 
+
+        $(document).on("click",".chat-room-button",async function(){
+            activeChatRoomId = $(this).attr("data-id");
+
+            let messages = await getMessages(activeChatRoomId);
+            displayMessages(messages.data);
+        });
+
+        chatForm.on("submit",function(event){
+            event.preventDefault();
+            sendMessage(activeChatRoomId,inputMessage.val());
+            inputMessage.val("");
+        });
+
+    
 
         function displayMessages(messages){
             let html = "";
@@ -183,6 +219,24 @@
                 dataType: 'JSON',
                 data:{
                     id:roomId
+                }
+            });
+            
+            return result;
+        }
+
+
+        async function sendMessage(roomId,message){
+            let result =  await $.ajax({
+                url: `{{ route("chat.send-message") }}`,
+                type: "post",
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                dataType: 'JSON',
+                data:{
+                    id:roomId,
+                    message:message
                 }
             });
             

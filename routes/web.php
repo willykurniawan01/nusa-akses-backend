@@ -85,6 +85,7 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
 
     Route::prefix('chat')->group(function () {
         Route::get('', 'ChatController@index')->name('chat.index');
+        Route::post('/send-message', 'ChatController@sendMessage')->name('chat.send-message');
         Route::get('/chat-room', 'ChatController@getChatRoom')->name('chat.get.chat-room');
         Route::get('/messages', 'ChatController@getMessages')->name('chat.get.messages');
     });
