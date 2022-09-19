@@ -139,6 +139,14 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
+          <div class="dropdown">
+            <button class="btn btn-primary me-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><button id="end-chat" class="dropdown-item">Akhiri Chat</button></li>
+            </ul>
+          </div>
           <h4>Admin</h4>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -250,6 +258,7 @@
     let chatLoginModal = $('#chatLoginModal');
     let chatButton = $('#chatButton');
     let loginButton = $('#loginButton');
+    let endChatButton = $('#end-chat');
     let emailInput = $("input[name='email']");
     let chatForm = $("#chat-form");
     let nameInput = $("input[name='name']");
@@ -271,6 +280,12 @@
       }else{
         chatModal.modal("show");
       }
+    });  
+    
+    
+    endChatButton.on("click",function(){
+      sessionStorage.clear();
+      chatModal.modal("hide");
     });
 
     loginButton.on("click",async function(){

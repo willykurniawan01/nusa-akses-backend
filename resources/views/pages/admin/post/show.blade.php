@@ -7,7 +7,7 @@
 
         <div class="row mb-2 mt-2">
             <div class="col">
-                <a href="{{ route('post.index') }}" class="btn btn-primary">
+                <a href="{{ route('post.index') }}" class="btn btn-success">
                     <i class="uil-arrow-left"></i>
                 </a>
             </div>
@@ -21,7 +21,7 @@
             @method('PUT')
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary">Berita</h4>
+                    <h4 class="m-0 font-weight-bold text-uppercase">Berita</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

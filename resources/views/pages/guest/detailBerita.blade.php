@@ -3,39 +3,41 @@
 @section('title',"Berita")
     
 @section('content')
-  <div className="container">
-    <div className="row">
-      <div className="col-sm-9">
-        <div className="row">
-          <div className="col">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col">
             <img
-              className="img-fluid"
-              alt=""
+              class="img-fluid"
+              src="{{ Storage::url($berita->picture) }}"
             />
-            <h4 className="postTitle"></h4>
-            <div className="postDate">
-              <i class="bi bi-calendar"></i>
-              <span></span>
+            <h4 class="postTitle">{{ $berita->judul }}</h4>
+            <div class="postDate">
+              <span>{{ date("d/m/Y",strtotime($berita->created_at)) }}</span>
             </div>
             <div
-              className="postContent"
-            ></div>
+              class="postContent"
+            >
+            {!! $berita->content !!}
+          </div>
           </div>
         </div>
       </div>
-      <div className="col-sm-2 offset-sm-1">
-        <div className="row">
-          <div className="col">
-            <img  className="img-fluid" alt="" />
-            <div className="postCardDate">
-              <span>20 September 2021</span>
+      <div class="col-sm-2 offset-sm-1">
+        @foreach ($otherBerita as $eachBerita)
+          <div class="row">
+            <div class="col">
+              <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid"/>
+              <div class="postCardDate">
+                <span>{{ date("d/m/Y",strtotime($eachBerita->created_at)) }}</span>
+              </div>
+              <a class="postCardTitle" href="{{ route("guest.detail-berita",$eachBerita->id) }}">
+              {{$eachBerita->judul}}
+              </a>
             </div>
-            <a className="postCardTitle" href="">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Magnam, aut!
-            </a>
           </div>
-        </div>
+        @endforeach
       </div> 
     </div>
   </div>
@@ -43,6 +45,22 @@
 
 @push('style')
     <style>
+        .card {
+          border-radius: 30px 30px 30px 0px;
+          overflow: hidden;
+        }
+        .card .card-title a {
+            font-size: 1.4rem;
+            color: #061e38;
+            text-decoration: none;
+        }
+        .card .card-title a:hover {
+            color: #553df7;
+            transition: 0.5s all;
+        }
+        .card .btn {
+            border-radius: 50%;
+        }
         .postTitle {
             font-family: "Poppins";
             font-size: 1.8rem;

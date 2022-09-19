@@ -17,10 +17,12 @@ class ChatController extends Controller
 
         if (is_null($guest)) {
             $guest = new Guest();
-            $guest->name = $request->name;
-            $guest->email = $request->email;
-            $guest->save();
         }
+
+        $guest->name = $request->name;
+        $guest->email = $request->email;
+        $guest->save();
+
 
         $chatRoom = ChatRoom::where("guest_id", $guest->id)->first();
 

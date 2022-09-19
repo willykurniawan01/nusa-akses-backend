@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-3 mt-3">
             <div class="col">
-                <a href="{{ URL::previous() }}" class="btn btn-success">
+                <a href="{{ route("page.home") }}" class="btn btn-success">
                     <i class="uil-arrow-left"></i>
                 </a>
             </div>

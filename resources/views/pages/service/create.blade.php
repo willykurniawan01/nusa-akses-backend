@@ -7,7 +7,7 @@
 
         <div class="row mt-3 mb-3">
             <div class="col">
-                <a href="{{ URL::previous() }}" class="btn btn-primary">
+                <a href="{{ route("service.index") }}" class="btn btn-success">
                     <i class="uil-arrow-left"></i>
                 </a>
             </div>
@@ -18,7 +18,7 @@
             @csrf
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary">Layanan</h4>
+                    <h4 class="m-0 font-weight-bold text-uppercase">Layanan</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">

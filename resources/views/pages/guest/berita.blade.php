@@ -34,9 +34,9 @@
               <img src="{{ Storage::url($eachBerita->picture) }}" class="card-img"/>
               <div class="card-body">
                   <div class="card-title mt-3">
-                    <a>{{ $eachBerita->judul }}</a>
+                    <a href="{{ route("guest.detail-berita",$eachBerita->id) }}">{{ $eachBerita->judul }}</a>
                   </div>
-                  <a
+                  <a href="{{ route("guest.detail-berita",$eachBerita->id) }}"
                   class="btn btn-primary btn-lg mt-2 mb-3"
                   >
                     <i class="bi bi-arrow-right"></i>

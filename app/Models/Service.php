@@ -62,7 +62,6 @@ class Service extends Model
         if (!$request->hasFile('picture')) {
             $services = self::findOrFail($id);
             $services->name = $request['name'];
-            $services->description = $request['description'];
             $services->page_id = $request['page_id'];
 
             if ($services->save()) {
@@ -71,10 +70,8 @@ class Service extends Model
         } else {
             $services = self::findOrFail($id);
             $services->name = $request['name'];
-            $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
             $services->page_id = $request['page_id'];
-
 
             $services->picture = $path;
             if ($services->save()) {

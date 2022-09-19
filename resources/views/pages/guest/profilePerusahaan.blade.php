@@ -69,19 +69,6 @@
     </div>
   </div>
 
-  <div class="history">
-    <div class="container">
-      <div class="row py-5">
-        <div class="col">
-          <h4>Sejarah Kami</h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nam atque quo nisi aliquid quisquam dicta neque explicabo dolore saepe. In quia maxime quam itaque facere veritatis aliquid totam! Quibusdam, perferendis corporis? Aut porro quod expedita eligendi ipsa unde molestiae, dolores consequatur quisquam quibusdam autem? Id quibusdam odio hic alias sit harum doloremque ducimus enim inventore natus veritatis consectetur dolor fugiat consequuntur nobis, eos, dolore incidunt, pariatur itaque esse accusantium. Earum architecto eaque molestias nulla! Quasi deleniti repellendus nam debitis quibusdam, aspernatur laborum praesentium incidunt aliquam esse. Nobis culpa suscipit odit expedita ea officia, delectus perferendis enim ad! Necessitatibus, exercitationem!</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="history-divider"></div>
-    <div class="history-right"></div>
-  </div>
 @endsection
 
 @push('style')

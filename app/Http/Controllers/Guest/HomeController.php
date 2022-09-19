@@ -26,6 +26,14 @@ class HomeController extends Controller
         return view("pages.guest.berita", compact("berita"));
     }
 
+    public function detailBerita($id)
+    {
+        $berita = Post::find($id);
+        $otherBerita = Post::where("id", "!=", $id)->paginate(4);
+        return view("pages.guest.detailBerita", compact("berita", "otherBerita"));
+    }
+
+
 
     public function page($id)
     {

@@ -11,7 +11,7 @@
                     Halaman</a>
                 <div class="table-responsive mt-3">
                     <table class="table table-bordered" id="page-table" width="100%" cellspacing="0">
-                        <thead>
+                        <thead class="table-light">
                             <tr>
                                 <th>Halaman</th>
                                 <th>Action</th>
