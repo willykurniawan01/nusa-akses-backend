@@ -10,7 +10,7 @@
                 <a href="{{ route('page.create') }}" class="btn btn-success"><i class="mdi mdi-plus-circle"></i>
                     Halaman</a>
                 <div class="table-responsive mt-3">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="page-table" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Halaman</th>
@@ -55,14 +55,16 @@
     <!-- /.container-fluid -->
 @endsection
 
-
 @push('style')
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset("assets/css/vendor/dataTables.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/vendor/responsive.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('script')
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $("#page-table").DataTable({});
+    </script>
 @endpush

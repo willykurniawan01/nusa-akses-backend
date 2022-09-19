@@ -78,7 +78,7 @@
             <a href="#" class="footer-nav-link">
               Pusat Bantuan
             </a>
-            <a href="#" class="footer-nav-link">
+            <a data-bs-target="#reportModal" href="#" data-bs-toggle="modal" class="footer-nav-link">
               Laporan Kendala
             </a>
           </div>
@@ -99,9 +99,6 @@
             </a>
             <a href="#" class="footer-nav-link">
               Sejarah Perusahaan
-            </a>
-            <a href="#" class="footer-nav-link">
-              Karir
             </a>
           </div>
         </div>
@@ -136,47 +133,29 @@
     <i class="bi bi-chat-fill"></i>
   </button>
 
-  <!-- Modal -->
-<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4>Admin</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-6"> 
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. A quos temporibus quas hic, repellat quaerat tempore, blanditiis, exercitationem in eaque soluta dolorem itaque quod doloribus ipsam dolore voluptas! Velit, iusto!
-                </p>
-              </div>
-            </div>
-          </div>
+
+<form id="chat-form">
+  <div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Admin</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="row justify-content-end">
-          <div class="col-6"> 
-            <div class="card shadow-sm self-message">
-              <div class="card-body">
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. A quos temporibus quas hic, repellat quaerat tempore, blanditiis, exercitationem in eaque soluta dolorem itaque quod doloribus ipsam dolore voluptas! Velit, iusto!
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="modal-body">
+        
         </div>
-      </div>
-      <div class="modal-footer">
-        <div class="input-group">
-          <input type="text" placeholder="ketik pesan..." class="form-control">
-          <button type="button" class="btn btn-primary">Kirim</button>
+        <div class="modal-footer">
+          <div class="input-group">
+              <input type="text" placeholder="ketik pesan..." name="message" class="form-control">
+              <button type="submit" class="btn btn-primary">Kirim</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</form>
+
 
   <!-- Modal -->
 <div class="modal fade" id="chatLoginModal" tabindex="-1" aria-labelledby="chatLoginModalLabel" aria-hidden="true">
@@ -209,11 +188,61 @@
   </div>
 </div>
 
-        
-<!-- JavaScript Bundle with Popper -->
+<form method="POST" action="{{ route("guest.report") }}">
+@csrf
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="form-group">
+              <label>Tanggal</label>
+              <input type="date" class="form-control mt-2" name="date">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" class="form-control mt-2" name="customer_name">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Problem</label>
+              <input type="text" class="form-control mt-2" name="problem">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Deskripsi</label>
+             <textarea name="description" class="form-control mt-2"></textarea>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Alamat</label>
+             <textarea name="address" class="form-control mt-2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Kirim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+@include('sweetalert::alert')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
-@stack('script')
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 <script>
   $(function(){
@@ -222,25 +251,153 @@
     let chatButton = $('#chatButton');
     let loginButton = $('#loginButton');
     let emailInput = $("input[name='email']");
+    let chatForm = $("#chat-form");
     let nameInput = $("input[name='name']");
+    let messageInput = chatModal.find("input[name='message']");
+    let auth = sessionStorage.getItem("auth");
+
+    if(auth){
+      setInterval(async () => {
+          let chatRoomId = sessionStorage.getItem("chat_room_id");
+          let chat = await getChat(chatRoomId);
+          displayMessages(chat.data);
+      }, 3000);
+    }
+
 
     chatButton.on("click",function(){
-      let email = sessionStorage.getItem("email");
-      if(!email != ""){
+      if(!auth){
         chatLoginModal.modal("show");
       }else{
         chatModal.modal("show");
       }
     });
 
-    loginButton.on("click",function(){
-      if(emailInput.val() != "" && nameInput != ""){
-        sessionStorage.setItem("email",emailInput.val());
-        sessionStorage.setItem("name",nameInput.val());
+    loginButton.on("click",async function(){
+      if(emailInput.val() != "" && nameInput.val() != ""){
+        let loginRes = await login(emailInput.val(),nameInput.val());
+      
+        if(loginRes.data){
+            sessionStorage.setItem("guest_id",loginRes.data.id);
+            sessionStorage.setItem("chat_room_id",loginRes.data.chat_room.id);
+            sessionStorage.setItem("auth",true);
+            chatLoginModal.modal("hide");
+
+            setInterval(async () => {
+                let chatRoomId = sessionStorage.getItem("chat_room_id");
+                let chat = await getChat(chatRoomId);
+                displayMessages(chat.data);
+            }, 3000);
+
+
+            chatModal.modal("show");
+            
+        }
       }
     });
+
+    chatForm.on("submit",function(event){
+        event.preventDefault();
+        let chatRoomId = sessionStorage.getItem("chat_room_id");
+        let guestId = sessionStorage.getItem("guest_id");
+        let message = messageInput.val();
+
+        sendMessage(chatRoomId,guestId,message);
+        messageInput.val("");
+    });
+
+
+
+    async function getChat(chatRoomId){
+        let result =  await $.ajax({
+            url: `{{ route("api.chat") }}`,
+            type: "GET",
+            dataType: 'JSON',
+            data:{
+              chat_room_id : chatRoomId,
+            }
+        });
+        
+        return result;
+    }
     
+    async function login(email,name){
+        let result =  await $.ajax({
+            url: `{{ route("api.chat.login") }}`,
+            type: "POST",
+            dataType: 'JSON',
+            data:{
+              email,
+              name
+            }
+        });
+        
+        return result;
+    }
+
+    async function sendMessage(roomId,guestId,message){
+        let result =  await $.ajax({
+            url: `{{ route("api.chat.send") }}`,
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            dataType: 'JSON',
+            data:{
+                id:roomId,
+                guest_id:guestId,
+                message:message
+            }
+        });
+        
+        return result;
+    }
+
+    function displayMessages(chat){
+      let html = "";
+      let conversationList = chatModal.find(".modal-body")
+      
+      $.each(chat,function(i,v){
+          if(v.type == "guest-admin"){
+              console.log(v.type)
+              html += `
+              <div class="row justify-content-end mb-2">
+                <div class="col-6"> 
+                  <div class="card shadow-sm self-message">
+                    <div class="card-body">
+                      <p>
+                       ${v.message}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `
+          }else{
+              html += `
+              <div class="row mb-2">
+                <div class="col-6"> 
+                  <div class="card shadow-sm">
+                    <div class="card-body">
+                      <p>
+                        ${v.message}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `;
+          }
+          
+          
+      });
+
+      conversationList.html(html);
+  }
+  
   });
 </script>
+@stack('script')
+
 </body>
 </html>

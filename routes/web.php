@@ -92,6 +92,7 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
 
     Route::prefix('report')->group(function () {
         Route::get('', 'ReportController@index')->name('report.index');
+        Route::get('show/{id}', 'ReportController@show')->name('report.show');
     });
 
     Route::prefix('setting')->group(function () {
@@ -107,4 +108,5 @@ Route::namespace("Guest")->group(function () {
     Route::get("/berita", "HomeController@berita")->name("guest.berita");
     Route::get("/page/{id}", "HomeController@page")->name("guest.page");
     Route::get("/perusahaan", "HomeController@perusahaan")->name("guest.perusahaan");
+    Route::post("/report", "HomeController@report")->name("guest.report");
 });

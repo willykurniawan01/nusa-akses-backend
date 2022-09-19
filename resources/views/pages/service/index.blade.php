@@ -3,17 +3,19 @@
 @section('title', 'Layanan')
 
 @section('content')
-    <div class="container-fluid">
-
-        <div class="row mt-3">
-            <div class="col-sm-5">
-                <a href="{{ route('service.create') }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Layanan</a>
+    <div class="container-fluid">    
+        <div class="row mb-3 mt-3">
+            <div class="col">
+                <a href="{{ URL::previous() }}" class="btn btn-success">
+                    <i class="uil-arrow-left"></i>
+                </a>
             </div>
         </div>
-    
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
+        
+        <div class="card shadow mt-3">
             <div class="card-body">
+                <a href="{{ route('service.create') }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Layanan</a>
+
                 <div class="table-responsive">
                     <table name="servicesTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -63,7 +65,8 @@
 
 
 @push('style')
-    <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset("assets/css/vendor/dataTables.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("assets/css/vendor/responsive.bootstrap5.css") }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('script')

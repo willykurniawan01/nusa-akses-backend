@@ -3,7 +3,15 @@
 @section('title',"Home")
 
 @section('content')
-  <div class="articles mt-5">
+<nav aria-label="breadcrumb">
+  <div class="container mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{{ route("guest.home") }}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Berita</li>
+    </ol>
+  </div>
+</nav>
+  <div class="articles mt-3">
     <div class="container">
       <div class="row">
         <div class="col-5">
@@ -44,8 +52,6 @@
 
 @push('style')
     <style>
-        .articles{
-          margin-top: 100px !important;
-        }
+  
     </style>
 @endpush

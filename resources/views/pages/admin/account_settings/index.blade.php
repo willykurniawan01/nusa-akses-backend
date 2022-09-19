@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="{{ route("setting.account-setting.update",$user->id) }}" method="POST">
+<form enctype="multipart/form-data" action="{{ route("setting.account-setting.update",$user->id) }}" method="POST">
     @csrf
     <div class="container-fluid">
         <div class="row mt-3">
@@ -13,7 +13,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="row px-4 justify-content-center">
-                                <img class="rounded-circle" src="{{ asset("img/undraw_profile.svg") }}" width="100" height="100" alt="">
+                                <img style="width:100px; height:100px;" src="{{ !is_null($user->profile_pic) ?  Storage::url($user->profile_pic) : asset("images/user.png") }}" >
                             </div>
                             <div class="row mt-2 justify-content-center">
                                 <h4 class="text-center user-name"> 

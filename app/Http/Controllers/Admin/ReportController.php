@@ -14,4 +14,11 @@ class ReportController extends Controller
         $report = Report::all();
         return view("pages.admin.report.index", compact("report"));
     }
+
+    public function show($id)
+    {
+        $report = Report::find($id);
+
+        return view("pages.admin.report.show", compact("report"));
+    }
 }

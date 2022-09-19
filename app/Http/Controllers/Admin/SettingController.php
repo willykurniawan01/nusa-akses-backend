@@ -23,18 +23,30 @@ class SettingController extends Controller
             "password" => "same:password_confirm"
         ];
 
+        $messages  =  [
+            "name.required" => "Nama tidak boleh kosong!",
+            "password.same" => "Password dan konfirmasi password harus sama!"
+        ];
 
-        $validation = Validator::make($request->all(), $rules);
+        $validation = Validator::make($request->all(), $rules, $messages);
 
         if (!$validation->fails()) {
             $user->name = $request->name;
             if ($request->password != "") {
                 $user->password = bcrypt($request->password);
             }
-            $user->save();
-        }
 
-        return redirect()->route("setting.index")
-            ->withToastSuccess("Berhasil mengupdate pengaturan user!");
+            if ($request->hasFile("picture")) {
+                $path = $request->file("picture")->store("user", "public");
+                $user->profile_pic = $path;
+            }
+            if ($user->save()) {
+                return redirect()->back()
+                    ->withToastSuccess("Berhasil mengupdate pengaturan user!");
+            }
+        } else {
+            return redirect()->back()
+                ->withToastError($validation->errors()->first());
+        }
     }
 }

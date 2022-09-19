@@ -7,7 +7,7 @@
 
         <div class="row mb-3 mt-3">
             <div class="col">
-                <a href="{{ URL::previous() }}" class="btn btn-primary">
+                <a href="{{ URL::previous() }}" class="btn btn-success">
                     <i class="uil-arrow-left"></i>
                 </a>
             </div>
@@ -15,7 +15,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">Halaman Home</h4>
+                <h4 class="m-0 font-weight-bold text-uppercase">Halaman Home</h4>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -32,7 +32,7 @@
                                                 Image Slider
                                             </h4>
                                             <p>
-                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                                Kelola image slider pada halaman home
                                             </p>
                                             <a href="{{ route("slider.index") }}" class="btn btn-sm btn-success">
                                                 Kelola
@@ -48,7 +48,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <i class="uil-scenery large-icon"></i>
+                                        <i class="bi bi-gear large-icon"></i>
                                     </div> 
                                     <div class="col-sm-8">
                                         <div class="row">
@@ -56,7 +56,7 @@
                                                 Layanan
                                             </h4>
                                             <p>
-                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                                                Kelola layanan pada halaman home
                                             </p>
                                             <a href="{{ route("service.index") }}" class="btn btn-sm btn-success">
                                                 Kelola

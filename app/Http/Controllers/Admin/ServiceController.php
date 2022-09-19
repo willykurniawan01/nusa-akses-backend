@@ -42,13 +42,11 @@ class ServiceController extends Controller
     {
         $rules = [
             'name' => 'required',
-            // 'description' => 'required',
             'picture' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ];
 
         $messages = [
             'name.required' => 'nama services tidak boleh kosong!',
-            // 'description.required' => 'deskripsi services tidak boleh kosong!',
             'picture.image' => 'file harus berupa gambar!',
             'picture.mimes' => 'ekstensi file tidak di support!',
         ];

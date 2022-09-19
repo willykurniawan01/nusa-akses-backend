@@ -4,14 +4,22 @@
 
 @section('content')
     <div class="container-fluid">
+        <div class="row mb-3 mt-3">
+            <div class="col">
+                <a href="{{ URL::previous() }}" class="btn btn-success">
+                    <i class="uil-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+
         <div class="card shadow mt-3">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">Image Slider</h4>
+                <h4 class="m-0 font-weight-bold text-uppercase">Image Slider</h4>
             </div>
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col">
-                        <button data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-primary btn-sm">
+                        <button data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-success btn-sm">
                            <i class="uil-plus-circle"></i> Picture
                         </button>
                     </div>

@@ -50,7 +50,7 @@
                                 <label for="page">Halaman :</label>
                                 <div class="input-group mb-3">
                                     <select class="form-select"  name="page_id" >
-                                      <option selected>Pilih halaman...</option>
+                                      <option value="" selected>Pilih halaman...</option>
                                       @foreach ($page as $eachPage)
                                         <option value="{{ $eachPage->id }}">{{ $eachPage->name }}</option>
                                       @endforeach

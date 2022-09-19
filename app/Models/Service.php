@@ -33,11 +33,9 @@ class Service extends Model
 
     public static function saveService($request)
     {
-        // dd($request->hasFile('picture'));
         if (!$request->hasFile('picture')) {
             $services = new self;
             $services->name = $request['name'];
-            // $services->description = $request['description'];
             $services->page_id = $request['page_id'];
 
             if ($services->save()) {
@@ -46,11 +44,10 @@ class Service extends Model
         } else {
             $services = new self;
             $services->name = $request['name'];
-            // $services->description = $request['description'];
             $path = $request->file('picture')->store('/services', 'public');
-            $services->page_id = $request['page_id'];
-
+            $services->page_id = $request['page_id'] ?? null;
             $services->picture = $path;
+
             if ($services->save()) {
                 return true;
             }

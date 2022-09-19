@@ -15,11 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', feunction (Request $request) {
-//     return $request->user();
-// });
+
 
 Route::namespace('Api')->group(function () {
     Route::get("page", "PageController@index");
     Route::get("");
+
+
+    Route::prefix('chat')->group(function () {
+        Route::get("", "ChatController@getChat")->name("api.chat");
+        Route::post("login", "ChatController@login")->name("api.chat.login");
+        Route::post("send", "ChatController@sendMessage")->name("api.chat.send");
+    });
 });

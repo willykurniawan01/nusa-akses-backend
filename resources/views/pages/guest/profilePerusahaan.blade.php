@@ -16,7 +16,7 @@
               <h5>Tentang Nusa Akses</h5>
             </div>
             <div class="profileContentDesc">
-              <p></p>
+              <p>Provides best-of-class fiber optic services and radio to Indonesia. No more buffering while watching your favorite movie at home, and no more performance delays accessing your business’s mission critical applications. Along with the best support team in the industry, we provide our customers with Internet access with speeds in excess of 1 Gbps+.</p>
             <button class="btn-transparent">
                 Selengkapnya <i class="bi bi-arrow-right-circle"></i>
               </button> 
@@ -41,7 +41,7 @@
           <h5>Visi</h5>
         </div>
         <div class="textContent">
-          <p></p>
+          <p>Menjadi penyedia layanan dan solusi gaya hidup digital mobile kelas dunia yang terpercaya.</p>
         </div>
       </div>
       <div class="text" data-aos="fade-right">
@@ -49,7 +49,8 @@
           <h5>Misi</h5>
         </div>
         <div class="textContent">
-          <p></p>
+          <p>Memberikan layanan dan solusi digital mobile yang melebihi ekspektasi para pengguna, menciptakan nilai lebih bagi para pemegang saham serta mendukung pertumbuhan ekonomi bangsa.
+          </p>
         </div>
       </div>
     </div>
@@ -59,7 +60,7 @@
           <h5>Pimpinan Perusahaan</h5>
         </div>
         <div class="textContent">
-          <p></p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis a vel, consequuntur dicta error quod omnis magni quaerat tempore in aut numquam? Magni illo temporibus asperiores, at distinctio ducimus consectetur fugiat! Facilis at minus odio, aliquid sunt rerum voluptas cumque tenetur? Voluptatem, fugit necessitatibus possimus sapiente eaque iusto ipsam maiores!</p>
         </div>
       </div>
         <button class="buttonTransparent">
@@ -73,7 +74,7 @@
       <div class="row py-5">
         <div class="col">
           <h4>Sejarah Kami</h4>
-          <p></p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nam atque quo nisi aliquid quisquam dicta neque explicabo dolore saepe. In quia maxime quam itaque facere veritatis aliquid totam! Quibusdam, perferendis corporis? Aut porro quod expedita eligendi ipsa unde molestiae, dolores consequatur quisquam quibusdam autem? Id quibusdam odio hic alias sit harum doloremque ducimus enim inventore natus veritatis consectetur dolor fugiat consequuntur nobis, eos, dolore incidunt, pariatur itaque esse accusantium. Earum architecto eaque molestias nulla! Quasi deleniti repellendus nam debitis quibusdam, aspernatur laborum praesentium incidunt aliquam esse. Nobis culpa suscipit odit expedita ea officia, delectus perferendis enim ad! Necessitatibus, exercitationem!</p>
         </div>
       </div>
     </div>

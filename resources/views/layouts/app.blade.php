@@ -17,6 +17,7 @@
         <!-- App css -->
         <link href="{{ asset("assets/css/icons.min.css") }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset("assets/css/app.min.css") }}" rel="stylesheet" type="text/css" id="app-style"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         @stack('style')
 
     </head>
@@ -354,7 +355,7 @@
                                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
                                     aria-expanded="false">
                                     <span class="account-user-avatar"> 
-                                        <img src="{{ asset("images/user.png") }}" alt="user-image" class="rounded-circle">
+                                        <img src="{{ !is_null(auth()->user()->profile_pic) ?  Storage::url(auth()->user()->profile_pic) : asset("images/user.png") }}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
                                         <span class="account-user-name">{{ auth()->user()->name }}</span>
@@ -605,15 +606,6 @@
         <script src="{{ asset("assets/js/vendor.min.js") }}"></script>
         <script src="{{ asset("assets/js/app.js") }}"></script>
 
-        <!-- third party js -->
-        {{-- <script src="{{ asset("assets/js/vendor/apexcharts.min.js") }}"></script> --}}
-        {{-- <script src="{{ asset("assets/js/vendor/jquery-jvectormap-1.2.2.min.js") }}"></script> --}}
-        {{-- <script src="{{ asset("assets/js/vendor/jquery-jvectormap-world-mill-en.js") }}"></script> --}}
-        <!-- third party js ends -->
-
-        <!-- demo app -->
-        {{-- <script src="{{ asset("assets/js/pages/demo.dashboard.js") }}"></script> --}}
-        <!-- end demo js-->
         @include('sweetalert::alert')
 
         @stack('script')
