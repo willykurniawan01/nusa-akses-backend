@@ -20,8 +20,9 @@ class Page extends Model
     ];
 
 
-    public function components()
+
+    public function services()
     {
-        return $this->hasMany(PageComponent::class, "page_id");
+        return $this->hasMany(Service::class);
     }
 }

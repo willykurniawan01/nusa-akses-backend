@@ -11,14 +11,14 @@ class ImageSlider extends Model
 
     protected $table = 'image_sliders';
 
-    public function getAllslider()
+    public static function getAllSliders()
     {
         $slider = ImageSlider::all();
 
         return $slider;
     }
 
-    public function saveImage($request)
+    public static function saveImage($request)
     {
         $path = $request->file('picture')->store('sliders', 'public');
 
@@ -32,7 +32,7 @@ class ImageSlider extends Model
         return false;
     }
 
-    public function deleteImage($id)
+    public static function deleteImage($id)
     {
         $sliders = self::findOrFail($id);
 

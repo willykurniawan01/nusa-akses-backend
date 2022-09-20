@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::namespace('Api')->group(function () {
-    Route::get("page", "PageController@index");
-    Route::get("");
-
+    Route::resource('post', 'PostController');
+    Route::resource('sliders', 'ImageSliderController');
+    Route::resource('services', 'ServiceController');
+    Route::resource('page', 'PageController');
 
     Route::prefix('chat')->group(function () {
         Route::get("", "ChatController@getChat")->name("api.chat");
