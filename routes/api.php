@@ -24,8 +24,10 @@ Route::namespace('Api')->group(function () {
     Route::resource('page', 'PageController');
 
     Route::prefix('chat')->group(function () {
-        Route::get("", "ChatController@getChat")->name("api.chat");
+        Route::post("", "ChatController@getChat")->name("api.chat");
         Route::post("login", "ChatController@login")->name("api.chat.login");
         Route::post("send", "ChatController@sendMessage")->name("api.chat.send");
     });
+
+    Route::post("send-report", "ReportController@send");
 });

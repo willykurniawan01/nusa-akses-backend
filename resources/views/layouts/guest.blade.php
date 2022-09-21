@@ -173,20 +173,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="row">
-            <div class="form-group">
-              <label>Email</label>
-              <input type="text" class="form-control mt-2" name="email">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="form-group">
-              <label>Nama</label>
-              <input type="text" class="form-control mt-2" name="name">
-            </div>
-          </div>
-        </div>
+        
       </div>
       <div class="modal-footer">
         <button type="button" id="loginButton" class="btn btn-primary">Submit</button>
@@ -281,7 +268,6 @@
         chatModal.modal("show");
       }
     });  
-    
     
     endChatButton.on("click",function(){
       sessionStorage.clear();
