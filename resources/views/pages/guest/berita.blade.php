@@ -31,7 +31,7 @@
         @foreach ($berita as $eachBerita)
           <div class="col-12 col-sm-4">
             <div class="card shadow-sm">
-              <img src="{{ Storage::url($eachBerita->picture) }}" class="card-img"/>
+              <img src="{{ Storage::url($eachBerita->picture) }}" class="card-img" style="height: 300px;"/>
               <div class="card-body">
                   <div class="card-title mt-3">
                     <a href="{{ route("guest.detail-berita",$eachBerita->slug) }}">{{ $eachBerita->judul }}</a>

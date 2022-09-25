@@ -15,7 +15,7 @@ class ImageSliderController extends Controller
         $result = [];
         $result['data'] = [];
 
-        $imageSliders = ImageSlider::getAllSliders();
+        $imageSliders = ImageSlider::getAllSlider();
 
         foreach ($imageSliders as $eachSlider) {
             $eachSlider->picture = url(Storage::url($eachSlider->picture));
