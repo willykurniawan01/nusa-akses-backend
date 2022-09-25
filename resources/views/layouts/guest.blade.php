@@ -48,10 +48,13 @@
         <li class="nav-item me-4">
         <a class="nav-link" aria-current="page" href="{{ route("guest.berita") }}">Berita</a>
         </li>   
-        {{-- <li class="nav-item me-4">
-          <a class="nav-link" aria-current="page" href="https://mrtg.nusaakses.net.id/">MRTG Nusa Akses
+        
+        @foreach (App\Models\Page::has("services", "=", 0)->get() as $eachPage)
+        <li class="nav-item me-4">
+          <a class="nav-link" aria-current="page" href="{{ route("guest.page",$eachPage->id) }}">{{ $eachPage->name }}
           </a>
-        </li> --}}
+        </li>
+        @endforeach
     </ul>
     </div>
 </div>

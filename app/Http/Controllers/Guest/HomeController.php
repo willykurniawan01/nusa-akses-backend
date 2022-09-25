@@ -31,8 +31,7 @@ class HomeController extends Controller
     public function detailBerita($slug)
     {
         $berita = Post::where("slug", $slug)->first();
-        $otherBerita = Post::where("slug", "!=", $slug)->paginate(4);
-        return view("pages.guest.detailBerita", compact("berita", "otherBerita"));
+        return view("pages.guest.detailBerita", compact("berita"));
     }
 
 

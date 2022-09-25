@@ -5,7 +5,7 @@
 @section('content')
   <div class="container">
     <div class="row mt-5">
-      <div class="col-sm-9">
+      <div class="col-sm-12">
         <div class="row">
           <div class="col">
             <img
@@ -24,21 +24,6 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-2 offset-sm-1">
-        @foreach ($otherBerita as $eachBerita)
-          <div class="row">
-            <div class="col">
-              <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid"/>
-              <div class="postCardDate">
-                <span>{{ date("d/m/Y",strtotime($eachBerita->created_at)) }}</span>
-              </div>
-              <a class="postCardTitle" href="{{ route("guest.detail-berita",$eachBerita->id) }}">
-              {{$eachBerita->judul}}
-              </a>
-            </div>
-          </div>
-        @endforeach
-      </div> 
     </div>
   </div>
 @endsection
