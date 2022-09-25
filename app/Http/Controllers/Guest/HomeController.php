@@ -17,7 +17,9 @@ class HomeController extends Controller
     {
         $imageSliders = ImageSlider::all();
         $services = Service::with("page")->get();
-        return view("pages.guest.index", compact("imageSliders", "services"));
+        $berita = Post::paginate(2);
+
+        return view("pages.guest.index", compact("imageSliders", "services", "berita"));
     }
 
     public function berita()
@@ -26,10 +28,10 @@ class HomeController extends Controller
         return view("pages.guest.berita", compact("berita"));
     }
 
-    public function detailBerita($id)
+    public function detailBerita($slug)
     {
-        $berita = Post::find($id);
-        $otherBerita = Post::where("id", "!=", $id)->paginate(4);
+        $berita = Post::where("slug", $slug)->first();
+        $otherBerita = Post::where("slug", "!=", $slug)->paginate(4);
         return view("pages.guest.detailBerita", compact("berita", "otherBerita"));
     }
 
@@ -44,6 +46,11 @@ class HomeController extends Controller
     public function perusahaan()
     {
         return view("pages.guest.profilePerusahaan");
+    }
+
+    public function sejarahPerusahaan()
+    {
+        return view("pages.guest.sejarahPerusahaan");
     }
 
     public function report(Request $request)

@@ -11,7 +11,7 @@ class ImageSlider extends Model
 
     protected $table = 'image_sliders';
 
-    public static function getAllSliders()
+    public static function getAllSlider()
     {
         $slider = ImageSlider::all();
 

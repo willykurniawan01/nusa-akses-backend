@@ -17,9 +17,9 @@
             </div>
             <div class="profileContentDesc">
               <p>Provides best-of-class fiber optic services and radio to Indonesia. No more buffering while watching your favorite movie at home, and no more performance delays accessing your business’s mission critical applications. Along with the best support team in the industry, we provide our customers with Internet access with speeds in excess of 1 Gbps+.</p>
-            <button class="btn-transparent">
+            {{-- <button class="btn-transparent">
                 Selengkapnya <i class="bi bi-arrow-right-circle"></i>
-              </button> 
+              </button>  --}}
             </div>
           </div>
         </div>
@@ -57,15 +57,24 @@
     <div class="misi">
       <div class="text" data-aos="fade-left">
         <div class="textTitle">
-          <h5>Pimpinan Perusahaan</h5>
+          <h5>Sejarah Perusahaan</h5>
         </div>
         <div class="textContent">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis a vel, consequuntur dicta error quod omnis magni quaerat tempore in aut numquam? Magni illo temporibus asperiores, at distinctio ducimus consectetur fugiat! Facilis at minus odio, aliquid sunt rerum voluptas cumque tenetur? Voluptatem, fugit necessitatibus possimus sapiente eaque iusto ipsam maiores!</p>
+          <p>Daya Akses Nusantara merupakan suatu organisasi yang bergerak dalam jasa Internet dan pengembangan Aplikasi. Daya Akses Nusantara memiliki kantor yang terletak di kota Batam (Jl. Brigjen Katamso Komplek Pertokoan Central Barelang Raya Blok B-1 NO 6 Tanjung Uncang, Batam, Indonesia). Daya Akses Nusantara baru didirikan pada tahun Desember 2019. Daya Akses Nusantara bergerak dengan dua orang pendiri yakni Bapak Yulvizon dan Sukristiyo. Organisasi ini bisa termasuk baru beroperasi dalam dunia IT di kota Batam.</p>
         </div>
       </div>
-        <button class="buttonTransparent">
+        {{-- <button class="buttonTransparent">
         Selengkapnya <i class="bi bi-arrow-right-circle"></i>
-      </button> 
+      </button>  --}}
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5  mb-5">
+    <div class="col-4 mt-5">
+      <h4 class="text-center title">
+        Bussiness Partner
+      </h4>
+      <img src="{{ asset("images/partner.png") }}" class="img-fluid mt-5" />
     </div>
   </div>
 

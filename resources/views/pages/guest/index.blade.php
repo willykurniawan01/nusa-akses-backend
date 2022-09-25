@@ -42,41 +42,21 @@
       </div>
     </div>
 
+    @foreach ($berita as $index => $eachBerita)
+    @if (!$index % 2 == 0)
     <div class="row mt-5">
-      <div class="col-12 col-sm-5">
-        <img src="{{ asset("images/office.png") }}"  class="img-fluid" alt="" />
-      </div>
-      <div class="col-12 col-sm-7">
-        <div class="row">
-          <h4 class="title">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, pariatur.</h4>
-        </div>
-        <div class="row">
-          <div
-            class="content"
-          >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem necessitatibus recusandae repellat, autem officiis voluptate in? Quae eligendi est sapiente eaque soluta consequatur beatae rem tenetur dolore consectetur praesentium facilis iure omnis laboriosam, deserunt atque laudantium mollitia qui? Nulla, odio enim eos quod saepe corporis animi eligendi maiores laboriosam rerum.
-        </div>
-          <a
-            class="btn btn-custom-primary w-50 mt-4"
-          >
-            Selengkapnya
-          </a>
-        </div>
-      </div>
-    </div>
 
-    <div class="row mt-5">
       <div class="col-12 col-sm-7">
         <div class="row">
-          <h4 class="title">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores, pariatur.</h4>
+          <h4 class="title">{{ $eachBerita->judul }}</h4>
         </div>
         <div class="row">
           <div
             class="content"
           >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem necessitatibus recusandae repellat, autem officiis voluptate in? Quae eligendi est sapiente eaque soluta consequatur beatae rem tenetur dolore consectetur praesentium facilis iure omnis laboriosam, deserunt atque laudantium mollitia qui? Nulla, odio enim eos quod saepe corporis animi eligendi maiores laboriosam rerum.
+          {!! Str::limit($eachBerita->content,500) !!}
         </div>
-          <a
+          <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
             class="btn btn-custom-primary w-50 mt-4"
           >
             Selengkapnya
@@ -84,9 +64,36 @@
         </div>
       </div>
       <div class="col-12 col-sm-5">
-        <img src="{{ asset("images/office.png") }}"  class="img-fluid" alt="" />
+        <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid" alt="" />
       </div>
     </div>
+    @else
+      <div class="row mt-5">
+        <div class="col-12 col-sm-5">
+          <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid" alt="" />
+        </div>
+        <div class="col-12 col-sm-7">
+          <div class="row">
+            <h4 class="title">{{ $eachBerita->judul }}</h4>
+          </div>
+          <div class="row">
+            <div
+              class="content"
+            >
+            {!! Str::limit($eachBerita->content,500) !!}
+          </div>
+            <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
+              class="btn btn-custom-primary w-50 mt-4"
+            >
+              Selengkapnya
+            </a>
+          </div>
+        </div>
+      </div>
+
+    @endif
+        
+    @endforeach
 
     <div class="row justify-content-center mt-5  mb-5">
       <div class="col-4 mt-5">

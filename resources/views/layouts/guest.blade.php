@@ -32,7 +32,7 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{{ route("guest.perusahaan") }}">Profile Perusahaan</a></li>
-            <li><a class="dropdown-item" href="{{ route("guest.perusahaan") }}">Sejarah Perusahaan</a></li>
+            <li><a class="dropdown-item" href="{{ route("guest.sejarah-perusahaan") }}">Sejarah Perusahaan</a></li>
         </ul>
         </li>  
         <li class="nav-item me-4 dropdown">
@@ -75,9 +75,9 @@
         <div class="col-sm-3">
           <div class="footer-nav">
             <p class="footer-nav-header">Bantuan</p>
-            <a href="#" class="footer-nav-link">
+            {{-- <a href="#" class="footer-nav-link">
               Pusat Bantuan
-            </a>
+            </a> --}}
             <a data-bs-target="#reportModal" href="#" data-bs-toggle="modal" class="footer-nav-link">
               Laporan Kendala
             </a>
@@ -94,10 +94,10 @@
         <div class="col-sm-3">
           <div class="footer-nav">
             <p class="footer-nav-header">Perusahaan</p>
-            <a href="#" class="footer-nav-link">
+            <a href="{{ route("guest.perusahaan") }}" class="footer-nav-link">
               Profil Perusahaan
             </a>
-            <a href="#" class="footer-nav-link">
+            <a href="{{ route("guest.sejarah-perusahaan") }}" class="footer-nav-link">
               Sejarah Perusahaan
             </a>
           </div>
@@ -144,7 +144,7 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul class="dropdown-menu">
-              <li><button id="end-chat" class="dropdown-item">Akhiri Chat</button></li>
+              <li><button type="button" id="end-chat" class="dropdown-item">Akhiri Chat</button></li>
             </ul>
           </div>
           <h4>Admin</h4>
@@ -173,7 +173,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+        <div class="container">
+          <div class="row">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control mt-2" name="email">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" class="form-control mt-2" name="name">
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" id="loginButton" class="btn btn-primary">Submit</button>
@@ -250,9 +263,8 @@
     let chatForm = $("#chat-form");
     let nameInput = $("input[name='name']");
     let messageInput = chatModal.find("input[name='message']");
-    let auth = sessionStorage.getItem("auth");
 
-    if(auth){
+    if(sessionStorage.getItem("auth")){
       setInterval(async () => {
           let chatRoomId = sessionStorage.getItem("chat_room_id");
           let chat = await getChat(chatRoomId);
@@ -262,7 +274,7 @@
 
 
     chatButton.on("click",function(){
-      if(!auth){
+      if(!sessionStorage.getItem("auth")){
         chatLoginModal.modal("show");
       }else{
         chatModal.modal("show");
@@ -312,7 +324,7 @@
     async function getChat(chatRoomId){
         let result =  await $.ajax({
             url: `{{ route("api.chat") }}`,
-            type: "GET",
+            type: "POST",
             dataType: 'JSON',
             data:{
               chat_room_id : chatRoomId,
