@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container-fluid">
-        
-     
         <div class="row mt-3">
             <div class="col-12">
                 <div class="card">
@@ -15,7 +13,7 @@
                                 <a href="{{ route('post.create') }}" class="btn btn-success mb-2"><i class="mdi mdi-plus-circle me-2"></i> Add Berita</a>
                             </div>
                         </div>
-        
+
                         <div class="table-responsive">
                             <table name="postTable" class="table table-centered w-100 dt-responsive nowrap" id="dataTable">
                                 <thead class="table-light">
@@ -27,16 +25,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
+
                                 </tbody>
                             </table>
                         </div>
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
-        
             </div>
         </div>
-       
     </div>
     <!-- /.container-fluid -->
 
@@ -56,7 +52,7 @@
                     </div>
                     <div class="modal-body">Klik tombol ok akan menghapus Berita</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
                         <button class="btn btn-primary" type="submit">OK</button>
                     </div>
                 </div>
@@ -64,7 +60,7 @@
         </div>
     </form>
 
-  
+
 @endsection
 
 

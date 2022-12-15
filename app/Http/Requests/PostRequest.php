@@ -37,7 +37,7 @@ class PostRequest extends FormRequest
     }
 
 
-    public function addPost()
+    public static function addPost()
     {
         return [
             'judul' => 'required',
@@ -47,7 +47,7 @@ class PostRequest extends FormRequest
         ];
     }
 
-    public function addPostMessages()
+    public static function addPostMessages()
     {
         return [
             'judul.required' => 'judul tidak boleh kosong!',

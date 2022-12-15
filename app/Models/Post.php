@@ -13,7 +13,7 @@ class Post extends Model
 
     protected $table = 'posts';
 
-    public function savePost($request)
+    public static function savePost($request)
     {
         // dd($request->file('picture'));
         if (!$request->hasFile('picture')) {
@@ -41,7 +41,7 @@ class Post extends Model
         return false;
     }
 
-    public function updatePost($request, $id)
+    public static function updatePost($request, $id)
     {
         // dd($request->file('picture'));
         if (!$request->file('picture')) {
@@ -74,12 +74,12 @@ class Post extends Model
 
 
 
-    public function getAllPost()
+    public static function getAllPost()
     {
         return self::all();
     }
 
-    public function getAllPostForDatatable()
+    public static function getAllPostForDatatable()
     {
         $query = self::all();
         return DataTables::of($query)->toJson();
@@ -87,7 +87,7 @@ class Post extends Model
 
 
 
-    public function getDetailPost($id)
+    public static function getDetailPost($id)
     {
         $post = self::find($id);
 

@@ -22,9 +22,14 @@ class HomeController extends Controller
         return view("pages.guest.index", compact("imageSliders", "services", "berita"));
     }
 
-    public function berita()
+    public function berita($keyword = "")
     {
-        $berita = Post::paginate(6);
+        if($keyword != ""){
+            $berita = Post::where("judul","like","%".$keyword."%")->paginate(6);
+        }else{
+            $berita = Post::paginate(6);
+        }
+
         return view("pages.guest.berita", compact("berita"));
     }
 

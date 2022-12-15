@@ -20,8 +20,10 @@
               type="text"
               placeholder="ketik keyword..."
               class="form-control me-2"
+              name="keyword"
+
             />
-            <button class="btn-custom-primary">
+            <button id="search-btn" class="btn-custom-primary">
               Cari
             </button>
           </div>
@@ -52,6 +54,17 @@
 
 @push('style')
     <style>
-  
+
     </style>
+@endpush
+
+@push('script')
+    <script>
+        $(function(){
+            $('#search-btn').click(function() {
+                var keyword = $('input[name=keyword]').val();
+                window.location.href = "{{ route('guest.berita','') }}/" + keyword;
+            });
+        });
+    </script>
 @endpush

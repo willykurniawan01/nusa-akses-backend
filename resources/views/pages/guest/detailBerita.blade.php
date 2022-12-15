@@ -1,7 +1,7 @@
 @extends("layouts.guest")
 
 @section('title',"Berita")
-    
+
 @section('content')
   <div class="container">
     <div class="row mt-5">
@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <img
-              class="img-fluid"
+              class="img-fluid postImage"
               src="{{ Storage::url($berita->picture) }}"
             />
             <h4 class="postTitle">{{ $berita->judul }}</h4>
@@ -86,8 +86,9 @@
         margin-bottom: 15px;
         }
 
-        .postDate span {
-        margin-left: 10px;
+        .postImage{
+            max-height: 300px;
+            width: 100%;
         }
     </style>
 @endpush

@@ -105,7 +105,7 @@ Route::prefix('admin')->namespace("Admin")->middleware('auth')->group(function (
 
 Route::namespace("Guest")->group(function () {
     Route::get("/", "HomeController@index")->name("guest.home");
-    Route::get("/berita", "HomeController@berita")->name("guest.berita");
+    Route::get("/berita/{keyword?}", "HomeController@berita")->name("guest.berita");
     Route::get("/detail-berita/{slug}", "HomeController@detailBerita")->name("guest.detail-berita");
     Route::get("/page/{id}", "HomeController@page")->name("guest.page");
     Route::get("/perusahaan", "HomeController@perusahaan")->name("guest.perusahaan");

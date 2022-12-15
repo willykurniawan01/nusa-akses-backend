@@ -44,55 +44,57 @@
 
     @foreach ($berita as $index => $eachBerita)
     @if (!$index % 2 == 0)
-    <div class="row mt-5">
-
-      <div class="col-12 col-sm-7">
-        <div class="row">
-          <h4 class="title">{{ $eachBerita->judul }}</h4>
+    <div class="berita">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-7">
+                <div class="row">
+                <h4 class="title">{{ $eachBerita->judul }}</h4>
+                </div>
+                <div class="row">
+                <div
+                    class="content"
+                >
+                {!! Str::limit($eachBerita->content,500) !!}
+                </div>
+                <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
+                    class="btn btn-custom-primary w-50 mt-4"
+                >
+                    Selengkapnya
+                </a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-5">
+                <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid berita-img" alt="" />
+            </div>
         </div>
-        <div class="row">
-          <div
-            class="content"
-          >
-          {!! Str::limit($eachBerita->content,500) !!}
-        </div>
-          <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
-            class="btn btn-custom-primary w-50 mt-4"
-          >
-            Selengkapnya
-          </a>
-        </div>
-      </div>
-      <div class="col-12 col-sm-5">
-        <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid" alt="" />
-      </div>
     </div>
     @else
-      <div class="row mt-5">
-        <div class="col-12 col-sm-5">
-          <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid" alt="" />
+    <div class="berita">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-5">
+            <img src="{{ Storage::url($eachBerita->picture) }}"  class="img-fluid berita-img" alt="" />
+            </div>
+            <div class="col-12 col-sm-7">
+            <div class="row">
+                <h4 class="title">{{ $eachBerita->judul }}</h4>
+            </div>
+            <div class="row">
+                <div
+                class="content"
+                >
+                {!! Str::limit($eachBerita->content,500) !!}
+            </div>
+                <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
+                class="btn btn-custom-primary w-50 mt-4"
+                >
+                Selengkapnya
+                </a>
+            </div>
+            </div>
         </div>
-        <div class="col-12 col-sm-7">
-          <div class="row">
-            <h4 class="title">{{ $eachBerita->judul }}</h4>
-          </div>
-          <div class="row">
-            <div
-              class="content"
-            >
-            {!! Str::limit($eachBerita->content,500) !!}
-          </div>
-            <a href="{{ route("guest.detail-berita", $eachBerita->slug) }}"
-              class="btn btn-custom-primary w-50 mt-4"
-            >
-              Selengkapnya
-            </a>
-          </div>
-        </div>
-      </div>
-
+    </div>
     @endif
-        
+
     @endforeach
 
     <div class="row justify-content-center mt-5  mb-5">
@@ -128,6 +130,11 @@
         color: #4e5764;
         font-weight: 300;
         font-size: 1.2rem;
+      }
+
+      .berita{
+        max-height: 280px;
+        overflow: hidden;
       }
 
     </style>
